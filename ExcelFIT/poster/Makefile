@@ -6,23 +6,16 @@
 
 SHELL=/bin/bash
 NAME=poster
-SUBDIRS:=paper poster
-ZIPFILE:=xbartu11_Metody\ návrhu\ kvantových\ výpočtů.zip
-ZIPFILES:=nahled.png paper/abstrakt.pdf poster/poster.pdf
 
+all: pdflatex
 
-.PHONY: all clean $(SUBDIRS)
+bibtex: $(NAME).aux
+	bibtex $(NAME)
 
-all: $(SUBDIRS)
-
-$(SUBDIRS):
-	$(MAKE) -C $@
-
-zip: $(ZIPFILES)
-	zip -j $(ZIPFILE) $(ZIPFILES)
+pdflatex: $(NAME).tex
+	pdflatex -jobname=$(NAME) $^
+	pdflatex -jobname=$(NAME) $^
+	pdflatex -jobname=$(NAME) $^
 
 clean:
-	for dir in $(SUBDIRS); do \
-		$(MAKE) -C $$dir clean; \
-	done
-	rm -f $(ZIPFILE)
+	rm -rf $(NAME).{aux,dvi,log,ps,fls,synctex.gz,fdb_latexmk,out,toc,bbl,blg}

@@ -1,0 +1,27 @@
+\begin{tcolorbox}[colframe=coffe, width=\textwidth, left=-0.2em, right=-1.65em, top=1mm, bottom=1mm]
+    % \IncMargin{-1.7em}
+    \begin{algorithm}[H]
+      \footnotesize	
+      $t \gets 0$\;
+      Inicializace kvantové populace $Q(t)$ s amplitudami $\frac{1}{\sqrt{2}}$\;
+      Inicializace rychlosti $V(t) \gets 0$\;
+      Nastavení globálního nejlepší řešení $B(t)$\;
+      \While{$t < t_{\max}$}{
+          $t \gets t + 1$\;
+          \For{$j = 1$ \textbf{to} $n$}{
+              Pozorování kvantového chromozomu $p_j(t)$ z $Q(t-1)$\;
+              Oprava $p_j(t)$ tak, aby splňovalo kapacitní omezení\;
+              Ohodnocení řešení $f_j(t)$\;
+          }
+          Aktualizace osobního nejlepší řešení částic\;
+          Aktualizace globálního nejlepší řešení $B(t)$\;
+          \For{$j = 1$ \textbf{to} $n$}{
+              Generování náhodných koeficientů $r_1, r_2 \in \langle 0, 1\rangle$\;
+              Aktualizace rychlosti:
+              $V_j(t) \gets \text{friction} \times V_j(t-1) + c_1 r_1 (p_{\text{best},j} - p_j(t)) + c_2 r_2 (g_{\text{best}} - p_j(t))$\;
+              Aplikace kvantového rotačního hradla na $Q_j(t)$ s úhlem $V_j(t)$;
+          }
+      }
+      \Return nejlepší nalezené řešení $B(t)$\;
+    \end{algorithm}
+\end{tcolorbox}

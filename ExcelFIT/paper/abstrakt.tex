@@ -87,6 +87,7 @@ Výsledky experimentů rovněž naznačují, že kvantově inspirované přístu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Úvod}
+\label{sec:Introduction}
 
 \textbf{[Motivace]}
 Optimalizační algoritmy inspirované přírodními procesy se běžně využívají při řešení různých typů složitých úloh, jenž nejsou snadno řešitelné klasickými metodami. 
@@ -94,7 +95,7 @@ Existují přístupy, které do těchto heuristik začleňují principy \textbf{
 
 \textbf{[Definice problému]}
 Cílem práce je vytvořit srovnávací studii kvantově inspirovaných evolučních algoritmů. 
-Tento přístup byl otestován na \textbf{problému batohu} ve variantě 0/1, který patří mezi NP-úplné kombinatorické problémy. 
+Srovnání proběhlo na \textbf{problému batohu} ve variantě 0/1, který patří mezi NP-úplné kombinatorické problémy. 
 Součástí srovnávací studie je také porovnání kvantově inspirovaných evolučních algoritmů s jejich klasickými variantami, přičemž u~všech algoritmů byly předem laděny jejich parametry. 
 
 \textbf{[Existující řešení]}
@@ -102,7 +103,7 @@ Mezi používané klasické heuristické algoritmy patří genetický algoritmus
 Pro každý z těchto přístupů existují i kvantově inspirované varianty a to kvantově inspirovaný genetický algoritmus (\emph{QIGA})~\cite{qiga}, kvantově inspirovaná evoluce roje (\emph{QSE})~\cite{qse} a kvantově inspirované simulované žíhání (\emph{QISA})~\cite{qisa}.
 
 \textbf{[Naše řešení]}
-V této praci byly testovány schopnosti kvantově inspirovaných evolučních algoritmů při řešení různých instancích problému batohu. 
+V této práci byly testovány schopnosti kvantově inspirovaných evolučních algoritmů při řešení různých instancí problému batohu. 
 Hodnocení algoritmů se zaměřovalo nejen na kvalitu nalezeného řešení, ale také na jeho škálovatelnost a schopnost efektivně řešit různé velikosti instancí problému. 
 Součástí práce je rovněž návrh, implementace a experimentální ověření vlastního kvantově inspirovaného algoritmu \emph{QIPSO}, který vznikl vhodnou úpravou algoritmu \emph{QSE}.
 
@@ -111,90 +112,74 @@ Součástí práce je rovněž návrh, implementace a experimentální ověřen�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Kvantově inspirované evoluční algoritmy}
-\label{sec:Introduction}
+\label{sec:qiea}
 
-\begin{equation}\label{eq:psi=a0+b1}
+Kvantově inspirované evoluční algoritmy (\emph{QIEA}) jsou heuristické metody, jenž využívají vybrané principy kvantové fyziky, zejména superpozice stavů a~pravděpodobnostní reprezentaci. 
+Stav jedince v populaci je reprezentován kvantovým bitem (\emph{qubit}), jenž je vyjádřen lineární kombinací stavů $| 0 \rangle$ a $| 1 \rangle$:
+\begin{equation*}\label{eq:psi=a0+b1}
 	| \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle, 
-\end{equation}
-	
+\end{equation*}
+kde ${\left| \alpha \right|}^2 + {\left| \beta \right|}^2 = 1$, přičemž $\alpha$ a $\beta$ reprezentují amplitudy pravděpodobnosti výběru jednotlivých stavů. 
 
-V této práci bylo konkrétně experimentováno se čtyřmi kvantově inspirovanými algoritmy:
+% Kvantová populace čítající $m$ jedinců je reprezentována pravděpodobnostní maticí: 
+% \begin{equation}\label{eq:quantum-representation}
+%     \begin{bmatrix}
+%         \alpha_1 & \alpha_2 & \dots & \alpha_m \\
+%         \beta_1  & \beta_2  & \dots & \beta_m
+%     \end{bmatrix},
+% \end{equation}
+% kde $\alpha_i^2 + \beta_i^2 = 1$ v případě normalizovaného systému.
+
+Přestože \emph{QIEA} využívají principy kvantové fyziky, nej\-sou cíleny pro běh na kvantovém počítači, ale jsou určeny k běhu na klasických výpočetních systémech. 
+Pro ověření schopností těchto algoritmů byl použit problém batohu ve variantě 0/1, kde každá položka může být buď vybrána, nebo nevybrána pro vložení do batohu, vizte \fbox{(1)}.
+
+Všechny zkoumané \emph{QIEA} využívají kvantovou reprezentaci řešení~\fbox{(2)}, kde pravděpodobnostní koeficienty $\alpha_i$ a $\beta_i$ $i$-tého qubitu jsou aktualizovány pomocí kvantového rotačního hradla, vizte~\fbox{Obrázek 1} a rovnici~\fbox{(3)}.
+Konkrétní velikost změny úhlu $\Delta\theta_i$ je určena na základě aktuálně pozorovaného binárního řešení $x_i$ a nejlepšího známého řešení $b_i$ podle tabulky~\fbox{Tabulka 1}.
+
+Všechny zkoumané algoritmy využívají kvantovou reprezentaci řešení a jejich aktualizace je prováděna prostřednictvím kvantového rotačního hradla.
+V~této práci bylo konkrétně experimentováno se čtyřmi typy \emph{QIEA}:
 \begin{itemize}
-	\item \textbf{QIGA}
-	\item \textbf{QISA}
-	\item \textbf{QSE}
-	\item \textbf{QIPSO}
+	\item \textbf{QIGA\,--\,} kvantové rozšíření klasického genetického algoritmu.
+	\item \textbf{QISA\,--\,} úprava simulovaného žíhání, jež je doplněna o metodu tepelně-řízeného pozorování (\emph{heat observation}).
+	\item \textbf{QSE\,--\,} kvantově inspirovaná verze částicového systému, kde je poloha částic ovlivněna jak osobním, tak globálním nejlepším řešením.
+	\item \textbf{QIPSO\,--\,} námi navržená modifikace algoritmu QSE, která zohledňuje také aktuálně pozorované binární řešení při aktualizaci stavů.
 \end{itemize}
+Testované algoritmy byly rovněž porovnávány s jejich klasickými variantami.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Návrh algoritmu QIPSO}
+Algoritmus \emph{QIPSO}, jenž je znázorněn pomocí pseudokódu v \fbox{Algoritmu 1}, pracuje s kvantovou reprezentací řešení popsanou maticí~\fbox{(2)}.
+Hlavní rozdíl oproti původnímu \emph{QSE} spočívá v tom, jak probíhá aktualizace stavu částic. 
+Zatímco \emph{QSE} upravuje kvantové úhly na základě nejlepšího osobního a globálního řešení, \emph{QIPSO} navíc využívá \textbf{aktuálně pozorovaná binární řešení}. 
 
+Rychlost částic (\emph{velocity}) v \emph{QIPSO} je ovlivněna nejen nejlepším globálním a osobním řešením, ale také tím, jak moc se aktuální pozorované řešení liší od těchto nejlepších řešeních, čímž algoritmus lépe vyjadřuje aktuální rozložení populace. 
+Dále byl zaveden parametr tření (\emph{friction}), který pomáhá tlumit příliš prudké změny rychlosti a tím zajišťuje stabilní vývoj populace. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Srovnávací studie}
+Cílem experimentální části je ověřit schopnosti algoritmů \emph{QIEA} při řešení úlohy batohu a vytvořit srovnávací studii. 
+Součástí experimentů je rovněž ladění parametrů jednotlivých algoritmů, jenž probíhalo s~instancemi $100$, $250$ a $500$ položek batohu. 
+Následně byly spuštěny experimenty s již doladěnými parametry na větších instancích batohu s $1000$, $2000$ a $5000$ položkami. 
+Každé experimentální nastavení algoritmu a jeho vyhodnocení bylo podloženo třiceti nezávislými běhy (\fbox{Tabulka 2}).
 
+Již při ladění parametrů jednotlivých algoritmů se ukázalo, že \emph{QIEA} dosahují obecně kvalitnějších výsledků než jejich klasické varianty. 
+Při experimentování s~většími instancemi problému batohu (1000 položek) bylo patrné, že \emph{QIEA} se dokáží výrazně přiblížit optimálnímu řešení, přičemž námi navržený algoritmus \emph{QIPSO} poskytoval ze všech testovaných přístupů nejkvalitnější řešení~(\fbox{Graf 1}). 
+Při zvětšení instance problému batohu na 5000 položek sice všechny testované algoritmy zaznamenaly pokles přesnosti, avšak \emph{QIPSO} i v tomto případě dosahoval kvalitnějších řešení než ostatní \emph{QIEA} (\fbox{Graf 2}). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Závěr}
-
-\newpage
-In previous years, Excel@FIT was composed of student \textbf{papers} and they were \textbf{accompanied} with posters.
-In order to focus on the interactive part of Excel@FIT, we would like to shift the \textbf{center of attention to the posters}.
-Please, focus on making an excellent poster!
-
-This accompanying document should serve as a \textbf{commentary} to the poster -- this idea is explained in Section~\ref{sec:Commentary}.
-For some topics, writing a direct commentary to a poster might not be the right thing and the author (perhaps based on a consultation with the supervisor) might choose to write a conventional \textbf{extended abstract}.  The second option is also perfectly fine; the structure and form should adhere to what is customary for extended abstracts in the given field of computer science.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Commentary Text to Your Poster}
-\label{sec:Commentary}
-
-The right size of this text is \textbf{two pages} -- both for the commentaries and the conventional extended abstracts.  The references can spill to the third page, but not the text itself.
-
-The \textbf{abstract} is meant to be \textbf{super-short} -- maybe of the size of a tweet.  The recommended structure of the abstract is in the placeholder text.  Each of the four parts of the abstract should be just one or two sentences.
-
-It is a good idea to start with an `Introduction' section.  The placeholder text in Section~\ref{sec:Introduction} reflects the normal structure of a paper introduction.  The actual text in this document may depart from this recommended form -- it should correspond to the contents of the poster.
-
-A good poster would often be \textbf{structured to sections} just like a paper (examples: \href{https://excel.fit.vutbr.cz/submissions/2022/001/1_poster.pdf}{first}, \href{https://excel.fit.vutbr.cz/submissions/2022/002/2_poster.pdf}{second}, \href{https://excel.fit.vutbr.cz/submissions/2022/003/3_poster.pdf}{third}).  It might be a good idea to use the \verb|\section{}| commands here in the commentary that would correspond to the sections in the poster.
-
-The idea behind a poster for a conference like Excel@FIT is that the author would stand next to the poster and talk to the people wandering by.
-The poster does not have to contain everything in itself.  It is good to provide \textbf{words, sentences} by the author's mouth and save the space on the poster for visual content: figures, charts, drawing, tables, equations, \dots (examples: \href{https://excel.fit.vutbr.cz/submissions/2022/002/2_poster.pdf}{one}, \href{https://excel.fit.vutbr.cz/submissions/2022/010/10_poster.pdf}{two}).  The words that the author \textbf{would normally say} are to be contained right in \textbf{this commentary} that will accompany the poster and will provide the verbal explanations.  Then, it is not desirable to place the verbal/textual explanations on the poster itself, or just extremely brief.
-
-When the author stands next to their poster and speaks, they would point with their finger at figures, tables, and equations on the poster and naturally refer to them.  To allow for something similar in this commentary, it is best to place labels next to all the objects on the poster.  The poster can contain some visually recognizable labels, defined by a common graphic and color, perhaps something like \fbox{Figure 1}, \fbox{Table 3}, \fbox{(2)}, \fbox{Listing 2}, \fbox{Chart 5}.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{General Advice}
-
-\begin{itemize}
-    \item Do not write things that everybody knows.  (e.g. `Smartphones are used by many people today.' `It is important to work on computer security.')
-    \item Every figure and table on the poster and every paragraph, sentence in this commentary must be judged by asking: \textbf{`Is this helpful?'}  Never place anything on the poster or in the commentary just because of feeling like `it is expected'.  If it helps understanding your work, it is right; if not, put it away.
-    \item Use your voice.  Use the same sentences you would use standing in front of the poster.  Make them correct, right, meaningful, but still \textbf{your voice}.
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{How To Use This Template}
-\label{sec:HowToUse}
-
-Here is a list of actions to do first when you want to write an Excel@FIT poster commentary:
-\begin{enumerate}
-	\item Decide the language -- most likely shared between the poster and the commentary.  English is recommended, as it is the language of science and technology.  However, if you need to write in Czech or Slovak, you may.  Use the correct option to the \texttt{$\backslash$documentclass} command -- the very first line of the template.  The option may be either \texttt{[czech]} or \texttt{[slovak]}.
-	\item Insert meta information: \textbf{your name}, \textbf{e-mail}, \textbf{work title}, \textbf{Excel@FIT logo}.  Make sure the year in the top right corner of the document is correct.  Do not hesitate to use ěščřžýáíé in your name -- the \LaTeX{} template is configured to eat UTF8 Unicode.
-	\item Keep calm and start writing.
-\end{enumerate}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}
-\label{sec:Conclusions}
-
-It is common that there is no `Conclusions' section on a poster.  It still might be a good idea to summarize here what was the point of the work and what are the adequate take-home messages.  
-
-The author standing in front of the poster might be saying something like: ``I am really proud of this and that and if I had more time, I would try this and fix that.''  Similar summary sentences, discussion, and future work might deserve a `Conclusions' section here. Or not -- the author decides how to use the space most wisely.
-
+Tato práce se zabývala vytvořením srovnávací studie kvantově inspirovaných evolučních algoritmů při řešení kombinatorického problému batohu ve variantě 0/1. 
+V rámci práce byl navržen a implementován vlastní algoritmus \emph{QIPSO}, jenž rozšiřuje přístup algoritmu \emph{QSE}.
+Experimenty naznačují, že kvantově inspirovaný přístup u evolučních algoritmů dosahuje lepších výsledků než klasický přístup, přičemž algoritmus \emph{QIPSO} vykazuje nejlepší výsledky ze všech testovaných metod. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

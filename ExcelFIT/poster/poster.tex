@@ -1,0 +1,190 @@
+% This Latex poster uses the baposter class, originally from
+% http://www.brian-amberg.de/uni/poster. Versions are found in several places.
+% The files on which this version is based are from circulation within WASP
+% and exact origins are not known.
+%
+% CONTENT
+% To update the poster, modify the contents in the parts/ folder.
+% The file header.tex contains convenience commands such as \title, \companylogo etc.
+% Other files contain pure formatting.
+%
+% COLORS
+% The following standard colors are defined: wasp_text, wasppink, waspgrey, waspblue
+%
+% Enjoy!
+% Per Skarin, 2021
+
+\documentclass[a1paper,portrait]{baposter}
+\usepackage{lipsum}  
+\usepackage{relsize}	% For \smaller
+\usepackage{url}	% For \url
+\usepackage{epstopdf}	% Included EPS files automatically converted to PDF to include with pdflatex
+\usepackage[utf8]{inputenc} 
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+
+\usepackage{tgheros}
+\usepackage{lmodern}
+\usepackage[czech, linesnumbered, longend, noline]{algorithm2e}
+\renewcommand{\figurename}{Obrázek}
+\renewcommand{\tablename}{Tabulka}
+
+% PATHS
+\graphicspath{{template-images/}{content-images/}}
+
+% FONTS AND COLORS
+\renewcommand{\familydefault}{\rmdefault}
+\newcommand{\mytitlefont}{\sffamily\bfseries\selectfont}
+\newcommand{\mytextfont}{\rmfamily\normalfont\selectfont}
+% Comment the four lines below to skip WASP fonts
+% \usepackage{MinionPro}
+% \usepackage{MyriadPro}
+% \renewcommand{\mytitlefont}{\fontfamily{MyriadPro-LF}\selectfont }
+% \renewcommand{\mytextfont}{\fontfamily{MinionPro-LF}\selectfont }
+
+\definecolor{wasppink}{RGB}{203,166,169} 
+\definecolor{waspgrey}{RGB}{88,89,91}
+\definecolor{waspblue}{RGB}{26,141,173}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\definecolor{spacecadet}{RGB}{37,52,79}
+\definecolor{slategray}{RGB}{97,120,145}
+\definecolor{tan}{RGB}{213,184,147}
+\definecolor{coffe}{RGB}{111,77,56}
+\definecolor{caputmortuum}{RGB}{99,32,36}
+
+\definecolor{cookiesandcream}{RGB}{224,220,170}
+\definecolor{teagrean}{RGB}{204,227,194}
+\definecolor{laurelgreen}{RGB}{157,180,150}
+\definecolor{milkchocholate}{RGB}{139,86,51}
+\definecolor{metalicbronze}{RGB}{163,123,71}
+
+\definecolor{wasp_text}{RGB}{66,80,82}
+\colorlet{wasp_banner_light}{waspblue}
+\colorlet{wasp_banner_dark}{waspgrey}
+
+% LIST SETTINGS
+\setlist{itemsep=.1em, leftmargin=1em}
+
+% COMMANDS
+\newcommand\thetitle{}\renewcommand\title[1]{\renewcommand\thetitle{#1}}
+\newcommand\theauthor{}\renewcommand\author[1]{\renewcommand\theauthor{#1}}
+\newcommand\thedepinfo{}\newcommand\depinfo[1]{\renewcommand\thedepinfo{#1}}
+\newcommand\thesupervisors{}\newcommand\supervisors[1]{\renewcommand\thesupervisors{#1}}
+\newcommand\theuniversitylogo{}\newcommand\universitylogo[1]{\renewcommand\theuniversitylogo{#1}}
+\newcommand\thecompanylogo{}\newcommand\companylogo[1]{\renewcommand\thecompanylogo{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{parts/header}
+
+\begin{document}
+
+%%% General Poster Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Eye Catcher, Title, Authors and University Images %%%%%%%%%%%%%%%%%%%%%%
+\begin{poster}{
+ % Show grid to help with alignment
+ grid=false,
+ % eyecatcher=false,
+ % Column spacing
+ colspacing=1em,
+ columns=2,
+ boxpadding=.5cm,
+ % Color style
+ headerColorOne=spacecadet,
+ borderColor=spacecadet,
+ headerFontColor=cyan!10!white,
+ boxColorOne=teagrean,
+ % Format of textbix
+ textborder=rounded,
+ % Format of text header
+ headerborder=open,
+ headershape=rounded,
+ headershade=plain,
+ background=plain,
+ bgColorOne=cookiesandcream,
+ headerheight=0.09\textheight}
+%%% Eye Cacther %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	Eye Catcher, empty if option eyecatcher=false - unused
+}
+%%%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+	\textcolor{spacecadet}{\mytitlefont \Huge \thetitle}
+}
+%%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \vspace{0.5em}
+  \textcolor{spacecadet}{\Large \theauthor\\
+	% \large \thedepinfo\\
+	Vedoucí: \thesupervisors\\
+	}
+}
+%%% Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  \begin{minipage}{8cm}
+   \centering
+   \vspace{0.5cm}
+	    % \theuniversitylogo\vspace{0.25cm}\par
+		  % \thecompanylogo
+  \end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Now define the boxes that make up the poster
+%%%---------------------------------------------------------------------------
+%%% Each box has a name and can be placed absolutely or relatively.
+%%% The only inconvenience is that you can only specify a relative position 
+%%% towards an already declared box. So if you have a box attached to the 
+%%% bottom, one to the top and a third one which should be inbetween, you 
+%%% have to specify the top and bottom boxes before you specify the middle 
+%%% box.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Motivace a cíle}{name=description,column=0,row=0,span=2}{
+  \mytextfont
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{parts/motivation}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Problém a přístup}{name=motivation,column=0,row=0,span=1, below=description}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \mytextfont
+  \input{parts/methods}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Algoritmus 1: QIPSO}{name=qipso,column=1,row=0,span=1, below=description}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \mytextfont
+    \input{parts/qipso}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \headerbox{\mytitlefont Vybrané výsledky}{name=goal,column=1,row=0,span=1, below=qipso}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \mytextfont
+  \input{parts/results}
+}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   \headerbox{Literatura}{headerColorOne=caputmortuum, borderColor=caputmortuum, name=results,column=0,row=0,span=1, below=qipso }{
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 	\mytextfont
+%   \input{parts/references}
+% }
+
+\headerbox{}{name=foottext, column=0, span=2, above=bottom,headerColorOne=caputmortuum, textborder=none,headerborder=none,boxheaderheight=0pt,boxColorOne=caputmortuum}{\includegraphics[height=1cm]{VUT-FIT-logo.pdf} \hfill \includegraphics[height=1cm]{ExcelAtFIT-logo.pdf}}
+
+
+\end{poster}
+\end{document}
