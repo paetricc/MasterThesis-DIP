@@ -39,3 +39,6 @@
 
 # latexmk
 *.latexmk
+
+!content-images/*.pdf
+!template-images/*.pdf
