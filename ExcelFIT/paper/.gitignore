@@ -39,3 +39,5 @@
 
 # latexmk
 *.latexmk
+
+!images/*.pdf
