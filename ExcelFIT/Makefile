@@ -7,7 +7,7 @@
 SHELL=/bin/bash
 NAME=poster
 SUBDIRS:=paper poster
-ZIPFILE:=xbartu11_Metody\ návrhu\ kvantových\ výpočtů.zip
+ZIPFILE:=xbartu11_Kvantově\ inspirované\ optimalizační\ algoritmy_2.zip
 ZIPFILES:=nahled.png paper/abstrakt.pdf poster/poster.pdf
 
 
