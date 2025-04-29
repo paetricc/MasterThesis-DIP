@@ -1,0 +1,259 @@
+\chapter{Východiska pro kvantově inspirované evoluční algoritmy}
+Přírodní procesy představují význačný zdroj inspirace při návrhu algoritmů, neboť se ukázalo, že s jejich využitím lze vytvořit účinné přístupy k efektivnímu řešení složitých výpočetních úloh.
+Stejně jako je možné se při návrhu algoritmů inspirovat různými biologickými systémy a~procesy, je možné čerpat podněty ze systémů a procesů fyzikálních. 
+Případně je možné tyto dva principy návrhu algoritmů zkombinovat a vytvářet algoritmy inspirované jak fyzikálními principy, tak biologickou evolucí~\cite{NaturalComputing,NaturalComputing-handbook}.
+
+Tato kapitola nejdříve v krátkosti představí základní oblasti přírody, jimiž je možné se inspirovat ve výpočetních metodách. 
+Následně budou ve stručnosti uvedeny evoluční algoritmy a algoritmy inspirované fyzikálními procesy. 
+V závěru kapitoly budou popsány základy kvantové fyziky a principy kvantové mechaniky, jenž slouží jako inspirace pro návrh kvantově inspirovaných evolučních algoritmů. 
+
+\section{Algoritmy inspirované přírodou}
+Aby bylo možné efektivně modelovat systémy s velkým počtem prvků je nutné zvolit vhodnou úroveň abstrakce, jež je závislá na charakteru řešené úlohy, neboť algoritmy inspirované přírodou vycházejí ze zjednodušeného pojetí přírodních procesů. 
+Abstrakce zároveň umožňuje zdůraznit klíčové aspekty systému, jenž jsou zásadní pro jeho reprodukovatelnost a analýzu vývojových procesů. 
+Zvolená vhodná úroveň abstrakce je závislá na charakteru řešeného problému, typu modelovaného jevu a cíle simulace~\cite{FundamentalNatural}. 
+
+Počítání podle přírody spojuje znalosti z teoretické a experimentální teorie fungování přírody společně s empirickými pozorováními za účelem návrhu nových způsobů pro řešení různých problémů, vizte obrázek~\ref{fig:natural-computing-fields}~\cite{FundamentalNatural}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{NaturalComputing-fields.pdf}
+    \caption{Výsledkem sjednocení mnoha oblastí výzkumu přírodních procesů jsou nové způsoby řešení problémů~\cite{FundamentalNatural}.}
+    \label{fig:natural-computing-fields}
+\end{figure}Počítání podle přírody (\emph{natural computing}) se zaměřuje na objevování fundamentálních zákonů a mechanismů, na jejichž principu fungují procesy v přírodě, a na jejich následné využití při řešení různých výpočetních problémů, což vede k návrhu nových způsobů výpočtu a vývoji alternativních řešení různých typů úloh. 
+
+Počítání podle přírody je možné rozdělit do následujících tří oblastí~\cite{FundamentalNatural}:
+\begin{enumerate}
+    \item \textbf{Výpočty inspirované přírodou}
+        vycházejí z toho, že přírodní procesy dokáží efektivně řešit složité problémy, přičemž tyto přístupy lze rozdělit do dvou hlavních směrů. 
+        První vychází z teoretických modelů, s jejichž pomocí lze modelovat přírodní jevy, což pomáhá k lepšímu porozumění fungování různých procesů v přírodě. 
+        Druhým směrem je návrh algoritmů, jenž pomáhají řešit složité úlohy, u nichž tradiční přístupy selhávají, přičemž tyto algoritmy využívají určitou úroveň abstrakce nad vybranými přírodními procesy.
+        Mezi nejvýznamnější oblasti výpočtů inspirovaných přírodou patří:
+        \begin{itemize}
+            \item umělé neuronové sítě (\emph{artificial neural networks}) inspirované nervovými systémy,
+            \item evoluční algoritmy (\emph{evolutionary algorithms}) vycházející z Darwinovy teorie evoluce,
+            \item inteligence roje (\emph{swarm intelligence}) založená na kolektivním chování společenských organismů a
+            \item umělé imunitní systémy (\emph{artificial immune systems}) vycházející z principů fungování imunitního systému.
+        \end{itemize}
+        Příklady výše zmíněných oblastí obsahují například aplikaci umělých neuronových sítí spadá rozpoznávání hlasu, klasifikace objektů či v počítačovém vidění~\cite{ANN-review,ANN-survey}. 
+        Evoluční algoritmy je možné uplatnit při řešení různých optimalizačních problémů a inteligence roje je aplikovatelná například při návrhu autonomních robotických systémů nebo při prohledávání stavového prostoru. 
+        Umělé imunitní systémy jsou aplikovatelné na komplexní problémy v oblastech od biologie až po robotiku. 
+    \item \textbf{Simulace a emulace přírody pomocí výpočetní techniky}
+        se zaměřuje na syntézu a studium přírodních fenoménů nebo vzorců či chování a to prostřednictvím simulace, jenž je realizována na výpočetních systémech. 
+        Tato oblast poskytuje nástroje pro testování biologických teorií, které by bylo obtížné ověřit za pomoci experimentálních a analytických metod. Existují dva hlavní přístupy:
+        \begin{itemize}
+            \item Fraktální geometrie v přírodě (\emph{fractal geometry of nature}) poskytuje možnost vizualizovat různé přírodní struktury a procesy, jenž se charakterizují nekonečnou úrovní detailu, nekonečným délkou nebo soběpodobností. 
+                Struktura na nichž je viditelná fraktální geometrie se nachází například na kapradinách, horách nebo brokolici a dokonce je patrná na organismech v podobě fraktálové struktury plic, oběhového systému či mozku. 
+            \item Umělý život (\emph{artificial life}) je oblast, jež se snaží simulovat organismy v umělých prostředích. Hlavním cílem není řešení konkrétního problému, ale pochopení konceptů přírody včetně vývoje nových forem života. 
+        \end{itemize}
+        Aplikace fraktální geometrie lze využít při simulaci růstu rostin nebo formování přírodních struktur a umělý život je možno použít pro studii evoluce a chování organismů ve virtuálním prostředí či pro analýzu počítačových virů. 
+    \item \textbf{Výpočty s využitím přírodních materiálů} 
+        nepracují s křemíkem jako je tomu u~tradičních výpočetních systémů, ale využívají odlišné materiály, jenž umožňují překonat některé limity tradičních počítačů, jelikož poskytují odlišné přístupy k provádění výpočetních operací. 
+        Systémy založené na těchto principech nabízejí efektivní řešení problému limitů miniaturizace elektroniky založené na křemíku. 
+        Alternativní výpočetní prostředky jsou:
+        \begin{itemize}
+            \item Molekulární počítání (\emph{Molecular computing}) využívá biologické molekuly, jako je například DNA, k uchování informace, přičemž samotný paralelní výpočet probíhá pomocí manipulace se samotnou molekulou. 
+                Výhodou výpočtů založených na molekulách poskytují vysokou rychlost výpočtu, energetickou efektivitu a levné úložiště informací.  
+            \item Kvantové počítání (\emph{quantum computing}) využívá principy kvantové mechaniky, kde je informace uchována na mikroskopické úrovni. 
+        \end{itemize}
+        Výše uvedené prostředky lze využít k efektivnímu řešení některých problémů, kdy molekulární počítání umožnilo efektivně řešit problém Hamiltonovské cesty~\cite{molecular}, zatímco kvantové počítání se ukázalo jako efektivní například při faktorizaci čísel. 
+\end{enumerate}
+Tato kapitola se dále zaměří na kvantové evoluční počítání, které spojuje kvantový výpočet s principy evolučních algoritmů.
+
+\section{Evoluční algoritmy}
+
+\section{Algoritmy inspirované fyzikálními principy}
+
+\section{Základy kvantové fyziky}
+Tato sekce poskytne stručný popis základních oblastní fyziky a jejich vzájemných souvislostí. 
+Následně se zaměří na podrobnější popis vybrané oblasti, konkrétně kvantové mechaniky, jejíž popis je nutný pro hlubší pochopení kapitoly~\ref{chapt:qiea} věnované algoritmům inspirovaných z této oblasti fyziky.
+
+Obrázek~\ref{fig:mechanics} vyobrazuje základní dělení moderní fyziky na základní části (nepřerušované obdélníky) společně s~jejich vzájemnými vztahy. 
+Nepřerušované šipky ukazují nové fyzikální teorie, které vznikly za pomoci úpravy té starší a to buď odstraněním některých z jejich předpokladů nebo přidáním nových principů.
+Přerušované obdélníky značí nejznámější fyzikálně inspirované algoritmy, přičemž přerušované šipky znázorňují z jakých fyzikálních konceptů tyto algoritmy vycházejí~\cite{NaturalComputing}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\textwidth]{mechanics.pdf}
+    \caption{Vazby mezi fyzikálními principy a algoritmy. Diagram byl převzat s úpravami z~\cite{NaturalComputing}.}
+    \label{fig:mechanics}
+\end{figure}
+
+Jednotlivé základní oblasti fyziky společně s jejich stručným popisem je následující~\cite{NaturalComputing}:
+\begin{itemize}
+    \item \textbf{Klasická mechanika (\emph{Classical Mechanics}):} 
+    Podle Galileiho a Newtona působí na tělesa síly, které jsou vnímány jako síly působící okamžitě a na dálku. 
+    Euler, Laplace, Lagrange, Hamilton a další vytvořili alternativní formulace pomocí skalární energie, které jsou s původní formulací ekvivalentní. 
+    \item \textbf{Teorie pole (\emph{Filed Theory}):} 
+    Koncept formulovaný Maxwellem a dalšími popisující, jak mohou objekty generovat skalární potencionální pole, které vytváří odpovídající vektorové pole (například gravitační nebo elektromagnetické), jež následně ovlivňuje ostatní objekty. 
+    Tato pole můžou přenášet energii prostorem ve formě vln, což omezuje rychlost šíření signálů, čímž odstraňuje okamžité působení síly na dálku. 
+    Tato teorie mimo jiné ukazuje, že se světlo šíří ve vakuu konstantní konečnou rychlostí. 
+    \item \textbf{Speciální teorie relativity (\emph{Special Theory of Relativity}):} 
+    Dílo Einsteina vycházející z toho, že fyzikální zákony jsou ve všech inerciálních vztažných soustavách stejné společně s faktem, že rychlost světla ve vakuu je vždy konstantní.
+    \item \textbf{Obecná teorie relativity (\emph{General Theory of Relativity}):} 
+    Rozšířená speciální teorie relativity samotným Einsteinem, která zavádí princip ekvivalence mezi rovnoměrným gravitačním polem a zrychlením. 
+    \item \textbf{Kvantová mechanika (\emph{Quantum Mechanics}):} 
+    Koncept podle Plancka, Bohra, Schrö\-din\-ge\-ra, Heisenberga, Pauliho, Einsteina a dalších zavádějící mimo jiné pojem kvantování, který nahrazuje pozorovatelné fyzikální veličiny, jako je například poloha či energie, operátory v Hilbertově prostoru vlnových funkcí.
+    \item \textbf{Relativistická kvantová mechanika (\emph{Relativistic Quantum Mechanics}):} 
+    Teorie, kde Schrödingerova rovnice pro elektron byla upravena do relativisticky invariantní podoby Diracem tak, že vlnové vektory mají přidané stupně volnosti, které přesně modelují spin elektronu. 
+    Tato teorie předpověděla existenci antihmoty, respektive pozitronu. 
+    \item \textbf{Kvantová teorie pole (\emph{Quantum Field Theory}):} 
+    Dílo Feynmana a dalších, které za pomoci Diracovi práce rozšiřuje relativistickou kvantovou mechaniku tím, že kvantizuje samotné pole včetně vlnové funkce. 
+    Tento postup umožňuje interpretovat interakci sil prostřednictvím výměny částic. Praktickým příkladem je Feynmanova kvantová elektrodynamika. 
+    \item \textbf{Termodynamika (\emph{Thermodynamics}):} 
+    Teorie formulovaná Carnotem, Boltzmannem a dalšími, která se zabývá makroskopickými fyzikálními veličinami, jako je například tlak a teplota, u systému složených z mikroskopických částic. 
+    Popisuje mimo jiné koncept termodynamické rovnováhy, termodynamických procesů a entropie. 
+    \item \textbf{Statistická mechanika (\emph{Statistical Mechanics}):} 
+    Moderní pohled na termodynamiku, který popisuje makroskopické veličiny pomocí statistického chování částic.
+\end{itemize}
+
+Následující sekce se podrobněji zaměří na odnož klasické mechaniky, konkrétně na kvantovou mechaniku, která slouží jako inspirace pro kvantově inspirované algoritmy.
+
+\section{Kvantová mechanika}
+Model chování přírodních systémů pozorovaných na velmi krátkých časových a délkových měřítkách popisuje kvantová mechanika, která je rozšířením klasické mechaniky. 
+Kvantový systém se může skládat z jedné nebo více částic, jako je například volný elektron či foton. 
+
+Použitím kvantizace dochází k nahrazení proměnných reprezentujících pozorovatelné fyzikální veličiny, jako jsou poloha, hybnost či energie, lineárními operátory ve vhodném vektorovém prostoru. 
+Tento vektorový prostor nese název Hilbertův prostor (\emph{Hilbert space}) a je definován jako kompletní vnitřní součinový prostor nad komplexními čísly. 
+Jeho prvky jsou funkce časových a prostorových souřadnic, které reprezentují kvantové stavy systému. 
+Kvantový stav systému $\psi$ je někdy rovněž označován jako stavový vektor, vlnová funkce nebo vlnový vektor. 
+Na prvky Hilbertova prostoru působí lineární operátory (\emph{observables}), které reprezentují pozorovatelné fyzikální veličiny. 
+Vlastní hodnoty těchto operátorů odpovídají možným výsledkům pozorování daných fyzikálních veličin~\cite{NaturalComputing}.
+
+Následující části stručně popisují klíčové koncepty kvantové mechaniky:
+
+\subsubsection*{Pozorování v kvantové mechanice}
+Pozorování kvantového systému vede k určení hodnoty pozorovatelné veličiny, přičemž pravděpodobnost pozorování konkrétní hodnoty odpovídá kvadrátu absolutní hodnoty vlnové funkce $\psi$.
+Kvadrát absolutní hodnoty $\left| \psi \right|^2$ představuje hustotu pravděpodobnosti, která udává pravděpodobnost nalezení částice na dané pozici v daném čase v prostoru. 
+    
+Časový vývoj vlnové funkce a tedy i hustoty pravděpodobnosti v každém bodě prostoru je popsán lineární Schrödingerovou rovnicí. 
+V čase se kvantový stav vyvíjí deterministicky podle této rovnice, což způsobuje rozptyl hustoty pravděpodobnosti v prostoru. 
+Kvantový stav se před provedením pozorování nachází v superpozici, tedy v lineární kombinaci všech možných vlastních stavů (\emph{eigenstates}) operátoru odpovídajícího pozorované veličině. 
+    
+S postupem času se hustota pravděpodobnosti stále více rozprostírá, což vede ke zvyšování neurčitosti polohy částice. 
+Tento proces pokračuje, dokud není provedeno pozorování, při kterém vlnová funkce nelineárně kolabuje do jednoho z vlastních stavů měřené veličiny. 
+Pravděpodobnost nalezení systému v konkrétním vlastním stavu je dána hodnotou $\left| \psi \right|^2$ v~tomto stavu, přičemž nalezení částice je nejvyšší v oblastech, kde je hodnota $\left| \psi \right|$ největší, a nulová tam, kde $\left| \psi \right| = 0$.
+    
+Normalizované vlnové funkce splňují podmínku
+\[
+    \int_{\mathbb{R}^3} \left|\psi\,(x)\right|^2 dx = 1.
+\]
+Tato rovnost vyjadřuje, že celková pravděpodobnost nalezení částice v celém prostoru musí být rovna 1.
+Z toho plyne, že kvantové stavy leží v jednotkové kouli Hilbertova prostoru, tedy v množině všech vektorů s normou 1 a operátory, které na ně působí, musí být unitární, aby tuto normu zachovávaly~\cite{NaturalComputing}.
+
+\subsubsection*{Kvantové provázání}
+Pojem kvantové provázání (\emph{entanglement}) je jeden z nejdůležitějších rozdílů mezi klasickou a kvantovou fyzikou. 
+V kvantovém systému složeného z více částic existuje pouze jedna vlnová funkce, kterou nelze rozdělit na nezávislé vlnové funkce jednotlivých částic. 
+Podle Schrödingerovy rovnice se tato vlnová funkce vyvíjí v čase do té doby, dokud není provedeno pozorování.
+Kolaps vlnové funkce celého systému nastává při jeho pozorování a okamžitě ovlivňuje stav všech provázaných částic, které následně přecházejí do jednoho z vlastních stavů měřené veličiny.
+
+V klasickém systému složeném z $m$ částic, kde každá může nabývat $n$ různých stavů, roste dimenze prostoru lineárně jako $n \times m$, neboť prostor je dán přímým součtem.
+V~kvantovém systému je však správným prostorem tenzorový součin, což způsobuje, že jeho dimenze roste exponenciálně jako $n^m$~\cite{NaturalComputing,QuantumComputing-QuantumInformation}.
+
+\subsubsection*{Dekoherence}
+V případě, že dojde ke kontaktu makroskopického prostředí (například měřící zařízení) s~kvantovým systémem, dochází k nevratnému úniku kvantových vlastností do okolí v termodynamicky nevratném procesu. 
+Dekoherence se projevuje tím, že složky kombinované vlnové funkce systému a prostředí přestanou efektivně interferovat.
+Na makroskopické úrovni tento proces vede k rozpadu superpozic stavů, což se jeví jako zdánlivý kolaps vlnové funkce systému~\cite{NaturalComputing}.
+
+\subsubsection*{Nekomutující operátory}
+Pokud jakékoli dva operátory $A$ a $B$ komutují, platí pro ně vztah $\left[A, B \right] = A \times B - B \times A = 0$\,\,\footnote{Analogie k Poissonovým závorkám v klasické mechanice.}. 
+V kvantové mechanice však operátory obecně nekomutují. 
+Příkladem nekomutujících operátorů jsou operátory polohy a hybnosti, jejichž vzájemná nekomutativita vede k Heisenbergově principu neurčitosti.
+Tento princip říká, že není možné současně měřit hodnoty obou veličin s požadovanou přesností, respektive měření hodnoty jedné veličiny narušuje odpovídajícím způsobem druhou veličinu~\cite{NaturalComputing,QuantumMeasurement}.
+
+\subsubsection*{Kvantové tunelování}
+Kvantové tunelování je jev, při kterém může být částice s~konečnou, nenulovou pravděpodobností pozorována i za bariérou, přestože klasicky by jí neměla být schopna překonat. 
+Očekávaný čas tunelování závisí nejen na šířce bariéry, ale i na její výšce, přičemž čím širší je bariéra, tím nižší je pravděpodobnost, že částice projde touto bariérou. 
+Tento efekt je důsledkem vlnové povahy částice, protože její vlnová funkce je rozprostřena v prostoru, a~tudíž je nenulová i na opačné straně bariéry~\cite{NaturalComputing}. 
+
+\newpage
+\section{Kvantové evoluční počítání}
+Hlavní rozdíl mezi kvantovými a klasickými výpočetními systémy spočívá v jejich výpočetních schopnostech.
+Kvantové systémy využívají principy superpozice a provázání, což jim umožňuje efektivněji řešit některé problémy, které jsou pro klasické počítače výpočetně náročné. 
+
+Existují dva hlavní přístupy pro kvantové počítače:
+\begin{itemize}
+    \item \textbf{Digitální kvantové počítače:} Oproti klasickým počítačům místo bitů využívají qubity.
+    \item \textbf{Adiabatické kvantové počítače:} Hledají optimální řešení problémů prostřednictvím postupné evoluce kvantového systému.
+\end{itemize}
+
+Jelikož kvantové výpočty vykazují výhody při optimalizaci, vedly k návrhu kvantově inspirovaných evolučních algoritmů, které jsou zařazeny do kvantově evolučního počítání, viz obrázek~\ref{fig:natural-computing}.
+Z tohoto důvodu bude těmto kvantovým počítačům věnována tato sekce~\cite{NaturalComputing}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.65\textwidth]{NaturalComputing.pdf}
+    \caption{Kvantové evoluční počítání je kombinací kvantových a evolučních výpočtů, přičemž obě tyto oblasti spadají do výpočtů inspirovaných přírodou. Obrázek byl převzat s~úpravami z~\cite{QuantumComputing-QuantumInformation}.}
+    \label{fig:natural-computing}
+\end{figure}
+
+\subsection{Kvantový bit}
+Superpozice v kontextu klasické fyziky značí situaci, kdy součtem dvou fyzikálních veličin vznikla odlišná fyzikální veličina. 
+Případem aplikace této superpozice je výpočet celkové velikosti a směru veličiny, jako je například síla či elektrické pole.
+Na rozdíl od klasické fyziky v kvantové mechanice superpozice označuje stav, kdy může být systém současně ve více stavech. 
+Tento systém zůstává ve stavu superpozice do té doby, dokud není provedeno jeho pozorování, kdy se superpozice zhroutí a systém bude v jedné konkrétní hodnotě~\cite{QuantumComputing-Curious}. 
+
+Kvantový bit nebo-li qubit se na rozdíl od klasického bitu, který může nabývat pouze hodnot 0 nebo 1, nachází v superpozici těchto stavů. 
+Avšak při měření qubitu dojde ke kolapsu jeho superpozice do jednoho ze stavů klasického bitu~\cite{QuantumComputing-Curious}.  
+
+Ve standardním zápisu\,\footnote{Standardně se využívá Diracova nebo \uv{bra-ket} notace.} je kvantový stav qubitu $| \psi \rangle$ vyjádřen jako superpozice stavů $| 0 \rangle$ a $| 1 \rangle$:
+\begin{equation}\label{eq:psi=a0+b1}
+    | \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle, 
+\end{equation}
+kde koeficienty (amplitudy) $\alpha, \beta \in \mathbb{C}$ umožňují matematicky reprezentovat všechny možné superpozice. 
+Tyto koeficienty musí splňovat podmínku normalizace 
+\begin{equation}\label{eq:a2+b2=1}
+    \left| \alpha \right|^2 + \left| \beta \right|^2 = 1,   
+\end{equation}
+kde $\left| \alpha \right|^2$, respektive $\left| \beta \right|^2$, udává pravděpodobnost nalezení částice ve stavu $| 0 \rangle$, respektive $| 1 \rangle$, po provedeném měření. 
+Podmínka normalizace zajišťuje, že superpozice zkolabuje s~jistotou do jednoho ze stavů $| 0 \rangle$ nebo $| 1 \rangle$~\cite{NaturalComputing,QuantumComputing-Curious}.
+
+Rovnici~\ref{eq:psi=a0+b1} lze díky platnosti rovnosti~\ref{eq:a2+b2=1} přepsat do podoby:
+\begin{equation*}
+    | \psi \rangle = \cos{\frac{\theta}{2}} | 0 \rangle +  e^{i\phi} \sin{\frac{\theta}{2}} | 1 \rangle,
+\end{equation*}
+kde hodnoty $\theta$ a $\phi$ určují pozici qubitu na povrchu Blochovy sféry, viz obrázek~\ref{fig:bloch-sphere}. 
+Tato sféra umožňuje vizualizaci stavu pouze jednoho qubitu. 
+Pro více qubitů již nelze využít tuto geometrickou reprezentaci~\cite{QuantumComputing-Curious,QuantumComputing-QuantumInformation}. 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.45\textwidth]{bloch-sphere.pdf}
+    \caption{Blochova sféra reprezentující qubit. Obrázek byl převzat s úpravami z~\cite{QuantumComputing-QuantumInformation}.}
+    \label{fig:bloch-sphere}
+\end{figure}
+
+\subsection{Kvantová informace}
+Princip kvantové provázanosti určuje hlavní rozdíl mezi kvantovým a klasickým bitem, neboť udává silné korelace mezi qubity, což umožňuje pracovat s mnoha stavy současně. 
+Tento jev, známý jako kvantový paralelismus, poskytuje kvantovým systémům výpočetní výhodu oproti klasickým systémům, protože umožňuje existenci stavu v podobě superpozice mnoha klasických stavů~\cite{NaturalComputing}.
+
+Vlastnosti kvantové informace způsobující problémy při provádění výpočtů jsou~\cite{NaturalComputing}:
+\begin{itemize}
+    \item \textbf{Princip neurčitosti:} V případě nekomutujících pozorovaných veličin ovlivní měření jedné veličiny výsledek měření jiné veličiny. 
+    \item \textbf{Princip nemožnosti klonování:} Kvantová informace nemůže být dokonale zkopírována, jinak by byl narušen princip neurčitosti. 
+    \item \textbf{Princip provázanosti: } Kvantová informace je díky své provázanosti rozložena mezi více částí systému, což ji typicky znemožňuje rozdělit na části (jednotlivé qubity). Tento princip je hlavním důvodem, proč nelze efektivně simulovat kvantové systémy na těch klasických. 
+    \item \textbf{Dekoherence: } Při interakci informací kvantového systému s informacemi z okolního prostředí dochází k jejich vzájemnému provázání, což snižuje schopnost obnovit původní kvantovou informaci, neboť většina provázaných informací pochází z okolního prostředí. 
+\end{itemize}
+
+\subsection{Digitální kvantové počítače}
+Digitální kvantové počítače pracují s qubity a manipulují s nimi pomocí kvantových bran (ekvivalent bitových operátorů).
+V průběhu výpočtu jsou tyto brány aplikovány na systém qubitů a měření qubitů je provedeno až na konci samotného výpočtu. 
+Paul Benioff uvažoval Turingův stroj pracující s ekvivalentem qubitů a později Richard Feynman dokázal, že klasické počítačové systémy nejsou schopny efektně simulovat kvantové systémy zejména kvantové provázání, protože by jejich simulace vyžadovala exponenciální časovou a paměťovou složitost, respektive $\mathcal{O}\left( 2^n \right)$~\cite{NaturalComputing,QuantumComuting-Introduction}. 
+
+Kvantové počítače prokazatelně umožňují oproti těm klasickým řešit některé druhy problémů efektivněji. 
+Příklad algoritmu, který je schopný řešit problém v kvantovém počítači účiněji je: 
+\begin{itemize}
+    \item \textbf{Shorův algoritmus:} Umožňuje faktorizaci velkých čísel v časové složitosti $\mathcal{O}\left( n^2 \right)$ místo $\mathcal{O}\left(e^{\sqrt[3]{n}} \right)$, jako je tomu u nejlepšího známého algoritmu na klasických systémech.
+    \item \textbf{Groverův algoritmus:} Zrychluje vyhledávání v nestrukturovaných databázích klasických systémů z časové složitosti $\mathcal{O}\left( n \right)$ na $\mathcal{O}\left( \sqrt{n} \right)$. 
+\end{itemize}
+Mimo jiné umožňují kvantové počítače simulovat sami sebe, přičemž však stále není známo zda dokážou řešit NP těžké problémy v polynomiálním čase~\footnote{Obecně se věří, že nedokážou řešit NP těžké problémy v polynomiálním čase.}~\cite{NaturalComputing}. 
+
+\subsection{Adiabatické kvantové počítače}
+Oproti digitálním kvantovým počítačům se adiabatické kvantové počítače neskládají z qubitů. 
+Místo toho využívají postupnou evoluci kvantového systému v čase. 
+Přístup je podobný analogovým počítačům, kde je vytvořen fyzikální systém odpovídající řešenému problému a jeho stav je ponechán, aby se vyvíjel v čase. 
+Jejich výpočetní síla je ekvivalentní s kvantovými počítači založenými na qubitech, což znamená, že dokážou řešit stejné problémy se srovnatelnou polynomiální složitostí~\cite{NaturalComputing}.
+
+Adiabatické kvantové počítače splňují kvantový adiabatický teorém, jehož hlavní myšlenkou je, že pokud jsou na systém aplikovány vnější jevy dostatečně pomalu, zůstává ve svém relativním vlastním stavu. 
+Pokud jsou však změny vnějších jevů aplikovány na systém příliš rychle, stav systému se nezmění, jelikož nemá dostatek času na to se přizpůsobit a~skončí v superpozici stavů~\cite{NaturalComputing}. 
+
+Princip evoluce v adiabatických kvantových počítačích je hlavní myšlenkou adiabatického kvantového počítání (\emph{Adiabatic Quantum Computing\,--\,AQC}). 
+To svým principem připomínají tepelné žíhání kovů, proto se rovněž označuje jako kvantové žíhání (\emph{Quantum Annealing\,--\,QA})~\cite{NaturalComputing}. 

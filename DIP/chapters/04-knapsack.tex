@@ -1,0 +1,143 @@
+\chapter{Optimalizace úlohy batohu pomocí kvantově inspirovaných evolučních algoritmů}
+
+Problém batohu patří mezi základní kombinatorické optimalizační úlohy, jenž nachází široké uplatnění v oblastech, jako jsou logistika, ekonomie nebo plánování zdrojů a patří do skupiny NP těžkých problémů. 
+Jednou z možností, jak dosáhnout dostatečně kvalitního řešení v~rozumném čase, je využití kvantově inspirovaných evolučních algoritmů, které využívají principy kvantové mechaniky a biologické evoluce. 
+
+Kapitola nejdříve poskytne úvod do konceptu řešeného problému batohu, následně popíše reprezentaci tohoto problému v kontextu kvantově inspirovaných evolučních algoritmů a v poslední části se bude věnovat návrhu jednotlivých experimentů, přičemž jejich výsledky budou vyhodnoceny v kapitole~\ref{chapt:experiments}.
+
+\section{Základní popis problému batohu}
+Problém batohu (\emph{knapsack problem}) patří do třídy NP těžkých problémů, což znamená, že neexistuje žádný algoritmus, který by ho dokázal řešit v polynomiálním čase, ale zároveň není dokázáno, že takový algoritmus neexistuje.
+Problém batohu je kombinatorický optimalizační problém, jehož cílem je maximalizovat celkovou hodnotu položek v batohu, přičemž každá z~položek má svoji určitou hodnotu a váhu. 
+Samotná kapacita batohu je omezena na určitou hodnotu a tudíž součet vah jednotlivých položek v~batohu nesmí překročit jeho kapacitu. 
+Pro každou z položek je možné rozhodnout zda bude do batohu vložena či nikoli, přičemž každá z položek může být v batohu právě jednou~\cite{ApproximationAlgorithms,IntroductionToAlgorithms}. 
+
+Formálněji řečeno, mějme množinu $n$ položek, přičemž každá položka $i$ je popsána dvojicí $\left( v_i, w_i \right)$, kde
+\begin{itemize}
+    \item $v_i$ reprezentuje hodnotu položky $i$ a
+    \item $w_i$ značí její váhu.
+\end{itemize}
+Hodnota rozhodovací proměnné $x_i$ je určena následovně:
+\begin{equation*}
+    x_i =
+    \begin{cases}
+        1 & \text{pokud je položka } i \text{ umístěna do batohu}, \\
+        0 & \text{jinak}.
+    \end{cases}    
+\end{equation*}
+Hlavním cílem je maximalizovat celkovou hodnotu položek v batohu:
+\begin{equation*}
+    \max \sum_{i=1}^{n} v_i x_i,
+\end{equation*}
+přičemž součet vah položek nesmí překročit celkovou kapacitu $C$ batohu:
+\begin{equation} \label{eq:knapsack-capacity}
+    \sum_{i=1}^{n} w_i x_i \leq C,
+\end{equation}
+kde:
+\begin{equation*}
+    x_i \in \{0,1\} \text{ pro } \forall i = 1,2,\dots,n.
+\end{equation*}
+
+Varianta problém batohu popsaná výše je známá jako \emph{0-1 knapsack problem}~\cite{knapsack01-survey}. 
+Další možné varianty problému batohu jsou:
+\begin{itemize}
+    \item \textbf{Vícerozměrný problém batohu (\emph{multi-dimensional knapsack problem}):} Jed\-ná se o zobecněný 0-1 problém batohu, kde má batoh více různých omezení~\cite{multidimensional-knapsack}.
+    \item \textbf{Zlomkový problém batohu (\emph{fractional knapsack problem}):} Jednotlivé položky lze dělit na části, tudíž je možné do batohu umístit i pouze část položky~\cite{IntroductionToAlgorithms}.
+    \item \textbf{Neomezený problém batohu (\emph{unbounded knapsack problem}):} Každá položka může být do batohu umístěna v neomezeném počtu~\cite{unbounded-knapsack}.
+    \item \textbf{Vícevýběrový problém batohu (\emph{multiple-choice knapsack problem}):} Položky jsou rozděleny do skupin, přičemž do batohu může být z každé skupiny umístěna nejvýše jedna položka~\cite{knapsack-problems}.
+\end{itemize}
+Seznam výše obsahuje pouze několik vybraných variant problému batohu. 
+Existuje totiž jeho mnoho dalších variant, například omezený problém batohu (\emph{bounded knapsack problem}), kvadratický problém batohu (\emph{quadratic knapsack problem}) a další~\cite{knapsack-problems,knapsack-problems-overview-I,knapsack-problems-overview-II}.
+
+\section{Reprezentace problému batohu pro kvantově inspirované evoluční algoritmy}
+V klasických evolučních algoritmech je řešení problému batohu reprezentováno jako bitový vektor, kde hodnota $1$ reprezentuje stav, kdy byla položka do batohu vložena a hodnota~$0$ značí nevložení položky do batohu.
+
+V kvantově inspirovaných evolučních algoritmech je reprezentace řešení inspirována kvantovým bitem. 
+Každé řešení problému batohu je utvářeno řetězcem $m$ kvantových bitů, přičemž každý qubit $i$ je složen z dvojice koeficientů $\alpha_i$ a $\beta_i$ dle rovnice~\ref{eq:quantum-representation}, kde $\left| \alpha_i \right|^2$ dle rovnice~\ref{eq:psi=a0+b1} představuje pravděpodobnost, že položka nebude do batohu vložena, zatímco $\left| \beta_i \right|^2$ udává pravděpodobnost jejího vložení. 
+Tyto koeficienty musí splňovat normalizační podmínku~\ref{eq:a2+b2=1}.
+Tento řetězec kvantových bitů reprezentuje superpozici všech možných řešení, přičemž jeho délka $m$ odpovídá počtu položek v instanci problému.
+
+Tato kvantová reprezentace řešení určuje pravděpodobnosti vložení či nevložení položky do batohu. 
+Aby bylo možné získat konkrétní binární řešení $x = \begin{pmatrix} x_1 & x_2 & \dots & x_m \end{pmatrix}$, je nutné provést pozorování kvantového stavu, při kterém je každý bit $x_i$ pro $i = 1,2,\dots\,m$ vektoru $x$ získán tak, že je vygenerováno náhodné číslo $r \in \langle 0, 1 \rangle$. 
+Pokud je splněna podmínka $r < \left| \beta_i \right|^2$ je na $i$-té pozici binárního řetězce nastavena $1$, jinak je nastavena~$0$. 
+Tento postup je popsán v~algoritmu~\ref{alg:make}.
+\begin{algorithm}[ht!]
+    \caption{Proces generování binárního řešení problému batohu}
+    \label{alg:make}
+    \begin{algorithmic}[1]
+        \State $i \gets 0$
+        \While{$i < m$}
+            \State $i \gets i + 1$
+            \State $r \gets  \text{random}[0,1]$
+            \If{$r < \left| \beta_i \right|^2$}
+                \State $x_i \gets 1$
+            \Else
+                \State $x_i \gets 0$
+            \EndIf
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+Po provedeném pozorování může řešení $x$ porušovat kapacitní omezení~\ref{eq:knapsack-capacity} batohu a~proto je nutné jej opravit. 
+Proces opravy je popsán algoritmem~\ref{alg:repair}, přičemž algoritmus nejdříve určí zda bylo překročeno kapacitní omezení batohu. 
+V případě jeho překročení jsou náhodně odstraňovány položky z batohu do té doby, dokud je batoh přeplněn. 
+
+Po opravě případného překročení kapacitního omezení batohu v něm vzniká místo, které může být opět zaplněno. 
+Následuje tedy cyklus, který náhodně vybírá položky a vkládá je do batohu, dokud batoh nepřekročí svoji kapacitu. 
+V závěrečném kroku algoritmus odstraní poslední přidanou položku do batohu, aby zajistil nepřekročení jeho kapacity~\cite{qiga}.
+\begin{algorithm}[ht!]
+    \caption{Proces opravy nevalidního binárního řešení}
+    \label{alg:repair}
+    \begin{algorithmic}[1]
+        \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
+        \If{$\sum_{i=1  }^{m} w_i x_i > C$} 
+            \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
+        \EndIf
+        \While{\textit{knapsack-overfilled}}
+            \State Náhodně vyber položku $i$ z batohu
+            \State $x_i \gets 0$
+            \If{$\sum_{i=1}^{m} w_i x_i \leq C$}
+                \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
+            \EndIf
+        \EndWhile
+        \While{\textbf{not} \textit{knapsack-overfilled}}
+            \State Náhodně vyber položku $j$ z batohu
+            \State $x_j \gets 1$
+            \If{$\sum_{i=1}^{m} w_i x_i > C$}
+                \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
+            \EndIf
+        \EndWhile
+        \State $x_j \gets 0$
+    \end{algorithmic}
+\end{algorithm}
+Případně je možné místo náhodného výběru položek využít princip, kdy jsou voleny položky na základě poměru ceny a váhy. 
+
+\section{Návrh experimentů}\label{sec:experiments-design}
+Kvantově inspirované evoluční algoritmy byly za účelem posouzení jejich výkonnosti porovnány s jejich klasickými variantami. 
+Za tímto účelem byly tak navrženy experimenty, které porovnávají různé evoluční algoritmy při řešení problému batohu, přičemž bylo experimentováno s velikostmi instancí problému 100, 250 a 500\,\footnote{Na stránce \url{https://github.com/mjBM/Quantum-Evolutionary-Algorithm-Knapsack-Python-} se nachází konkrétní instance problému batohu, nad kterými byly prováděny experimenty}. 
+
+Za účelem přehlednosti prezentovaných výsledků jsou v následující kapitole~\ref{chapt:experiments} uvedeny pouze výsledky experimentů s instancemi velikosti 100 položek. 
+Výsledky pro větší instance (250 a 500 položek) jsou však k dispozici a mohou být poskytnuty jako doplňkové materiály k této práci.
+
+\begin{enumerate}    
+    \item První experiment porovnává klasický genetický algoritmus (GA) s jeho kvantově inspirovanou variantou (QIGA). 
+        Pozorované parametry experimentů jsou:
+        \begin{itemize}
+            \item \textbf{Elitismus:} Analýza vlivu zachování nejlepších jedinců v populaci.
+            \item \textbf{Křížení:} Jaký vliv má pravděpodobnost křížení na kvalitu nalezených řešení.
+            \item \textbf{Mutace:} Jaký dopad má pravděpodobnost mutace na kvalitu nalezených řešení.
+            \item \textbf{Kvantová amplituda:} Jak se mění výkonnost při různých nastaveních pravděpodobnostní změny.
+        \end{itemize}
+        Přičemž parametr elitismu, křížení a mutace souvisí s klasickým genetickým algoritmem a~zbylý souvisí s jeho kvantově inspirovanou variantou. 
+    \item Druhý experiment analyzuje rozdíly mezi klasickou optimalizací rojem částic (PSO) a~kvantově inspirovaným rojem částic (QIPSO). 
+        Zaměřujeme se konkrétně na:
+        \begin{itemize}
+            \item \textbf{Kognitivní složku:} Vliv individuálního učení částic na kvalitu nalezených řešení.
+            \item \textbf{Sociální složku:} Vliv kolektivního chování částic na kvalitu nalezených řešení.
+            \item \textbf{Tření:} Simulace prostředí s různou mírou odporu ovlivňující pohyb částic.
+        \end{itemize}
+        V tomto experimentu se všechny ze zmíněných parametrů nacházejí v~obou variantách algoritmu.
+    \item Poslední experiment provádí globální srovnání všech testovaných algoritmů (GA, QIGA, PSO, QIPSO) a porovnává kvalitu řešení, jež umožňují nalézt.
+\end{enumerate}
+
+Každé nastavení parametrů bylo testováno v 30nezávislých experimentech, přičemž v~každém experimentu byla účelová funkce vyhodnocena 10 000 krát. 
+Výsledky těchto experimentů budou prezentovány a analyzovány v kapitole~\ref{chapt:experiments}. 
