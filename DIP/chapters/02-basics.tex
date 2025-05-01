@@ -8,6 +8,7 @@ Následně budou ve stručnosti uvedeny evoluční algoritmy a algoritmy inspiro
 V závěru kapitoly budou popsány základy kvantové fyziky a principy kvantové mechaniky, jenž slouží jako inspirace pro návrh kvantově inspirovaných evolučních algoritmů. 
 
 \section{Algoritmy inspirované přírodou}
+Počítání podle přírody (\emph{natural computing}) se zaměřuje na objevování fundamentálních zákonů a mechanismů, na jejichž principu fungují procesy v přírodě, a na jejich následné využití při řešení různých výpočetních problémů, což vede k návrhu nových způsobů výpočtu a vývoji alternativních řešení různých typů úloh. 
 Aby bylo možné efektivně modelovat systémy s velkým počtem prvků je nutné zvolit vhodnou úroveň abstrakce, jež je závislá na charakteru řešené úlohy, neboť algoritmy inspirované přírodou vycházejí ze zjednodušeného pojetí přírodních procesů. 
 Abstrakce zároveň umožňuje zdůraznit klíčové aspekty systému, jenž jsou zásadní pro jeho reprodukovatelnost a analýzu vývojových procesů. 
 Zvolená vhodná úroveň abstrakce je závislá na charakteru řešeného problému, typu modelovaného jevu a cíle simulace~\cite{FundamentalNatural}. 
@@ -18,7 +19,7 @@ Počítání podle přírody spojuje znalosti z teoretické a experimentální t
     \includegraphics[width=0.75\textwidth]{NaturalComputing-fields.pdf}
     \caption{Výsledkem sjednocení mnoha oblastí výzkumu přírodních procesů jsou nové způsoby řešení problémů~\cite{FundamentalNatural}.}
     \label{fig:natural-computing-fields}
-\end{figure}Počítání podle přírody (\emph{natural computing}) se zaměřuje na objevování fundamentálních zákonů a mechanismů, na jejichž principu fungují procesy v přírodě, a na jejich následné využití při řešení různých výpočetních problémů, což vede k návrhu nových způsobů výpočtu a vývoji alternativních řešení různých typů úloh. 
+\end{figure}
 
 Počítání podle přírody je možné rozdělit do následujících tří oblastí~\cite{FundamentalNatural}:
 \begin{enumerate}
@@ -59,8 +60,135 @@ Počítání podle přírody je možné rozdělit do následujících tří obla
 Tato kapitola se dále zaměří na kvantové evoluční počítání, které spojuje kvantový výpočet s principy evolučních algoritmů.
 
 \section{Evoluční algoritmy}
+Ačkoliv existuje mnoho variant evolučních algoritmů, všechny vycházejí ze stejné myšlenky, která spočívá v tom, že v prostředí s omezenými zdroji dochází mezi jednotlivci, jejichž schopnost je určena kvalitativní funkcí, k soutěži o~přežití, jejímž výsledkem je přirozený výběr jedinců, jenž zvyšují kvalitu populace. 
+Proces spočívá v aplikaci kvalitativní funkce na náhodně vygenerovanou populaci kandidátních řešení, následovaném opakovaným výběrem některých jedinců, na něž je aplikována selekce, rekombinace, mutace až do nalezení dostatečně kvalitního řešení nebo do dosažení nastaveného počtu opakování.  
+Evoluční proces lze chápat jako postupnou optimalizaci, která postupně hledá lepší řešení tím, že se přibližuje k optimálnímu stavu~\cite{IntroductionToEvoComputing}. 
 
-\section{Algoritmy inspirované fyzikálními principy}
+Základní elementy evolučního procesu jsou:
+\begin{itemize}
+    \item variační operátory (rekombinace a mutace), jenž vytvářejí diverzitu v populaci a
+    \item selekce, která zvyšuje průměrnou kvalitu řešení v populaci.
+\end{itemize}
+Evoluční proces je založen na stochastickém chování, respektive během selekce, rekombinace a mutace figuruje prvek náhody~\cite{IntroductionToEvoComputing}. 
+
+Základní schéma evolučního procesu je znázorněno v~algoritmu~\ref{alg:ea-algo}.
+
+\begin{algorithm}[H]
+    \caption{Obecné schéma evolučního algoritmu~\cite{IntroductionToEvoComputing}}
+    \label{alg:ea-algo}
+    \emph{Inicializace} populace náhodně vygenerovanými kandidátními řešeními\;
+    \emph{Ohodnocení} každého kandidátního řešení\;
+    \While{\emph{není splněna} ukončovací podmínka}{
+        \emph{Selekce} rodičů\;
+        \emph{Rekombinace} párů rodičů\;
+        \emph{Mutace} vzniklých potomků\;
+        \emph{Ohodnocení} nových kandidátních řešení\;
+        \emph{Selekce} jedinů pro další generaci\;
+    }
+\end{algorithm}
+
+Podle způsobu reprezentace kandidátských řešení lze evoluční algoritmy rozdělit do následujících kategorií:
+\begin{itemize}
+    \item evoluční strategie (\emph{evolution strategies\,--\,ES}) pracující s reálnými vektory,
+    \item evoluční programování (\emph{evolutionary programming\,--\,EP}) využívají stavy automatů,
+    \item genetické programování (\emph{genetic programming\,--\,GP}) využívající stromové struktury a
+    \item genetické algoritmy (\emph{genetic algorithms\,--\,GA}) reprezentující kandidátní řešení pomocí binárních řetězců. 
+\end{itemize}
+Rozdíly mezi výše zmíněnými kategoriemi jsou především historické, protože výběr vhodného typu závisí na povaze řešeného problému, neboť v některých případech je určitý typ reprezentace výhodnější než jiný, pokud lépe odpovídá charakteru problému a usnadňuje reprezentaci kandidátních řešení nebo je přirozenější pro řešený problém~\cite{IntroductionToEvoComputing}. 
+
+Pro definici konkrétního evolučního algoritmu je potřeba specifikovat jeho následující části:
+
+\subsubsection*{Reprezentace}
+Prvním krokem je definice reprezentace možných řešení problému, která umožňuje efektivní manipulaci s těmito řešením v rámci algoritmu. 
+Možná řešení problému, označovaná jako fenotypy, jsou zakódována do tvarů zvaných jako genotypy, s nimiž algoritmus dokáže pracovat. 
+Dochází tak k mapování prostoru fenotypů na prostor genotypů, přičemž ohodnocovací funkce hodnotí fenotypy, ale ohodnocení je přiřazeno genotypům. 
+Význam tohoto principu spočívá v tom, že pro algoritmus může být efektivní pracovat například s~binární reprezentací řešení, i když samotný problém má řešení v oblasti celých čísel, vizte obrázek~\ref{fig:fenotyp-to-genotyp}~\cite{IntroductionToEvoComputing,NaturalComputing}. 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{FenotypToGenotyp.pdf}
+    \caption{Mapování z prostoru genotypů na prostor fenotypů, kde každý fenotyp je následně mapován na hodnotu fitness. Obrázek převzat s úpravami z~\cite{NaturalComputing}.}
+    \label{fig:fenotyp-to-genotyp}
+\end{figure}
+
+V literatuře se v kontextu řešeného problému se fenotyp často ekvivalentně označuje jako kandidátní řešení nebo jedinec. 
+Na straně evolučního algoritmu se pro genotyp často používají označení jako chromozom nebo opět jedinec~\cite{IntroductionToEvoComputing}.
+
+\subsubsection*{Inicializace populace}
+V evolučních algoritmech je většinou populace inicializována pomocí náhodně generovaných jedinců. 
+Pro inicializaci počáteční populace je možné využít i heuristiku, která, pokud je výpočetně přijatelná, vytvoří populaci s vyššími hodnotami fitness. 
+
+\subsubsection*{Ohodnocovací funkce (fitness funkce)}
+Hlavním účelem ohodnocovací funkce je řízení evolučního procesu tím, že hodnotí, jak dobře populace splňuje určené požadavky. 
+Jedná se o funkci, jenž přiřazuje míru kvality genotypům prostřednictvím ohodnocení odpovídajících fenotypů. 
+Ohodnocovací funkce je běžně označována jako fitness funkce. 
+V případě optimalizačního problému, je často používán pojem objektivní funkce, který vyjadřuje specifické požadavky úlohy (například maximalizaci nebo minimalizaci určité hodnoty).
+Ohodnocovací (fitness) funkce může být identická s~objektivní funkcí nebo se může jednat o její transformaci:
+\begin{equation*}
+    F\left( x \right) = g\left( f \left( x \right)\right),
+\end{equation*}
+kde $f(x)$ je objektivní funkce a $g(x)$ je transformační funkce, jež upravuje hodnotu objektivní funkce pro potřeby selekce a hodnocení v evolučním algoritmu~\cite{IntroductionToEvoComputing,NaturalComputing}. 
+
+\subsubsection*{Populace}
+Hlavní rolí populace v evolučních algoritmech je uchování možných řešení problému. 
+Populace je chápána jako multimnožina genotypů, která se v průběhu evoluce mění, přičemž genotypy jsou pouze statické objekty, vizte obrázek~\ref{fig:population}. 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.67\textwidth]{population.pdf}
+    \caption{Populace je multimnožina genotypů, kde se mohou stejné genotypy vyskytovat vícekrát, přičemž složení populace se může měnit s každou novou generací pomocí selekce, rekombinace a mutace.}
+    \label{fig:population}
+\end{figure}
+Velikost populace je obvykle konstantní, což vytváří podmínky pro přirozený výběr jedinců vlivem omezených zdrojů a~nutnosti soutěžení o přežití.
+
+\subsubsection*{Selekce rodičů}
+Rodičem se stává jedinec, jenž byl vybrán k tomu, aby podstoupil proces změny, ať už rekombinací nebo mutací, čímž vytváří potomky. 
+        Obvykle se rodičem stává kvalitní jedinec, avšak vzhledem k tomu, že proces selekce bývá stochastický, může se rodičem stát i málo kvalitní jedinec, což poskytuje vyšší diverzitu, jež pomáhá předcházet uvíznutí v lokálním optimu~\cite{IntroductionToEvoComputing}. 
+\subsubsection*{Variační operátory}
+Cílem variačních operátorů je vytvořit z existujících jedinců nové. 
+V kontextu fenotypového prostoru dochází ke generování nových kandidátních řešení. 
+Dle arity se variační operátory dělí na následující dva typy:
+\begin{itemize}
+    \item \textbf{Mutace} je unární operátor, jenž je aplikován na rodiče a jehož výsledkem je potomek. 
+        Tento potomek vznikl na základě sérií náhodných voleb, která vedou k~úpravám genotypu, pokud jsou splněny určité podmínky, vizte obrázek~\ref{fig:mutation}~\cite{IntroductionToEvoComputing,NaturalComputing}. 
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.6\textwidth]{Mutation.pdf}
+            \caption{Proces mutace rodiče, kde funkce $p(x)$ určuje pravděpodobnostní rozhodnutí, zda bude provedena mutace konkrétní části genomu. Na základě této série náhodných rozhodnutí vznikne potomek.}
+            \label{fig:mutation}
+        \end{figure}
+    \item \textbf{Rekombinace}, někdy označovaná jako křížení, je n-ární operátor, jenž kombinuje informace z vícero rodičů. 
+        Standardně se v přírodě objevuje pouze binární rekombinace, ale v evolučním počítání je možné uvažovat i křížení s větší aritou. 
+        Podobně jako mutace je i rekombinace založena na stochastickém principu, což znamená, že výběr částí, které budou z každého rodiče kombinovány, je založen na náhodné volbě. 
+        Pro příklad jednoduché rekombinace vizte obrázek~\ref{fig:crossover}~\cite{IntroductionToEvoComputing}. 
+        \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.8\textwidth]{Crossover.pdf}
+            \caption{Ilustrace jednobodové binární rekombinace, kde se na základě náhodně vybraného bodu řezu kombinují informace z rodičovských genotypů do nově vzniklých potomků. Obrázek převzat s úpravami z~\cite{NaturalComputing}}
+            \label{fig:crossover}
+        \end{figure}
+\end{itemize}
+Mutace v evolučních algoritmech zajišťuje neustálý vývoj evolučního procesu, jelikož v~každé iteraci s určitou pravděpodobností umožňuje objevování nových vlastností. 
+Na rozdíl od rekombinace, která pokud je jediným zdrojem diverzity, přestává vytvářet nová řešení v~případě, že populace konvergovala k jednomu genotypu~\cite{NaturalComputing}. 
+
+\subsubsection*{Selekce přeživších}
+Podobně jako u selekce rodičů, i u selekce přeživších jsou jedinci vybíráni na základě jejich kvality ale až posléze, co jsou vytvořeni potomci z vybraných rodičů. 
+Jelikož velikost populace je ve většině případů konstantní, je nutné rozhodnout o tom, kteří jedinci budou figurovat v další generaci. 
+Toho rozhodnutí může záviset nejen na hodnotě fitness, ale může být zohledněn i věk jedinců, což značí, že selekce jedinců do nové generace je ve většině případů deterministická. 
+
+Příkladem jedné z nejběžnějších strategií pro selekci je sjednocení množiny rodičů a~potomků, jejich seřazení na základě hodnoty fitness a výběr nejlepších jedinců pro novou generaci. 
+
+\subsubsection*{Ukončovací podmínka}
+Evoluční proces je ukončen splněním ukončovací podmínky, kterou lze rozdělit do dvou hlavních případů. 
+V prvním případě je evoluční algoritmus ukončen po nalezení jedince, jehož hodnota fitness se shoduje s dříve známou optimální hodnotou. 
+Ve druhém případě, kdy je řešený problém zjednodušen nebo obsahuje šum, je akceptováno řešení, které se dostatečně blíží optimálnímu řešení v rámci požadované přesnosti. 
+Jelikož jsou evoluční algoritmy stochastické, není vždy zaručeno dosažení optimálního řešení, což může vést k~nekončícímu evolučnímu procesu.
+Proto je nutné zavedení následujících podmínek, jejichž splnění zajistí ukončení evoluce:
+\begin{enumerate}
+    \item Uplynutí maximálního povoleného procesorového času.
+    \item Dosažení maximálního počtu vyhodnocení fitness funkce. 
+    \item Po určitou dobou nedochází ke zlepšení fitness nad určitou prahovou hodnotu.
+    \item Diverzita populace klesne pod vybraný bod.
+\end{enumerate}
+Pokud není známo optimální řešení problému, stačí pro ukončení evolučního algoritmu použít jakoukoliv z výše uvedených podmínek. 
 
 \section{Základy kvantové fyziky}
 Tato sekce poskytne stručný popis základních oblastní fyziky a jejich vzájemných souvislostí. 
@@ -164,7 +292,6 @@ Kvantové tunelování je jev, při kterém může být částice s~konečnou, n
 Očekávaný čas tunelování závisí nejen na šířce bariéry, ale i na její výšce, přičemž čím širší je bariéra, tím nižší je pravděpodobnost, že částice projde touto bariérou. 
 Tento efekt je důsledkem vlnové povahy částice, protože její vlnová funkce je rozprostřena v prostoru, a~tudíž je nenulová i na opačné straně bariéry~\cite{NaturalComputing}. 
 
-\newpage
 \section{Kvantové evoluční počítání}
 Hlavní rozdíl mezi kvantovými a klasickými výpočetními systémy spočívá v jejich výpočetních schopnostech.
 Kvantové systémy využívají principy superpozice a provázání, což jim umožňuje efektivněji řešit některé problémy, které jsou pro klasické počítače výpočetně náročné. 

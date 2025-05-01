@@ -44,8 +44,10 @@
 % Základní balíčky jsou dole v souboru šablony fitthesis.cls
 % Basic packages are at the bottom of template file fitthesis.cls
 % zde můžeme vložit vlastní balíčky / you can place own packages here
-\usepackage{algorithm}
-\usepackage{algpseudocode}
+
+\usepackage[czech,linesnumbered,ruled,vlined,longend,]{algorithm2e}
+% \usepackage{algorithm}
+% \usepackage{algpseudocode}
 \usepackage{lipsum}
 
 % Pro seznam zkratek lze využít balíček Glossaries - nutno odkomentovat i níže a při kompilaci z konzoly i v Makefile (plnou verzi pro Perl, nebo lite)
@@ -150,15 +152,15 @@
   abstract.en={This paper deals with quantum-inspired evolutionary algorithms that combine the principles of quantum mechanics and evolutionary computation. In particular, it focuses on the binary quantum-inspired genetic algorithm and its application to the knapsack problem. The paper describes the theoretical foundations of quantum evolutionary computation, the characterization of the quantum-inspired genetic algorithm, and an experimental evaluation of its performance compared to classical evolutionary algorithms.}, % abstrakt v anglickém jazyce / abstract in english
   %abstract.en={An abstract of the work in English will be written in this paragraph.},
   % Prohlášení (u anglicky psané práce anglicky, u slovensky psané práce slovensky; u projektové praxe lze zakomentovat) / Declaration (for thesis in english should be in english; for project practice can be commented out)
-%   declaration={Prohlašuji, že jsem tuto bakalářskou práci vypracoval samostatně pod vedením pana X...
-% Další informace mi poskytli...
-% Uvedl jsem všechny literární prameny, publikace a další zdroje, ze kterých jsem čerpal.},
-  %declaration={I hereby declare that this Bachelor's thesis was prepared as an original work by the author under the supervision of Mr. X
+  declaration={Prohlašuji, že jsem tuto bakalářskou práci vypracoval samostatně pod vedením pana X...
+Další informace mi poskytli...
+Uvedl jsem všechny literární prameny, publikace a další zdroje, ze kterých jsem čerpal.},
+%   declaration={I hereby declare that this Bachelor's thesis was prepared as an original work by the author under the supervision of Mr. X
 % The supplementary information was provided by Mr. Y
 % I have listed all the literary sources, publications and other sources, which were used during the preparation of this thesis.},
-  % Poděkování (nepovinné, nejlépe v jazyce práce; nechcete-li, zakomentujte pro skrytí nadpisu) / Acknowledgement (optional, ideally in the language of the thesis; comment out for hiding including heading)
-%   acknowledgment={V této sekci je možno uvést poděkování vedoucímu práce a těm, kteří poskytli odbornou pomoc
-% (externí zadavatel, konzultant apod.).},
+%   Poděkování (nepovinné, nejlépe v jazyce práce; nechcete-li, zakomentujte pro skrytí nadpisu) / Acknowledgement (optional, ideally in the language of the thesis; comment out for hiding including heading)
+  acknowledgment={V této sekci je možno uvést poděkování vedoucímu práce a těm, kteří poskytli odbornou pomoc
+(externí zadavatel, konzultant apod.).},
   %acknowledgment={Here it is possible to express thanks to the supervisor and to the people which provided professional help
 %(external submitter, consultant, etc.).},
   % Rozšířený abstrakt (cca 3 normostrany) - lze definovat zde nebo níže / Extended abstract (approximately 3 standard pages) - can be defined here or below
