@@ -5,7 +5,14 @@ Jedná se zejména o kvantové provázání, které nelze efektivně simulovat n
 Nicméně použití v evolučních algoritmech kvantově inspirované reprezentace zaručuje dobrý kompromis mezi průzkumem a exploatací a to často při použití menší populace jedinců, než by bylo třeba při použití klasických evolučních algoritmů~\cite{NaturalComputing}.
 
 Tato kapitola nejdříve popíše, jak lze reprezentovat jedince v populaci, a následně se zaměří na dva způsoby jejich manipulace. 
-Posléze charakterizuje kvantově inspirovaný genetický algoritmus (\emph{Quantum Inspired Genetic Algorithm\,--\,QIGA}) a v poslední řadě souhrnně vylíčí zajímavé studie popisující situace, kde byly QIEA využity. 
+Posléze charakterizuje následující kvantově inspirované evoluční algoritmy:
+\begin{itemize}
+    \item kvantově inspirovaný genetický algoritmus (\emph{Quantum Inspired Genetic Algorithm\,--\,QIGA}),
+    \item kvantově inspirované simulované žíhání (\emph{Quantum Inspired Simulated Annealing\,--\,QISA}),
+    \item kvantová evoluce roje (\emph{Quantum Swarm Evolutionary\,--\,QSE}) a
+    \item kvantově inspirovaná optimalizace rojem částic (\emph{Quantum Inspired Particle Swarm Optimization\,--\,QIPSO}).
+\end{itemize}
+V poslední řadě budou souhrnně vylíčeny zajímavé studie popisující situace, kde byly QIEA využity. 
 
 \section{Kódování řešení v kvantově inspirovaných evolučních algoritmech}
 Jeden z možných způsobů reprezentace jedince v populaci v kvantově inspirovaných evolučních algoritmech vychází z konceptu kvantového bitu. 
@@ -31,11 +38,11 @@ V případě splnění podmínky normalizace~\ref{eq:normalized-quantum-represen
 \section{Operátory v kvantově inspirovaných algoritmech}
 Pro generování diverzity populace se běžně využívají dva přístupy popsané níže, přičemž se nevyužívají klasické operátory křížení a mutace~\cite{NaturalComputing}.
 
-\subsection{Kvantová hradla}
+\subsection{Kvantová hradla}\label{subsec:quantum-gates}
 V kvantových systémech se s qubity manipuluje pomocí hradel (Hadamardovo, CNOT, Pauli-X,~aj.). 
 Tyto hradla umožňují provádět paralelní výpočet nad všemi qubity najednou bez změření jejich hodnoty, přičemž jejich výstupem je nová superpozice systému~\cite{NaturalComputing,QuantumComputing-Curious,QuantumComputing-QuantumInformation}. 
 
-V kvantově inspirovaných evolučních algoritmech našly kvantové brány uplatnění, kde rotační hradlo~\ref{eq:rotate-gate} je jedním z možných příkladů.
+V kvantově inspirovaných evolučních algoritmech našly kvantová hradla uplatnění, kde rotační hradlo~\ref{eq:rotate-gate} je jedním z možných příkladů.
 \begin{equation}\label{eq:rotate-gate}
     \begin{bmatrix}
         \cos{\left( \Delta\theta_i \right)} & - \sin{\left( \Delta\theta_i \right)} \\
@@ -59,7 +66,7 @@ Pravděpodobnostní koeficienty $\alpha_i$ a $\beta_i$ $i$-tých qubitů v chrom
     \end{bmatrix},
 \end{equation}
 přičemž výsledné nové koeficienty musí splňovat podmínku normalizace~\ref{eq:a2+b2=1}. 
-Tato podmínka je vždy splněna, jelikož kvantová rotační brána odpovídá unitární matici. 
+Tato podmínka je vždy splněna, jelikož kvantové rotační hradlo odpovídá unitární matici. 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.45\textwidth]{rotation-gate.pdf}
@@ -93,30 +100,68 @@ Jeden z možných způsobů spočívá ve využití tabulky~\ref{tab:look-up-tab
     \item Na základě hodnot $x_i$ a $b_i$ je z vyhledávací tabulky~\ref{tab:look-up-table-Delta} vybrána hodnota $\Delta\theta_i$ následovně:
         \begin{table}[ht!]
             \centering
-            \begin{tabular}{c c|c}
-            \toprule
-            \multicolumn{1}{c}{$x_i$} & \multicolumn{1}{c}{$b_i$} & \multicolumn{1}{|c}{$\Delta\theta_i$} \\
-            \midrule
-            1                       & 1                      & 0                      \\ 
-            0                       & 1                      & $a$                      \\ 
-            0                       & 0                      & 0                      \\ 
-            1                       & 0                      & $-a$                     \\
-            \bottomrule
+            \begin{tabular}{|c c|c|}
+            \hline
+            $x_i$ & $b_i$ & $\Delta\theta_i$ \\
+            \hline
+            1     & 1     & 0                \\ 
+            0     & 1     & $\delta$              \\ 
+            0     & 0     & 0                \\ 
+            1     & 0     & $-\delta$             \\
+            \hline
             \end{tabular}
-            \caption{Vyhledávací tabulka pro parametr $\Delta\theta$.}
+            \caption{Vyhledávací tabulka pro parametr $\Delta\theta_i$.}
             \label{tab:look-up-table-Delta}
         \end{table}
         \begin{itemize}
             \item Pokud $x_i = b_i$, pak $\Delta \theta = 0$, respektive parametry $\alpha_i$ a $\beta_i$ qubitu $q_i$ zůstanou zachovány.
-            \item Pokud $x_i = 1 \wedge b_i = 0$, pak $\Delta \theta = -a$, respektive dojde ke snížení pravděpodobnosti pozorování binární hodnoty 1 na pozici $i$ chromozomu $q$. 
-            \item Pokud $x_i = 0 \wedge b_i = 1$, pak $\Delta \theta =  a$, respektive dojde ke zvýšení pravděpodobnosti pozorování binární hodnoty 1 na pozici $i$ chromozomu $q$. 
+            \item Pokud $x_i = 1 \wedge b_i = 0$, pak $\Delta \theta = -\delta$, respektive dojde ke snížení pravděpodobnosti pozorování binární hodnoty 1 na pozici $i$ chromozomu $q$. 
+            \item Pokud $x_i = 0 \wedge b_i = 1$, pak $\Delta \theta =  \delta$, respektive dojde ke zvýšení pravděpodobnosti pozorování binární hodnoty 1 na pozici $i$ chromozomu $q$. 
         \end{itemize}
+        Tabulka~\ref{tab:look-up-table-Delta} nebere v úvahu kvadranty z obrázku~\ref{fig:rotation-gate} v němž koeficienty $\alpha_i$ nebo $\beta_i$ mohou být záporné, tudíž je možné upravit rovnici~\ref{eq:rotation-gate-angles} tak, aby aktualizovala $i$-tý kvantový bit $\begin{bmatrix} \alpha_i \\ \beta_i \end{bmatrix}$ následovně:
+        \begin{equation}\label{eq:rotation-gate-angles-update}
+            \begin{bmatrix}
+                \alpha_i' \\
+                \beta_i' 
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                \cos{\left( \xi \left( \Delta\theta_i \right) \right)} & - \sin{\left( \xi \left( \Delta\theta_i \right) \right)} \\
+                \sin{\left( \xi \left( \Delta\theta_i \right) \right)} &   \cos{\left( \xi \left( \Delta\theta_i \right) \right)}
+            \end{bmatrix}
+            \begin{bmatrix}
+                \alpha_i \\
+                \beta_i 
+            \end{bmatrix},
+        \end{equation}
+        kde $\xi \left( \Delta\theta_i \right) = s\left( \alpha_i , \beta_i \right) \times \Delta\theta_i $, přičemž $s\left( \alpha_i , \beta_i \right)$ a $\Delta\theta_i$ určují směr rotace a úhel, vizte vyhledávací tabulku~\ref{tab:look-up-table-angle-update}
+
+        \begin{table}[ht!]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                \hline
+                $x_i$ & $b_i$ & $f(x) > f(b)$ & $\Delta \theta_i$ & \multicolumn{4}{c|}{$s(\alpha_i, \beta_i)$} \\
+                \cline{5-8}
+                & & & & $\alpha_i \beta_i > 0$& $\alpha_i \beta_i < 0$ & $ \alpha_i = 0$ & $\beta_i = 0$ \\
+                \hline
+                0 & 0 & Nepravda & $0$      & $0$  & $0$  & $0$     & $0$ \\
+                0 & 0 & Pravda   & $0$      & $0$  & $0$  & $0$     & $0$ \\
+                0 & 1 & Nepravda & $\delta$ & $+1$ & $-1$ & $0$     & $\pm 1$ \\
+                0 & 1 & Pravda   & $\delta$ & $-1$ & $+1$ & $\pm 1$ & $0$ \\
+                1 & 0 & Nepravda & $\delta$ & $-1$ & $+1$ & $\pm 1$ & $0$ \\
+                1 & 0 & Pravda   & $\delta$ & $+1$ & $-1$ & $0$     & $\pm 1$ \\
+                1 & 1 & Nepravda & $0$      & $0$  & $0$  & $0$     & $0$ \\
+                1 & 1 & Pravda   & $0$      & $0$  & $0$  & $0$     & $0$ \\
+                \hline
+            \end{tabular}
+            \caption{Vyhledávací tabulka pro parametr $\Delta\theta_i$ a $s(\alpha_i, \beta_i)$, kde $\delta$ je obvykle nastaveno na malou hodnotu (běžně $0.01 \pi$).}
+            \label{tab:look-up-table-angle-update}
+        \end{table}
 \end{enumerate}
 
 V kvantově inspirovaných evolučních algoritmech se v současné době nevyužívají komplexní koeficienty z kvantové mechaniky, ale výlučně se používají reálné koeficienty, jak je vidět na obrázku~\ref{fig:rotation-gate}~\cite{NaturalComputing}.
 
-\newpage
-\subsection{Kvantová mutace}
+\subsection{Kvantová mutace}\label{subsec:quantum-mutation}
 Kvantová mutace se inspiruje mutací ze standardních genetických algoritmů v podobě:
 \begin{equation*}
     Q^*(t) = a \times B_{best}(t) + (1 - a) * (1 - B_{best}(t))
@@ -134,62 +179,109 @@ kde
 Případně existují další možné metody pro mutaci kvantového chromozomu~\cite{NaturalComputing}.
 
 \section{Kvantově inspirovaný genetický algoritmus}
-Kanonický příklad binárního kvantově inspirovaného genetického algoritmu popisuje algoritmus~\ref{alg:BinaryQIEA}, kde parametr $t_{max}$ udává maximální počet iterací (generací) algoritmu a parametr $t$ značí aktuálně prováděnou iteraci. 
-\begin{algorithm}[ht!]
-    \caption{Binární kvantově inspirovaný genetický algoritmus~\cite{NaturalComputing}}
-    \label{alg:BinaryQIEA}
-    \begin{algorithmic}[1]
-        \State $t \gets 0$
-        \State Inicializace populace $Q(t)$ kvantových chromozomů
-        \For{$j = 1$ to $n$}
-            \State Vytvoř $p_j(t)$ pozorováním $Q(t)$
-        \EndFor
-        \State Ohodnocení populace $P(t)$ a vybrání nejlepšího řešení z populace
-        \State Uložení nejlepšího řešení $B(t)$
-        \While{$t < t_{max}$}
-            \State $t \gets t + 1$
-            \State Vytvoření $P^*(t)$ pozorováním $Q(t-1)$
-            \State Ohodnocení populace $P^*(t)$
-            \State Porovnání nejlepšího řešení z $P^*(t)$ s $B(t-1)$
-            \State Uložení lepšího řešení $B(t)$
-            \State Aktualizace $Q(t)$ pomocí $B(t)$
-        \EndWhile
-    \end{algorithmic}
-\end{algorithm}
-Algoritmus začíná inicializací počáteční populace čítající $n$ kvantových chromozomů:
-\begin{equation*}
-    Q(t) = \left\{ q_1(t), q_2(t), \dots, q_n(t) \right\},
-\end{equation*}
-přičemž každý z chromozomů je tvořen $m$ qubity a parametry $\alpha$ a $\beta$ jednotlivých qibutů jsou běžně nastaveny na hodnotu $\frac{1}{\sqrt{2}}$, respektive počáteční pravděpodobnost výsledného stavu 0 nebo 1 je po provedeném pozorování $\left(\frac{1}{\sqrt{2}}\right)^2 = 0,5$. 
-Případně mohou být na počátky parametry $\alpha$ a $\beta$ nastaveny na jiné hodnoty, které více vyhovují řešenému problému avšak stále musí splňovat podmínku normalizace~\ref{eq:a2+b2=1}. 
+Kanonický příklad kvantově inspirovaného genetického algoritmu, jenž je principiálně podobný ostatním evolučním algoritmům, je popsán algoritmem~\ref{alg:BinaryQIEA}, kde parametr $t_{max}$ udává maximální počet iterací (generací) algoritmu a parametr $t$ značí aktuálně prováděnou iteraci a parametr $t_{\text{max}}$ reprezentuje maximální počet iterací~\cite{NaturalComputing}. 
 
-Nad takto vytvořenou počáteční populací může být provedeno pozorování, čímž dojde k vygenerování populace řešení (binárních řetězců):
+\begin{algorithm}[H]
+    \caption{Kvantově inspirovaný genetický algoritmus~\cite{NaturalComputing}}
+    \label{alg:BinaryQIEA}
+    $t \gets 0$\;
+    Inicializace populace $Q(t)$ kvantových chromozomů\;
+    \For{$j = 1$ to $n$}{
+        Vytvoř $p_j(t)$ pozorováním $q_j(t)$\;
+    }
+    Ohodnocení populace $P(t)$ a vybrání nejlepšího řešení z populace\;
+    Uložení nejlepšího řešení $B(t)$\;
+    \While{$t < t_{\text{max}}$}{
+        $t \gets t + 1$\;
+        Vytvoření $P(t)$ pozorováním $Q(t-1)$\;
+        Ohodnocení populace $P(t)$\;
+        Porovnání nejlepšího řešení z $P(t)$ s $B(t-1)$\;
+        Uložení lepšího řešení $B(t)$\;
+        Aktualizace $Q(t)$ pomocí $B(t)$\;
+    }
+\end{algorithm}
+\noindent
+Uvažujme počáteční generaci $t=0$, kdy algoritmus začíná inicializací počáteční populace čítající $n$ kvantových chromozomů:
+\begin{equation*}
+    Q(t) = \left\{ q_1(t), q_2(t),\,\dots\,, q_n(t) \right\},
+\end{equation*}
+přičemž každý z chromozomů $q_j(t)$ pro $j = 1,2,\,\dots\,,n$ je tvořen $m$ qubity a parametry $\alpha$~a~$\beta$ jako:
+\begin{equation*}
+    q_j(t) =
+    \begin{bmatrix}
+        \alpha_{j_1}(t) & \alpha_{j_2}(t) & \dots & \alpha_{j_m}(t) \\
+        \beta_{j_1}(t)  & \beta_{j_2}(t)  & \dots & \alpha_{j_m}(t)
+    \end{bmatrix},
+\end{equation*}
+kde jsou parametry $\alpha_{j_i}(t)$ a $\beta_{j_i}(t)$ pro $i = 1,2,\,\dots\,,m$ v každém $q_j(t)$ nastaveny na běžně používanou hodnotu $\frac{1}{\sqrt{2}}$. 
+Respektive počáteční pravděpodobnost výsledného stavu 0 nebo 1 je po provedeném pozorování rovna $\left(\frac{1}{\sqrt{2}}\right)^2 = 0,5$. 
+Případně mohou být parametry $\alpha$ a $\beta$ nastaveny na libovolné hodnoty, které lépe vyhovují řešenému problému, avšak stále musí splňovat podmínku normalizace~\ref{eq:a2+b2=1}~\cite{NaturalComputing,qiga}. 
+
+Nad takto vytvořenou počáteční populací může být provedeno pozorování, čímž dojde k vygenerování množiny řešení (binárních řetězců):
 \begin{equation*}
     P(t) = \left\{ p_1(t), p_2(t), \dots, p_n(t) \right\},
 \end{equation*}
-kde každé řešení $p_k$ pro $k \in \left\{ 1, 2, \dots, n \right\}$ reprezentuje jednotlivý binární řetězec složený z~$m$~qubitů. 
-Při jedné z možných metod generování populace $P(t)$ při pozorování je na $i$-té pozici $j$-tého jedince $p_{j_{i}}$ nastavena hodnota $1$ v případě, že vygenerované číslo $r \in \langle 0, 1\rangle$ splňuje podmínku~$r~>~\left| \alpha_i(t) \right|^2$, jinak je na tuto pozici nastavena hodnota $0$.
+kde každé řešení $p_j$ pro $j = 1, 2,\,\dots\,, n$ reprezentuje binární řetězec složený z~$m$~qubitů:
+\begin{equation*}
+    p_j(t) = 
+    \begin{pmatrix}
+        x_{j_1}(t) & x_{j_2}(t) & \dots & x_{j_m}(t)
+    \end{pmatrix},
+\end{equation*}
+kde je při jedné z možných metod generování populace $P(t)$ při pozorování na $i$-té pozici $j$-tého jedince $x_{j_{i}}$ nastavena hodnota $1$ v případě, že náhodně vygenerované číslo $r \in \langle 0, 1\rangle$ splňuje podmínku~$r~>~\left| \alpha_i(t) \right|^2$, jinak je na tuto pozici nastavena hodnota $0$~\cite{NaturalComputing,qiga}.
 
-Vygenerování populace $P(t)$ může být provedeno několika způsoby:
+Vygenerování populace $P(t)$ může být provedeno několika způsoby~\cite{NaturalComputing}:
 \begin{itemize}
     \item Použitím jednoho kvantového chromozomu, kdy je populace $P(t)$ vygenerována pomocí $n$-násobného pozorování tohoto jediného chromozomu. 
     \item Použitím malé populace kvantových chromozomů, kdy je každý z nich pozorován tolikrát, aby celkový počet pozorování odpovídal velikosti populace $P(t)$.
     \item Použitím stejného množství kvantových chromozomů jako je velikost populace $P(t)$, viz popis výše.
 \end{itemize}
 
-Podstatnou částí smyčky algoritmu je aktualizace populace $Q(t)$ za účelem její evoluce, která může být provedena několika způsoby jako:
+Posléze je každé binárním řešení $p_j(t)$ ohodnoceno fitness funkcí. 
+Nejlepší řešení $p_k(t)$ je vybráno na základě tohoto ohodnocení a použito k získání aktuálně nejlepšího řešení:
+\begin{equation*}
+    B(t) =
+    \begin{pmatrix}
+        b_1(t) & b_2(t) & \dots & b_m(t)
+    \end{pmatrix},
+\end{equation*}
+kde $b_i(t) = x_{k_i}(t)$ pro $i = 1,2,\,\dots\,,m$~\cite{NaturalComputing,qiga}.
+
+Uvažujme generaci $t$ pro $t>0 \wedge t<t_{\text{max}}$ v rámci smyčky genetického algoritmu. 
+V iteraci $t$ je vytvořena populace $P(t)$ pozorováním předchozí populace $Q(t-1)$, jenž je následně ohodnocena fitness funkcí. 
+Nejlepší řešení z $P(t)$ je porovnáno s řešením $B(t-1)$, a nejlepší řešení je uloženo do $B(t)$. 
+Hlavní částí smyčky algoritmu je aktualizace populace $Q(t)$ pomocí $B(t)$ za účelem její evoluce, která může být provedena několika způsoby, například:
 \begin{itemize}
-    \item použitím některé z variant kvantové mutace nebo
-    \item aplikací kvantových bran.
+    \item použitím některé z variant kvantové mutace, vizte podsekci~\ref{subsec:quantum-mutation}, nebo
+    \item aplikací kvantových hradel, vizte podsekci~\ref{subsec:quantum-gates}.
 \end{itemize}
 Kvantové chromozomy jsou v tomto kroku upraveny tak, aby v následující generaci docházelo k pravděpodobnějšímu generování dosud nejlepších nalezených řešení. 
-Jak se algoritmus postupně blíží k nalezení optimálního řešení, tak jednotlivé qubity kvantového chromozomu konvergují k hodnotě 0 nebo 1.
+Jak se algoritmus postupně blíží k nalezení optimálního řešení, tak jednotlivé qubity kvantového chromozomu konvergují k hodnotě 0 nebo 1~\cite{NaturalComputing,qiga}.
 
-\section{QISA}
+Iterace evolučního procesu se opakují do té doby dokud není splněna ukončující podmínka~\cite{NaturalComputing,qiga}.
 
-\section{QSE}
+\section{Kvantově inspirované simulované žíhání}
 
-\section{QIPSO}
+\begin{algorithm}
+    \caption{QISA (Quantum-Inspired Simulated Annealing) Procedure}
+    $t \gets 0$\;
+    $Q(t) \gets Q(0)$\;
+    $B(t) \gets B(0)$\;
+    \While{$t < t_{\text{max}}$}{
+        $P(t) \gets \text{GeneratePopulation}(Q(t-1))$\;
+        $P(t) \gets \text{EvaluateFitness}(P(t))$\;
+        $p_k(t) \gets \text{BestSolution}(P(t), B(t-1))$\;
+        $B(t) \gets p_k(t)$\;
+        $Q(t) \gets \text{UpdatePopulation}(B(t))$\;
+        $T(t) \gets \text{UpdateTemperature}(T(t-1))$\;
+        $t \gets t + 1$\;
+    }
+    \KwRet{$B(t_{\text{max}})$}\;
+\end{algorithm}
+
+\section{Kvantová evoluce roje}
+
+\section{Kvantově inspirovaná optimalizace rojem částic}
 
 \section{Aplikace kvantově inspirovaných evolučních algoritmů}
 Kvantově inspirované evoluční algoritmy nacházejí uplatnění v různých oblastech strojového učení a optimalizace. 

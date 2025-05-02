@@ -60,22 +60,22 @@ Tato kvantová reprezentace řešení určuje pravděpodobnosti vložení či ne
 Aby bylo možné získat konkrétní binární řešení $x = \begin{pmatrix} x_1 & x_2 & \dots & x_m \end{pmatrix}$, je nutné provést pozorování kvantového stavu, při kterém je každý bit $x_i$ pro $i = 1,2,\dots\,m$ vektoru $x$ získán tak, že je vygenerováno náhodné číslo $r \in \langle 0, 1 \rangle$. 
 Pokud je splněna podmínka $r < \left| \beta_i \right|^2$ je na $i$-té pozici binárního řetězce nastavena $1$, jinak je nastavena~$0$. 
 Tento postup je popsán v~algoritmu~\ref{alg:make}.
-\begin{algorithm}[ht!]
-    \caption{Proces generování binárního řešení problému batohu}
-    \label{alg:make}
-    \begin{algorithmic}[1]
-        \State $i \gets 0$
-        \While{$i < m$}
-            \State $i \gets i + 1$
-            \State $r \gets  \text{random}[0,1]$
-            \If{$r < \left| \beta_i \right|^2$}
-                \State $x_i \gets 1$
-            \Else
-                \State $x_i \gets 0$
-            \EndIf
-        \EndWhile
-    \end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}[ht!]
+%     \caption{Proces generování binárního řešení problému batohu}
+%     \label{alg:make}
+%     \begin{algorithmic}[1]
+%         \State $i \gets 0$
+%         \While{$i < m$}
+%             \State $i \gets i + 1$
+%             \State $r \gets  \text{random}[0,1]$
+%             \If{$r < \left| \beta_i \right|^2$}
+%                 \State $x_i \gets 1$
+%             \Else
+%                 \State $x_i \gets 0$
+%             \EndIf
+%         \EndWhile
+%     \end{algorithmic}
+% \end{algorithm}
 
 Po provedeném pozorování může řešení $x$ porušovat kapacitní omezení~\ref{eq:knapsack-capacity} batohu a~proto je nutné jej opravit. 
 Proces opravy je popsán algoritmem~\ref{alg:repair}, přičemž algoritmus nejdříve určí zda bylo překročeno kapacitní omezení batohu. 
@@ -84,31 +84,31 @@ V případě jeho překročení jsou náhodně odstraňovány položky z batohu 
 Po opravě případného překročení kapacitního omezení batohu v něm vzniká místo, které může být opět zaplněno. 
 Následuje tedy cyklus, který náhodně vybírá položky a vkládá je do batohu, dokud batoh nepřekročí svoji kapacitu. 
 V závěrečném kroku algoritmus odstraní poslední přidanou položku do batohu, aby zajistil nepřekročení jeho kapacity~\cite{qiga}.
-\begin{algorithm}[ht!]
-    \caption{Proces opravy nevalidního binárního řešení}
-    \label{alg:repair}
-    \begin{algorithmic}[1]
-        \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
-        \If{$\sum_{i=1  }^{m} w_i x_i > C$} 
-            \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
-        \EndIf
-        \While{\textit{knapsack-overfilled}}
-            \State Náhodně vyber položku $i$ z batohu
-            \State $x_i \gets 0$
-            \If{$\sum_{i=1}^{m} w_i x_i \leq C$}
-                \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
-            \EndIf
-        \EndWhile
-        \While{\textbf{not} \textit{knapsack-overfilled}}
-            \State Náhodně vyber položku $j$ z batohu
-            \State $x_j \gets 1$
-            \If{$\sum_{i=1}^{m} w_i x_i > C$}
-                \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
-            \EndIf
-        \EndWhile
-        \State $x_j \gets 0$
-    \end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}[ht!]
+%     \caption{Proces opravy nevalidního binárního řešení}
+%     \label{alg:repair}
+%     \begin{algorithmic}[1]
+%         \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
+%         \If{$\sum_{i=1  }^{m} w_i x_i > C$} 
+%             \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
+%         \EndIf
+%         \While{\textit{knapsack-overfilled}}
+%             \State Náhodně vyber položku $i$ z batohu
+%             \State $x_i \gets 0$
+%             \If{$\sum_{i=1}^{m} w_i x_i \leq C$}
+%                 \State \textit{knapsack-overfilled} $\gets$ \textbf{false}
+%             \EndIf
+%         \EndWhile
+%         \While{\textbf{not} \textit{knapsack-overfilled}}
+%             \State Náhodně vyber položku $j$ z batohu
+%             \State $x_j \gets 1$
+%             \If{$\sum_{i=1}^{m} w_i x_i > C$}
+%                 \State \textit{knapsack-overfilled} $\gets$ \textbf{true}
+%             \EndIf
+%         \EndWhile
+%         \State $x_j \gets 0$
+%     \end{algorithmic}
+% \end{algorithm}
 Případně je možné místo náhodného výběru položek využít princip, kdy jsou voleny položky na základě poměru ceny a váhy. 
 
 \section{Návrh experimentů}\label{sec:experiments-design}
