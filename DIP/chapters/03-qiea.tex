@@ -10,7 +10,7 @@ Posléze charakterizuje následující kvantově inspirované evoluční algorit
     \item kvantově inspirovaný genetický algoritmus,
     \item kvantově inspirované simulované žíhání,
     \item kvantová evoluce roje a
-    \item kvantově inspirovaná optimalizace rojem částic (\emph{Quantum Inspired Particle Swarm Optimization\,--\,QIPSO}).
+    \item kvantově inspirovaná optimalizace rojem částic.
 \end{itemize}
 V poslední řadě budou souhrnně vylíčeny zajímavé studie popisující situace, kde byly QIEA využity. 
 
@@ -164,15 +164,15 @@ V kvantově inspirovaných evolučních algoritmech se v současné době nevyu�
 \subsection{Kvantová mutace}\label{subsec:quantum-mutation}
 Kvantová mutace se inspiruje mutací ze standardních genetických algoritmů v podobě:
 \begin{equation*}
-    Q^*(t) = a \times B_{best}(t) + (1 - a) * (1 - B_{best}(t))
+    Q^*\left(t\right) = a \times B_{best}\left(t\right) + (1 - a) * (1 - B_{best}\left(t\right))
 \end{equation*}
 \begin{equation*}
-    Q(t+1) = Q^*(t) + b \times r,
+    Q(t+1) = Q^*\left(t\right) + b \times r,
 \end{equation*}
 kde
 \begin{itemize}
-    \item $B_{best}(t)$ reprezentuje nejlepší nalezené řešení v iteraci $t$,
-    \item $Q^*(t)$ je dočasný kvantový chromozom,
+    \item $B_{best}\left(t\right)$ reprezentuje nejlepší nalezené řešení v iteraci $t$,
+    \item $Q^*\left(t\right)$ je dočasný kvantový chromozom,
     \item $r$ je náhodné číslo pocházející z normálního rozdělení $N(0,1)$,
     \item $a$ a $b$ jsou parametry řídící poměr průzkumu a exploatace.
 \end{itemize}
@@ -185,29 +185,29 @@ Kanonický příklad kvantově inspirovaného genetického algoritmu (\emph{Quan
     \caption{Kvantově inspirovaný genetický algoritmus~\cite{NaturalComputing}}
     \label{alg:BinaryQIEA}
     $t \gets 0$\;
-    Inicializace populace $Q(t)$ kvantových chromozomů\;
+    Inicializace populace $Q\left(t\right)$ kvantových chromozomů\;
     \For{$j = 1$ to $n$}{
-        Vytvoření $p_j(t)$ pozorováním $q_j(t)$\;
+        Vytvoření $p_j\left(t\right)$ pozorováním $q_j\left(t\right)$\;
     }
-    Ohodnocení populace $P(t)$ a vybrání nejlepšího řešení z populace\;
-    Uložení nejlepšího řešení do $B(t)$\;
+    Ohodnocení populace $P\left(t\right)$ a vybrání nejlepšího řešení z populace\;
+    Uložení nejlepšího řešení do $B\left(t\right)$\;
     \While{$t < t_{\text{max}}$}{
         $t \gets t + 1$\;
-        Vytvoření $P(t)$ pozorováním $Q(t-1)$\;
-        Ohodnocení populace $P(t)$\;
-        Porovnání nejlepšího řešení z $P(t)$ s $B(t-1)$\;
-        Uložení lepšího řešení $B(t)$\;
-        Aktualizace $Q(t)$ pomocí $B(t)$\;
+        Vytvoření $P\left(t\right)$ pozorováním $Q(t-1)$\;
+        Ohodnocení populace $P\left(t\right)$\;
+        Porovnání nejlepšího řešení z $P\left(t\right)$ s $B(t-1)$\;
+        Uložení lepšího řešení $B\left(t\right)$\;
+        Aktualizace $Q\left(t\right)$ pomocí $B\left(t\right)$\;
     }
 \end{algorithm}
 
-Uvažujme počáteční generaci $t=0$, kdy algoritmus začíná inicializací počáteční populace $Q(t)$ čítající $n$ kvantových chromozomů:
+Uvažujme počáteční generaci $t=0$, kdy algoritmus začíná inicializací počáteční populace $Q\left(t\right)$ čítající $n$ kvantových chromozomů:
 \begin{equation}\label{eq:q(t)}
-    Q(t) = \left\{ q_1(t), q_2(t),\,\dots\,, q_n(t) \right\},
+    Q\left(t\right) = \left\{ q_1\left(t\right), q_2\left(t\right),\,\dots\,, q_n\left(t\right) \right\},
 \end{equation}
-přičemž každý z chromozomů $q_j(t)$ pro $j = 1,2,\,\dots\,,n$ je tvořen $m$ kvantovými bity $\psi_{j_i}\left(t\right)$ složených z parametrů $\alpha$~a~$\beta$ jako:
+přičemž každý z chromozomů $q_j\left(t\right)$ pro $j = 1,2,\,\dots\,,n$ je tvořen $m$ kvantovými bity $\psi_{j_i}\left(t\right)$ složených z parametrů $\alpha$~a~$\beta$ jako:
 \begin{equation*}
-    q_j(t) =
+    q_j\left(t\right) =
     \begin{bmatrix}
         \psi_{j_1}\left(t\right) & \psi_{j_2}\left(t\right) & \dots & \psi_{j_m}\left(t\right) \\
     \end{bmatrix}
@@ -217,44 +217,44 @@ přičemž každý z chromozomů $q_j(t)$ pro $j = 1,2,\,\dots\,,n$ je tvořen $
         \beta_{j_1}\left(t\right)  & \beta_{j_2}\left(t\right)  & \dots & \alpha_{j_m}\left(t\right)
     \end{bmatrix},
 \end{equation*}
-kde jsou parametry $\alpha_{j_i}(t)$ a $\beta_{j_i}(t)$ pro $i = 1,2,\,\dots\,,m$ v každém $q_j(t)$ nastaveny na běžně používanou hodnotu $\frac{1}{\sqrt{2}}$. 
+kde jsou parametry $\alpha_{j_i}\left(t\right)$ a $\beta_{j_i}\left(t\right)$ pro $i = 1,2,\,\dots\,,m$ v každém $q_j\left(t\right)$ nastaveny na běžně používanou hodnotu $\frac{1}{\sqrt{2}}$. 
 Respektive počáteční pravděpodobnost výsledného stavu 0 nebo 1 je po provedeném pozorování rovna $\left(\frac{1}{\sqrt{2}}\right)^2 = 0,5$. 
 Případně mohou být parametry $\alpha$ a $\beta$ nastaveny na libovolné hodnoty, které lépe vyhovují řešenému problému, avšak stále musí splňovat podmínku normalizace~\ref{eq:a2+b2=1}~\cite{NaturalComputing,qiga}. 
 
 Nad takto vytvořenou počáteční populací může být provedeno pozorování, čímž dojde k vygenerování množiny řešení (binárních řetězců):
 \begin{equation}\label{eq:p(t)}
-    P(t) = \left\{ p_1(t), p_2(t), \dots, p_n(t) \right\},
+    P\left(t\right) = \left\{ p_1\left(t\right), p_2\left(t\right), \dots, p_n\left(t\right) \right\},
 \end{equation}
 kde každé řešení $p_j$ pro $j = 1, 2,\,\dots\,, n$ reprezentuje binární řetězec složený z~$m$~qubitů:
 \begin{equation*}
-    p_j(t) = 
+    p_j\left(t\right) = 
     \begin{pmatrix}
-        x_{j_1}(t) & x_{j_2}(t) & \dots & x_{j_m}(t)
+        x_{j_1}\left(t\right) & x_{j_2}\left(t\right) & \dots & x_{j_m}\left(t\right)
     \end{pmatrix},
 \end{equation*}
-kde je při jedné z možných metod generování populace $P(t)$ při pozorování na $i$-té pozici $j$-tého jedince $x_{j_{i}}$ nastavena hodnota $1$ v případě, že náhodně vygenerované číslo $r_i \in \langle 0, 1\rangle$ splňuje podmínku~$r_i > \left| \alpha_i(t) \right|^2$, jinak je na tuto pozici nastavena hodnota $0$~\cite{NaturalComputing,qiga}.
+kde je při jedné z možných metod generování populace $P\left(t\right)$ při pozorování na $i$-té pozici $j$-tého jedince $x_{j_{i}}$ nastavena hodnota $1$ v případě, že náhodně vygenerované číslo $r_i \in \langle 0, 1\rangle$ splňuje podmínku~$r_i > \left| \alpha_i\left(t\right) \right|^2$, jinak je na tuto pozici nastavena hodnota $0$~\cite{NaturalComputing,qiga}.
 
-Vygenerování populace $P(t)$ může být provedeno několika způsoby~\cite{NaturalComputing}:
+Vygenerování populace $P\left(t\right)$ může být provedeno několika způsoby~\cite{NaturalComputing}:
 \begin{itemize}
-    \item Použitím jednoho kvantového chromozomu, kdy je populace $P(t)$ vygenerována pomocí $n$-násobného pozorování tohoto jediného chromozomu. 
-    \item Použitím malé populace kvantových chromozomů, kdy je každý z nich pozorován tolikrát, aby celkový počet pozorování odpovídal velikosti populace $P(t)$.
-    \item Použitím stejného množství kvantových chromozomů jako je velikost populace $P(t)$, viz popis výše.
+    \item Použitím jednoho kvantového chromozomu, kdy je populace $P\left(t\right)$ vygenerována pomocí $n$-násobného pozorování tohoto jediného chromozomu. 
+    \item Použitím malé populace kvantových chromozomů, kdy je každý z nich pozorován tolikrát, aby celkový počet pozorování odpovídal velikosti populace $P\left(t\right)$.
+    \item Použitím stejného množství kvantových chromozomů jako je velikost populace $P\left(t\right)$, viz popis výše.
 \end{itemize}
 
-Posléze je každé binárním řešení $p_j(t)$ ohodnoceno fitness funkcí. 
-Nejlepší řešení $p_k(t)$ je vybráno na základě tohoto ohodnocení a použito k získání aktuálně nejlepšího řešení:
+Posléze je každé binárním řešení $p_j\left(t\right)$ ohodnoceno fitness funkcí. 
+Nejlepší řešení $p_k\left(t\right)$ je vybráno na základě tohoto ohodnocení a použito k získání aktuálně nejlepšího řešení:
 \begin{equation*}
-    B(t) =
+    B\left(t\right) =
     \begin{pmatrix}
-        b_1(t) & b_2(t) & \dots & b_m(t)
+        b_1\left(t\right) & b_2\left(t\right) & \dots & b_m\left(t\right)
     \end{pmatrix},
 \end{equation*}
-kde $b_i(t) = x_{k_i}(t)$ pro $i = 1,2,\,\dots\,,m$~\cite{NaturalComputing,qiga}.
+kde $b_i\left(t\right) = x_{k_i}\left(t\right)$ pro $i = 1,2,\,\dots\,,m$~\cite{NaturalComputing,qiga}.
 
 Uvažujme generaci $t$ pro $t>0 \wedge t<t_{\text{max}}$ v rámci smyčky \emph{QIGA}. 
-V iteraci $t$ je vytvořena populace $P(t)$ pozorováním předchozí populace $Q(t-1)$, jenž je následně ohodnocena fitness funkcí. 
-Nejlepší řešení z $P(t)$ je porovnáno s řešením $B(t-1)$, a nejlepší řešení je uloženo do $B(t)$. 
-Hlavní částí smyčky algoritmu je aktualizace populace $Q(t)$ pomocí $B(t)$ za účelem její evoluce, která může být provedena několika způsoby, například:
+V iteraci $t$ je vytvořena populace $P\left(t\right)$ pozorováním předchozí populace $Q(t-1)$, jenž je následně ohodnocena fitness funkcí. 
+Nejlepší řešení z $P\left(t\right)$ je porovnáno s řešením $B(t-1)$, a nejlepší řešení je uloženo do $B\left(t\right)$. 
+Hlavní částí smyčky algoritmu je aktualizace populace $Q\left(t\right)$ pomocí $B\left(t\right)$ za účelem její evoluce, která může být provedena několika způsoby, například:
 \begin{itemize}
     \item použitím některé z variant kvantové mutace, vizte podsekci~\ref{subsec:quantum-mutation}, nebo
     \item aplikací kvantových hradel, vizte podsekci~\ref{subsec:quantum-gates} a popis níže.
@@ -291,7 +291,7 @@ Jak se algoritmus postupně blíží k nalezení optimálního řešení, tak je
 
 Iterace evolučního procesu se opakují do té doby dokud není splněna ukončující podmínka~\cite{NaturalComputing,qiga}.
 
-\section{Kvantově inspirované simulované žíhání}
+\section{Kvantově inspirované simulované žíhání}\label{sec:qisa}
 Tato sekce se zaměří na představení kvantově inspirovaného simulovaného žíhání (\emph{Quantum Inspired Simulated Annealing\,--\,QISA}), což je algoritmus, jenž kombinuje principy klasického simulovaného žíhání (\emph{Simulated Annealing\,--\,SA}) a kvantového počítání. 
 Algoritmus \emph{QISA}, znázorněný algoritmem~\ref{alg:qisa}, vychází principiálně z algoritmu \emph{QIGA} (vizte sekci~\ref{sec:qiga}), jenž je rozšíření o principy \emph{SA} a jehož klasické pozorovaní kvantové populace je upraveno na teplotně-řízené pozorování (\emph{heated observation}). 
 Obdobně jako u \emph{QIGA} algoritmu~\ref{alg:BinaryQIEA} proměnná $t$ reprezentuje aktuálně prováděnou iteraci a hodnota $t_{\text{max}}$ určuje maximální počet generací evolučního procesu~\cite{qisa}. 
@@ -302,59 +302,45 @@ Obdobně jako u \emph{QIGA} algoritmu~\ref{alg:BinaryQIEA} proměnná $t$ reprez
     Inicializace počáteční teploty $T_0$\;
     Selekce chladícího plánu\;
     $t \gets 0$\;
-    Inicializace populace $Q(t)$ kvantových chromozomů\;
-    Vytvoření populace $P(t)$ tepelně-řízeným pozorováním $Q(t)$\;
-    Získání energie $E(t)$ populace $P(t)$\;
+    Inicializace populace $Q\left(t\right)$ kvantových chromozomů\;
+    Vytvoření populace $P\left(t\right)$ tepelně-řízeným pozorováním $Q\left(t\right)$\;
+    Získání energie $E\left(t\right)$ populace $P\left(t\right)$\;
     \While{$t < t_{\text{max}}$}{
         $t \gets t + 1$\;
-        Vytvoření populace $P(t)$ tepelně-řízeným pozorováním $Q(t)$\;
-        Získání energie $E(t)$ populace $P(t)$\;
-        \uIf{$E(t) \leq E(t-1)$}{
-            Aktualizace $Q(t+1)$ na základě $\begin{bmatrix} 1 - P(t) \\ P(t) \end{bmatrix}$\;
-            Aktualizace $E(t+1)$ na základě $E(t)$\;
+        Vytvoření populace $P\left(t\right)$ tepelně-řízeným pozorováním $Q\left(t\right)$\;
+        Získání energie $E\left(t\right)$ populace $P\left(t\right)$\;
+        \uIf{$E\left(t\right) \leq E(t-1)$}{
+            Aktualizace $Q(t+1)$ na základě $\begin{bmatrix} 1 - P\left(t\right) \\ P\left(t\right) \end{bmatrix}$\;
+            Aktualizace $E(t+1)$ na základě $E\left(t\right)$\;
         }
         \Else{
-            Aktualizace $Q(t+1)$ na základě $R_Q(Q(t),P(t))$\;
-            Aktualizace $E(t+1)$ na základě $U_E(E(t-1),E(t))$\;
+            Aktualizace $Q(t+1)$ na základě $R_Q(Q\left(t\right),P\left(t\right))$\;
+            Aktualizace $E(t+1)$ na základě $U_E(E(t-1),E\left(t\right))$\;
         }
         Aktualizace $T_t$ pomocí chladícího plánu\;
     }
 \end{algorithm}
 
 Na počátku algoritmu je inicializována startovní teplota $T_0$ pomocí standardní odchylky následovně:
-\begin{equation*}
+\begin{equation}\label{eq:qisa-T0}
     T_0 = \sigma = \sqrt{\frac{1}{N}\sum_{i=1}^{N}\left(x_i - \bar{x}\right)^2},
-\end{equation*}
+\end{equation}
 kde
 \begin{itemize}
     \item $x_i$ jsou jednotlivá náhodně vygenerovaná řešení,
     \item $\bar{x}$ je průměr vygenerovaných řešení a
     \item $N$ je počet vygenerovaných řešení.
 \end{itemize}
-Tato inicializace teploty $T_0$ je vhodná pro řešení numerických optimalizačních problémů, kde řešení jsou reálné hodnoty~\cite{qisa,FundamentalsOfProbability}. 
-
-Pro kombinatorické problémy, kde řešení mohou být reprezentovány diskrétními objekty, je třeba provést úpravu výpočtu počáteční teploty. 
-Nechť $f(x)$ je fitness funkce, pak výpočet teploty $T_0$ probíhá následovně:
-\begin{equation*}
-    T_0 = \sigma = \sqrt{\frac{1}{N}\sum_{i=1}^{N}\left( f\left(x_i\right) - \bar{f}\right)^2},
-\end{equation*}
-\begin{itemize}
-    \item $x_i$ jsou jednotlivá náhodně vygenerovaná řešení,
-    \item $\bar{f}$ je průměr hodnot fitness funkcí $f(x_i)$ a
-    \item $N$ je počet vygenerovaných řešení.
-\end{itemize}
-Tento postup zajišťuje využití \emph{QISA} i při řešení různých kombinatorických problémů~\cite{qisa,FundamentalsOfProbability}. 
-
-Standardně se při výpočtu počáteční teploty uvažuje 1000 náhodně vygenerovaných řešení, respektive $N=1000$~\cite{qisa}.
+Tato inicializace teploty $T_0$ je vhodná pro řešení numerických optimalizačních problémů, kde řešení jsou reálné hodnoty, přičemž se standardně při výpočtu počáteční teploty uvažuje 1000 náhodně vygenerovaných řešení, respektive $N=1000$~\cite{qisa,FundamentalsOfProbability}.
 
 Následuje výběr chladícího plánu. Příkladem takového plánu je exponenciální chladící plán, jenž je definovan jako:
 \begin{equation*}
-    T(t) = T_0 \times a^t,
+    T\left(t\right) = T_0 \times a^t,
 \end{equation*}
 kde $T_0$ je počáteční teplota, $a$ je chladící koeficient a $t$ je chladící krok (iterace)~\cite{qisa}. 
 
-Uvažujme $t= 0$. Po výpočtu počáteční teploty $T_0$ a výběru chladícího plánu je vygenerována počáteční populace $Q(t)$, vizte popis rovnice~\ref{eq:q(t)}, jež je pozorována pomocí tepelně-řízeného pozorováním. 
-Nechť $q_j(t)$ je aktuálně pozorované kvantové řešení, pak jeho $i$-tý kvantový bit je dán jako:
+Uvažujme $t= 0$. Po výpočtu počáteční teploty $T_0$ a výběru chladícího plánu je vygenerována počáteční populace $Q\left(t\right)$, vizte popis rovnice~\ref{eq:q(t)}, jež je pozorována pomocí tepelně-řízeného pozorováním. 
+Nechť $q_j\left(t\right)$ je aktuálně pozorované kvantové řešení, pak jeho $i$-tý kvantový bit je dán jako:
 \begin{eqnarray*}
     \left|\alpha_{j_i}^h\left(t\right)\right|^2 &=& \left|\alpha_{j_i}\left(t\right)\right|^2 + \left(0,5 - \left|\alpha_{j_i}\left(t\right)\right|^2\right) \cdot h\left(T_t\right) \\
     \left|\beta_{j_i}^h\left(t\right) \right|^2 &=& \left|\beta_{j_i}\left(t\right) \right|^2 + \left(0,5 - \left|\beta_{j_i}\left(t\right) \right|^2\right) \cdot h\left(T_t\right),
@@ -371,27 +357,31 @@ Tento proces zajišťuje vyrovnání pravděpodobností pro pozorování stavu 0
 Síla tohoto zahřívání určuje, jak moc budou pozorované bity závislé na konkrétním stavu, respektive když $h\left(T\right) = 0$, jsou pozorované kvantové bity zcela určeny aktuálním řešením, zatímco když $h\left(T\right) = 1$, je výsledek pozorování zcela náhodný~\cite{qisa}. 
 
 Uvažujme dvě zahřívací metody, kde první z nich se nazývá konstantní zahřívání a má tvar:
-\begin{equation*}
+\begin{equation}\label{eq:qisa-const}
     h\left(T\right) = w,
-\end{equation*}
+\end{equation}
 kde $w$ je konstanta. Druhá metoda je tzv. sigmoidní funkce tvaru:
-\begin{equation*}
+\begin{equation}\label{eq:qisa-sigmo}
     h\left(T\right) = \frac{w_3}{1 + e^{-w_1 \left(\frac{T}{T_0} - w_2 \right)}} + w_4,
-\end{equation*}
+\end{equation}
 kde $w_1$, $w_2$, $w_3$ a $w_4$ jsou kladné kontrolní parametry a $T_0$ je počáteční teplota. 
 Princip sigmoidního zahřívání spočívá v tom, že při vyšších teplotách je zahřívání silnější, zatímco při nižších teplotách je slabší.
 To znamená, že na počátku evoluce bude mít pozorované řešení větší závislost na aktuálním kvantovém bitu, což pomáhá globálnímu prohledávání. Naopak, na konci evoluce bude závislost menší, což znamená, že se prohledávání zaměří na lokální oblasti~\cite{qisa}. 
 
 Po prvním provedeném pozorování je z počáteční populace $P\left(t\right)$, vizte popis rovnice~\ref{eq:p(t)}, získána prvotní energie řešení ve tvaru:
 \begin{equation*}
-    E(t) = \left\{ e_1\left(t\right), e_2\left(t\right),\,\dots\,, e_n\left(t\right) \right\},
+    E\left(t\right) = \left\{ e_1\left(t\right), e_2\left(t\right),\,\dots\,, e_n\left(t\right) \right\},
 \end{equation*}
 kde $e_j \left( t \right) = f\left( p_j \left( t \right) \right)$ pro $j = 1,2,\,\dots\,n$, přičemž $p_j\left( t \right)$ je pozorované řešení a $f\left( x \right)$ je fitness funkce~\cite{qisa}.
 
 Uvažujme generaci $t$ pro $t>0 \wedge t < t_{\text{max}}$ v rámci smyčky \emph{QISA}. 
 V iteraci $t$ je vytvořena populace $P\left(t\right)$ tepelně-řízeným pozorováním $Q\left(t\right)$, s níž je následně získána energie $E\left(t\right)$.
 
-Pokud $e_j\left(t\right) \leq e_j\left(t-1\right)$ pro $j = 1,2,\,\dots\,,n$ pak:
+Pokud je splněna akceptační podmínka
+\begin{equation}\label{eq:qisa-if}
+    e_j\left(t\right) \leq e_j\left(t-1\right),
+\end{equation}
+kde $j = 1,2,\,\dots\,,n$ pak:
 \begin{itemize}
     \item je provedena aktualizace kvantové populace $Q\left(t+1\right)$ jako $\psi_{j_i}\left(t+1\right) = \begin{bmatrix} 1 - x_{j_i}\left(t\right) \\ x_{j_i}\left(t\right) \end{bmatrix}$ pro $j=1,2,\,\dots\,,n$ a $i=1,2,\,\dots\,,m$, vizte obrázek~\ref{fig:rotation-gate-a}, a následně
     \item je provedena aktualizace energie $E\left(t+1\right)$ jako $e_j\left(t+1\right) = e_j\left(t\right)$ pro $j=1,2,\,\dots\,,n$.
@@ -423,7 +413,7 @@ Iterace evolučního procesu \emph{QISA} jsou opakovány dokud není splněna uk
 Rotační funkce $R_Q\left(\right)$ odpovídá kvantovému rotačnímu hradlu, vizte podsekci~\ref{subsec:quantum-gates}. 
 Uvažujme $i$-tý kvantový bit $\psi_{j_i}\left(t\right) = \begin{bmatrix} \alpha_{j_i}\left(t\right) \\ \beta_{j_i}\left(t\right) \end{bmatrix}$ $j$-tého jedince $q_j\left(t\right)$ kvantové populace $Q\left(t\right)$ a nechť $\Delta\theta_{j_i}\left(t\right)$ je úhel mezi $\psi_{j_i}\left(t\right)$ a $x_{j_i}\left(t\right)$, pak je jedinec $q_j\left(t\right)$ rotován směrem k~$x_{j_i}\left(t\right)$ o úhel $b \cdot \Delta\theta_{j_i}\left(t\right)$, kde faktor $b$ splňující $0 \leq b \leq 1$ je definován jako:
 \begin{equation}\label{eq:b-factor}
-    b = e^{\frac{e_j\left(t-1\right) - e_j\left(t\right)}{T_t}}, 
+    b = \exp\left(\frac{e_j\left(t-1\right) - e_j\left(t\right)}{T_t}\right), 
 \end{equation}
 kde $e_j\left(t\right)$ je energie a $T_t$ je aktuální teplota. Výsledný úhel $\Delta\theta_j\left(t+1\right)$ pro rotaci je spočten podle vzorce:
 \begin{equation*}
@@ -462,11 +452,11 @@ kde
 Tento výpočet je pro klasické výpočetní systémy náročný neboť jeho výpočetní náročnost roste exponenciálně s počtem kvantových bitů. 
 Proto je použita aproximace pro výpočet energie nového řešení, která je vyjádřena rovnicí následovně:
 \begin{equation*}
-    e_j\left(t+1\right) = U_E\left(e_j\left(t-1\right), e_j\left(t\right)\right) = \cos^2{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t-1\right) + \sin^{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t\right),
+    e_j\left(t+1\right) = U_E\left(e_j\left(t-1\right), e_j\left(t\right)\right) = \cos^2{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t-1\right) + \sin^2{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t\right),
 \end{equation*}
 kde $b$ je faktor definovaný rovnicí~\ref{eq:b-factor}. Přestože tato aproximace není zcela přesná, poskytuje efektivní způsob, jak pomoci algoritmu opustit lokální optima. 
 
-\section{Kvantová evoluce roje}
+\section{Kvantová evoluce roje}\label{sec:qse}
 Tato sekce bude pojednávat o kvantové evoluci roje (\emph{Quantum Swarm Evolutionary\,--\,QSE}), což je algoritmus, který kombinuje principy kvantového počítání a částicového systémů (\emph{Particle Swarm Optimization}) a jež je znázorněn na algoritmu~\ref{alg:qse}. 
 Obdobně jako u algoritmu \emph{QIGA} a \emph{QISA}, proměnná $t$ reprezentuje aktuálně prováděnou iteraci a hodnota $t_{\text{max}}$ určuje maximální počet iterací evolučního procesu.
 
@@ -491,7 +481,7 @@ Obdobně jako u algoritmu \emph{QIGA} a \emph{QISA}, proměnná $t$ reprezentuje
     }
 \end{algorithm}
 
-Na počátku algoritmu je inicializována počáteční populace $Q(t)$ složená z $n$ kvantových chromozomu reprezentovaných tzv. kvantovým úhlem \emph{(quantum angle)} místo dříve používaných pravděpodobnostních koeficientů $\alpha$ a $\beta$ jako:
+Na počátku algoritmu je inicializována počáteční populace $Q\left(t\right)$ složená z $n$ kvantových chromozomu reprezentovaných tzv. kvantovým úhlem \emph{(quantum angle)} místo dříve používaných pravděpodobnostních koeficientů $\alpha$ a $\beta$ jako:
 \begin{equation*}
     Q\left(t\right) = \left\{q_1\left(t\right), q_2\left(t\right),\,\dots\,,q_n\left(t\right)\right\},
 \end{equation*}
@@ -509,15 +499,15 @@ kde jeden vektor rychlosti $v_j\left(t\right)$ pro $j=1,2,\,\dots\,n$ jedince je
 \end{equation*}
 kde je každá rychlost $y_{j_i}$ pro $i=1,2,\,\dots\,m$ nastavena na předem danou hodnotu~\cite{qse}.
 
-Uvažujme generaci $t>0 \wedge t<t_{\text{max}}$. Z populace $Q(t)$ je za pomoci pozorovací funkce $\zeta\left(\right)$ vygenerována binární populace $P(t)$ jako
+Uvažujme generaci $t>0 \wedge t<t_{\text{max}}$. Z populace $Q\left(t\right)$ je za pomoci pozorovací funkce $\zeta\left(\right)$ vygenerována binární populace $P\left(t\right)$ jako
 \begin{equation}
     P\left(t\right) = \left\{\zeta\left(q_1\left(t\right)\right), \zeta\left(q_2\left(t\right)\right), \,\dots\, , \zeta\left(q_n\left(t\right)\right) \right\} = \left\{ p_1\left(t\right), p_2\left(t\right), \dots, p_n\left(t\right) \right\},
 \end{equation}
-kde každé $p_j(t)$ pro $j=1,2,\,\dots\,n$ reprezentuje binární řešení problému:
+kde každé $p_j\left(t\right)$ pro $j=1,2,\,\dots\,n$ reprezentuje binární řešení problému:
 \begin{equation*}
-    p_j(t) = 
+    p_j\left(t\right) = 
     \begin{pmatrix}
-        x_{j_1}(t) & x_{j_2}(t) & \dots & x_{j_m}(t),
+        x_{j_1}\left(t\right) & x_{j_2}\left(t\right) & \dots & x_{j_m}\left(t\right),
     \end{pmatrix}
 \end{equation*}
 kde pro každou ze složek platí:
@@ -529,41 +519,41 @@ kde pro každou ze složek platí:
     \end{cases}
 \end{equation*}
 
-Takto získaní jedinci populace $P(t)$ jsou ohodnoceni pomocí fitness funkce $f\left(\right)$ jako~\cite{qse}: 
+Takto získaní jedinci populace $P\left(t\right)$ jsou ohodnoceni pomocí fitness funkce $f\left(\right)$ jako~\cite{qse}: 
 \begin{equation*}
     F\left(t\right) = \left\{ f\left(p_1\left(t\right)\right), f\left(p_2\left(t\right)\right), \,\dots\,, f\left(p_n\left(t\right)\right) \right\}.
 \end{equation*}
 
 Následně je dle ohodnocení provedena aktualizace nejlepších osobních kvantových úhlů jedinců~\cite{qse}:
-\begin{equation*}
+\begin{equation}\label{eq:pers-best}
     B_i\left(t\right) =
     \begin{cases}
         g_i\left(t\right)   & \text{je-li } f\left(p_i\left(t\right)\right) > f\left(B_i\left(t-1\right)\right), \\
         B_i\left(t-1\right) & \text{jinak.}
     \end{cases}
-\end{equation*}
+\end{equation}
 
 Pro výpočet globálního nejlepšího kvantového úhlu $G\left(t\right)$ je nejprve určen index
 \begin{equation*}
     j = \arg\max_{i=1,\dots,n} f\left(\zeta\left(B_i\left(t\right)\right)\right),\\[5pt]
 \end{equation*}
 jenž je využit pro aktualizaci globálního úhlu $G\left(t\right)$ jako~\cite{qse}:
-\begin{equation*}
-    G(t) =
+\begin{equation}\label{eq:glob-best}
+    G\left(t\right) =
     \begin{cases}
         B_j\left(t\right)   & \text{pokud } f\left(\zeta\left(B_j\left(t\right)\right)\right) > f\left(\zeta\left(G\left(t-1\right)\right)\right) \\
         G\left(t-1\right)   & \text{jinak.}
     \end{cases}
-\end{equation*}
+\end{equation}
 
 Předposledním krokem je aktualizace rychlosti jednotlivých kvantových chromozomů pomocí vylepšeného vzorce $PSO$ algoritmu~\cite{qse}: 
-\begin{equation*}
+\begin{equation}\label{eq:qse-velocity}
     y_{j_i}\left(t+1\right) = \chi \cdot
     \left( \omega \cdot y_{j_i}\left(t\right) 
         + c_1 \cdot r_1 \cdot \left(B_{j_i}\left(t\right) - \varphi_{j_i}\left(t\right) \right)
         + c_2 \cdot r_2 \cdot \left( G_{j_i}\left(t\right) - \varphi_{j_i}\left(t\right) \right)\right),
-\end{equation*}
-kde $\chi, \omega, c_1 , c_2$ jsou koeficienty setrvačnosti a učení a $r_1,r_2\sim U(0,1)$.  
+\end{equation}
+kde $\chi, \omega, c_1 , c_2$ jsou koeficienty setrvačnosti a učení a $r_1,r_2\sim U\left(0,1\right)$.  
 
 Závěrečným krokem algoritmu dochází k aktualizaci kvantových úhlů jedinců v populaci následovně~\cite{qse}:
 \begin{equation*}
@@ -572,7 +562,71 @@ Závěrečným krokem algoritmu dochází k aktualizaci kvantových úhlů jedin
 
 Tento proces se opakuje do té doby dokud není splněna ukončující podmínka.
 
-\section{Kvantově inspirovaná optimalizace rojem částic}
+\section{Kvantově inspirovaná optimalizace rojem částic}\label{sec:qipso}
+Tato sekce představí kvantově inspirovanou optimalizaci rojem částic (\emph{Quantum Inspired Particle Swarm Optimization\,--\,QIPSO}), jež obdobně jako algoritmus \emph{QSE} využívá principů používaných v \emph{PSO}. 
+Hlavní rozdílem mezi algoritmem \emph{QSE} a vlastním algoritmem \emph{QIPSO} je takový, že na rozdíl od \emph{QSE} můj algoritmus místo reprezentace jedinců kvantovými úhly reprezentuje jedince dvojicí amplitud, jenž jsou aktualizovány kvantovým hradlem obdobně jako u algoritmů \emph{QIGA} a \emph{QISA}. 
+Obdobně jako u výše popsaných algoritmů proměnná $t$~reprezentuje aktuální iteraci algoritmu a proměnná $t_{\text{max}}$ značí maximální počet iterací. 
+
+\begin{algorithm}[ht]
+    \caption{Kvantově inspirovaná optimalizace rojem částic}
+    \label{alg:qipso}
+    $t \gets 0$\;
+    Inicializace populace $Q\left(t\right)$ kvantových chromozomů\;
+    Inicializace počátečních rychlostí $V\left(t\right)$\;
+    % Vytvoření populace $P\left(t\right)$ pozorováním $Q\left(t\right)$\;
+    % Ohodnocení populace $P\left(t\right)$\;
+    % Aktualizace nejlepších řešeních populace $B\left(t\right)$\;
+    % Aktualizace globálně nejlepšího řešení $G\left(t\right)$\;
+    \While{$t < t_{\text{max}}$}{
+        $t \gets t + 1$\;
+        Vytvoření $P\left(t\right)$ pozorováním $Q\left(t-1\right)$\;
+        Ohodnocení populace $P\left(t\right)$\;
+        Aktualizace nejlepších řešeních populace $B\left(t\right)$\;
+        Aktualizace globálně nejlepšího řešení $G\left(t\right)$\;
+        Aktualizace $V\left(t\right)$ pomocí $B\left(t\right)$ a $G\left(t\right)$\;
+        Aktualizace $Q\left(t\right)$ pomocí $V\left(t\right)$\;
+    }
+\end{algorithm}
+
+Uvažujme $t=0$. Algoritmus začíná inicializací počáteční populace $Q\left(t\right)$ $n$ kvantových chromozomů jako: 
+\begin{equation*}
+    Q\left(t\right) = \left\{q_1\left(t\right), q_2\left(t\right),\,\dots\,,q_n\left(t\right)\right\},
+\end{equation*}
+kde každý jedince $q_j\left(t\right)$ pro $j=1,2,\,\dots\,n$ je tvořen $m$ dvojicemi amplitud $\alpha_{j_i}\left(t\right)$ a $\beta_{j_i}\left(t\right)$ pro $i=1,2,\,\dots\,m$.
+Společně s inicializací populace je pro každého jedince tvořeného kvantovými bity vytvořen vektor počátečních rychlostí jako:
+\begin{equation*}
+    v_j\left(t\right) = \begin{pmatrix} y_{j_1}\left(t\right), y_{j_2}\left(t\right),\,\dots\,, y_{j_m}\left(t\right) \end{pmatrix},
+\end{equation*}
+
+Uvažujme iteraci algoritmu $t>0 \wedge t<t_{\text{max}}$, ve které nejdříve dojde k pozorování populace $Q\left(t-1\right)$, čímž vznikne populace řešení $P\left(t\right)$. 
+Tato populace je ohodnocena fitness funkcí $f\left(\right)$. 
+Toto ohodnocení následně poslouží k aktualizaci nejlepších řešení jednotlivých kvantových chromozomů, vizte rovnici~\ref{eq:pers-best}, a globálně nejlepšího řešení, vizte rovnici~\ref{eq:glob-best}. 
+
+Následuje aktualizace vektorů rychlostí pomocí rovnice:
+\begin{equation*}
+    y_{j_i}\left(t\right) = \omega \cdot y_{j_i}\left(t-1\right) + c_1 \cdot r_1 \cdot (b_{j_i}\left(t-1\right) - x_{j_i}\left(t\right)) + c_2 \cdot r_2 \cdot (g_i\left(t\right) - x_{j_i}\left(t\right)),
+\end{equation*}
+kde $\omega$ je koeficient tření \emph{(friction)} nebo inerciální váha (\emph{intercal weight})~\cite{PSO-c1c2w} a hodnoty $c_1,c_2$ reprezentují po řadě vliv osobního a~globálně nejlepšího řešení. 
+Koeficienty $r_1, r_2$ obdobně jako u \emph{QSE} představují náhodné proměnné. 
+
+Následně jsou pomocí aktualizovaných rychlostí upraveny pravděpodobnostní koeficienty $\alpha_{j_i}, \beta_{j_i}$ jednotlivých kvantových chromozomů pomocí kvantového rotačního hradla jako: 
+\begin{equation*}
+    \begin{bmatrix}
+        \alpha_{j_i}\left(t+1\right) \\
+        \beta_{j_i}\left(t+1\right)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \cos{\left( y_{j_i}\left(t\right) \right)} & - \sin{\left( y_{j_i}\left(t\right) \right)} \\
+        \sin{\left( y_{j_i}\left(t\right) \right)} &   \cos{\left( y_{j_i}\left(t\right) \right)}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \alpha_{j_i}\left(t\right) \\
+        \beta_{j_i}\left(t\right) 
+    \end{bmatrix}.
+\end{equation*}
+
+Iterace algoritmu jsou opakovány do té doby dokud není splněna ukončující podmínka. 
 
 \section{Aplikace kvantově inspirovaných evolučních algoritmů}
 Kvantově inspirované evoluční algoritmy nacházejí uplatnění v různých oblastech strojového učení a optimalizace. 
