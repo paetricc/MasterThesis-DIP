@@ -146,7 +146,6 @@ Počet evaluací fitness byl pro většinu experimentů nastaven na $10\,000$, a
 
 \begin{table}[ht]
     \centering
-    \label{tab:experiments-design}
     \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} 
         l
         c
@@ -182,6 +181,7 @@ Počet evaluací fitness byl pro většinu experimentů nastaven na $10\,000$, a
       \bottomrule
     \end{tabular*}
     \caption{Přehled datových sad, optimálních hodnot a parametrů experimentů}
+    \label{tab:experiments-design}
 \end{table}
 Pevně dané parametry evaluací a počet nezávislých opakování jednotlivých nastavení algoritmu umožňují vyhodnotit vliv velikosti problému, počtu jedinců v populaci a parametrů algoritmů na rychlost konvergence a kvalitu dosažených řešení. 
 
@@ -192,7 +192,6 @@ Kvantově inspirovaný genetický algoritmus, jenž byl popsán v sekci~\ref{sec
 Experimentálně byla vyhodnocena závislost parametru rotace $\Delta\theta_{j_i}$ na velikosti populace tím způsobem, že každá hodnota rotace byla pro danou instanci $n$ spuštěna se všemi vybranými velikostmi populace, přičemž jednotlivá nastavení jsou zanesena v tabulce~\ref{tab:qiga-all-instance}.
 \begin{table}[ht]
     \centering
-    \label{tab:qiga-all-instance}
     \begin{tabularx}{\linewidth}{@{} 
         l 
         p{0.45\linewidth} 
@@ -225,6 +224,7 @@ Experimentálně byla vyhodnocena závislost parametru rotace $\Delta\theta_{j_i
       \bottomrule
     \end{tabularx}
     \caption{Parametry testování algoritmu \emph{QIGA}}
+    \label{tab:qiga-all-instance}
 \end{table}
 Vzhledem k tomu, že \emph{QIGA} nedisponuje mechanismem pro vzájemnou interakci jedinců v populaci, je vždy nejefektivnější jednočlenná populace, jelikož daný jedince bude vystaven největšímu počtu generací evolučního procesu. 
 Přesto bylo experimentováno i s většími velikostmi populací, aby bylo možné zhodnotit do jaké míry velikost populace ovlivňuje rychlost konvergence a kvalitu výsledků.
@@ -262,7 +262,6 @@ Další parametry využívané v \emph{QISA} souvisí s dvěma popsanými metoda
 Hodnoty parametrů těchto metod byly zvoleny na základě článku~\cite{qisa} a~jsou přehledně zaneseny v tabulce~\ref{tab:qisa-heating-params}, kde proměnná $n$ reprezentuje velikost instance problému batohu.
 \begin{table}[ht]
     \centering
-    \label{tab:qisa-heating-params}
     \begin{tabular}{lcc}
       \toprule
       \multirow{2}{*}{\textbf{Parametr}}  & \multicolumn{2}{c}{\textbf{Zahřívací funkce}} \\
@@ -277,6 +276,7 @@ Hodnoty parametrů těchto metod byly zvoleny na základě článku~\cite{qisa} 
       \bottomrule
     \end{tabular}
     \caption{Hodnoty parametrů zahřívacích funkcí}
+    \label{tab:qisa-heating-params}
 \end{table}
 
 Parametry, jimiž bylo možné dále ladit algoritmus \emph{QISA}, zahrnovaly počet jedinců v populaci, výběr zahřívací funkce spolu se selekcí chladícího plánu a míry ochlazování teploty v průběhu iterací algoritmu. 
@@ -284,7 +284,6 @@ Experimentálně byly vyhodnoceny vzájemné závislosti těchto parametrů pomo
 
 \begin{table}[ht]
   \centering
-  \label{tab:qisa-all-instances}
   \begin{tabularx}{\textwidth}{@{} 
       c 
       >{\centering\arraybackslash}p{0.20\linewidth}
@@ -352,6 +351,7 @@ Experimentálně byly vyhodnoceny vzájemné závislosti těchto parametrů pomo
     \bottomrule
   \end{tabularx}
   \caption{Parametry testování algoritmu \emph{QISA}}
+  \label{tab:qisa-all-instances}
 \end{table}
 
 Obdobně jako \emph{QIGA}, i \emph{QISA} principiálně nevyužívá mechanismus vzájemné interakce jedinců, přesto však bylo experimentováno s různými velikostmi populací za účelem zhodnocení vlivu počtu jedinců na kvalitu řešení a rychlost konvergence. 
@@ -393,7 +393,6 @@ Rovněž budou částice rychleji konvergovat ke globálnímu optimu roje než k
 
 \begin{table}[ht]
     \centering
-    \label{tab:qse-params}
     \begin{tabular}{c c l}
       \toprule
       \textbf{Koeficient} & \textbf{Hodnota} & \makecell[c]{\textbf{Význam}} \\
@@ -405,13 +404,13 @@ Rovněž budou částice rychleji konvergovat ke globálnímu optimu roje než k
       \bottomrule
     \end{tabular}
     \caption{Význam a hodnoty parametrů \emph{QSE}~\cite{PSO-X,PSO-c1c2w}}
+    \label{tab:qse-params}
 \end{table}
 
 Protože ladící parametry algoritmu byly dány, byl v rámci experimentů srovnán vliv počtu částic v populaci společně s různými počátečními rychlostmi částic, neboť originální článek~\cite{qse} explicitně neuváděl výchozí hodnotu pro inicializaci počáteční rychlosti jednotlivých částic, vizte tabulku~\ref{tab:qse-all-instances}. 
 
 \begin{table}[ht]
     \centering
-    \label{tab:qse-all-instances}
     \begin{tabular}{ 
         c 
         >{\centering\arraybackslash}c
@@ -446,6 +445,7 @@ Protože ladící parametry algoritmu byly dány, byl v rámci experimentů srov
       \bottomrule
     \end{tabular}
     \caption{Parametry testování algoritmu \emph{QSE}}
+    \label{tab:qse-all-instances}
 \end{table}
 
 Na rozdíl od algoritmů \emph{QIGA} a \emph{QISA}, kde nedochází ke komunikaci jedinců v populaci, algoritmus \emph{QSE} tento mechanismus pro vzájemnou interakci jedinců využívá, což umožňuje sdílení informací o kvalitě nalezených řešení mezi jedinci. 
@@ -460,7 +460,6 @@ Hodnoty jednotlivých parametrů, jenž byly podrobeny testování, jsou zanesen
 
 \begin{table}[ht]
     \centering
-    \label{tab:qipso-all-params}
     \begin{tabularx}{\linewidth}{@{} 
         >{\centering\arraybackslash}p{0.11\linewidth}
         >{\centering\arraybackslash}p{0.23\linewidth}
@@ -522,6 +521,7 @@ Hodnoty jednotlivých parametrů, jenž byly podrobeny testování, jsou zanesen
       \bottomrule
     \end{tabularx}
     \caption{Parametry testování algoritmu \emph{QIPSO}}
+    \label{tab:qipso-all-params}
 \end{table}
 
 Obdobně jako u \emph{QSE}, i algoritmus \emph{QIPSO} využívá mechanismu vzájemné interakce částic v populaci, čímž je umožněno sdílení informací o kvalitě dosažených řešení. 
@@ -558,7 +558,6 @@ Experimentálně byl ověřen vliv různých kombinací pravděpodobnosti mutace
 Pro shrnutí nastavení jednotlivých parametrů vizte tabulku~\ref{tab:ga-all-params}.
 \begin{table}[ht]
   \centering
-  \label{tab:ga-all-params}
   \begin{tabular}{c c c c c}
     \toprule
     \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
@@ -585,6 +584,7 @@ Pro shrnutí nastavení jednotlivých parametrů vizte tabulku~\ref{tab:ga-all-p
     \bottomrule
   \end{tabular}
   \caption{Parametry testování algoritmu \emph{GA}}
+  \label{tab:ga-all-params}
 \end{table}
 Na rozdíl od kvantově inspirované varianty klasický genetický algoritmus využívá přímé interakce jedinců prostřednictvím selekce, křížení a mutace, čímž umožňuje sdílení informací o řešení napříč jedinci.
 
@@ -599,7 +599,6 @@ Obdobně jako u experimentů s \emph{QISA} i zde byl uvažován výpočet počá
 Jednotlivé použité chladicí plány a jejich hodnoty parametru $\eta$ spolu s testovanými velikostmi populace, jimiž bylo \emph{SA} v průběhu experimentů laděno, jsou uvedeny v tabulce~\ref{tab:sa-all-instances}.
 \begin{table}[ht]
   \centering
-  \label{tab:sa-all-instances}
   \begin{tabular}{
     c 
     >{\centering\arraybackslash}c 
@@ -639,6 +638,7 @@ Jednotlivé použité chladicí plány a jejich hodnoty parametru $\eta$ spolu s
     \bottomrule
   \end{tabular}
   \caption{Parametry testování algoritmu \emph{SA}}
+  \label{tab:sa-all-instances}
 \end{table}
 
 Rovněž jako \emph{QIGA} a \emph{QISA}, i algoritmus \emph{SA} nevyužívá mechanismu vzájemné interakce jedinců, neboť pracuje pouze s jediným řešením v čase. 
@@ -652,7 +652,6 @@ Jedná se o tzv. kognitivní koeficient $c_1$ a sociální koeficient $c_2$~\cit
 Přehled všech kombinací zmíněných koeficientů a velikostí populací pro jednotlivé instance je uveden v tabulce~\ref{tab:pso-all-params}.
 \begin{table}[ht]
   \centering
-  \label{tab:pso-all-params}
   \begin{tabular}{c c c c c}
     \toprule
     \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
@@ -679,6 +678,7 @@ Přehled všech kombinací zmíněných koeficientů a velikostí populací pro 
     \bottomrule
   \end{tabular}
   \caption{Parametry testování algoritmu \emph{PSO}}
+  \label{tab:pso-all-params}
 \end{table}
 
 Algoritmus \emph{PSO} na rozdíl od metod \emph{SA}, \emph{QISA} a \emph{QIGA} využívá mechanismus kolektivního chování, díky čemuž dochází ke sdílení informací napříč částicemi, což umožňuje udržovat poměr mezi hledáním nových oblastí a zpřesňováním stávajících oblastí se slibnými řešeními. 
