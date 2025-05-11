@@ -17,9 +17,9 @@
 %   projekt-30-prilohy-appendices.tex - přílohy / appendices
 %   projekt-30-prilohy-appendices-en.tex - přílohy v angličtině / appendices in English
 %==============================================================================
-\documentclass[]{fitthesis} % bez zadání - pro začátek práce, aby nebyl problém s překladem
+%\documentclass[]{fitthesis} % bez zadání - pro začátek práce, aby nebyl problém s překladem
 %\documentclass[english]{fitthesis} % without assignment - for the work start to avoid compilation problem
-%\documentclass[zadani]{fitthesis} % odevzdani do IS VUT a/nebo tisk s barevnými odkazy - odkazy jsou barevné
+\documentclass[zadani]{fitthesis} % odevzdani do IS VUT a/nebo tisk s barevnými odkazy - odkazy jsou barevné
 %\documentclass[english,zadani]{fitthesis} % for submission to the IS VUT and/or print with color links - links are color
 %\documentclass[zadani,print]{fitthesis} % pro černobílý tisk - odkazy jsou černé
 %\documentclass[english,zadani,print]{fitthesis} % for the black and white print - links are black
@@ -45,7 +45,7 @@
 % Basic packages are at the bottom of template file fitthesis.cls
 % zde můžeme vložit vlastní balíčky / you can place own packages here
 
-\usepackage[czech,linesnumbered,ruled,vlined,longend,]{algorithm2e}
+\usepackage[czech,linesnumbered,ruled,vlined,longend]{algorithm2e}
 % \usepackage{algorithm}
 % \usepackage{algpseudocode}
 \usepackage{lipsum}
@@ -53,6 +53,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{makecell}
+\usepackage{subcaption}
 
 % Pro seznam zkratek lze využít balíček Glossaries - nutno odkomentovat i níže a při kompilaci z konzoly i v Makefile (plnou verzi pro Perl, nebo lite)
 % The Glossaries package can be used for the list of abbreviations - it is necessary to uncomment also below. When compiling from the console also in the Makefile (full version for Perl or lite)
@@ -130,9 +131,9 @@
   year={2025},             % rok odevzdání / year of submission
   date=\today,             % datum odevzdání / submission date
   %Nazev prace / thesis title
-  title.cs={Kvantově inspirované optimalizační\\algoritmy},  % název práce v češtině či slovenštině (dle zadání) / thesis title in czech language (according to assignment)
+  title.cs={Kvantově inspirované optimalizační algoritmy},  % název práce v češtině či slovenštině (dle zadání) / thesis title in czech language (according to assignment)
   title.en={Quantum-Inspired Optimization Algorithms}, % název práce v angličtině / thesis title in english
-  %title.length={13.5cm}, % nastavení délky bloku s titulkem pro úpravu zalomení řádku (lze definovat zde nebo níže) / setting the length of a block with a thesis title for adjusting a line break (can be defined here or below)
+  title.length={13.5cm}, % nastavení délky bloku s titulkem pro úpravu zalomení řádku (lze definovat zde nebo níže) / setting the length of a block with a thesis title for adjusting a line break (can be defined here or below)
   %sectitle.length={14.5cm}, % nastavení délky bloku s druhým titulkem pro úpravu zalomení řádku (lze definovat zde nebo níže) / setting the length of a block with a second thesis title for adjusting a line break (can be defined here or below)
   %dectitle.length={14.5cm}, % nastavení délky bloku s titulkem nad prohlášením pro úpravu zalomení řádku (lze definovat zde nebo níže) / setting the length of a block with a thesis title above declaration for adjusting a line break (can be defined here or below)
   %Autor / Author
@@ -148,23 +149,20 @@
   supervisor.title.p={doc. Ing.},   %titul před jménem (nepovinné) / title before the name (optional)
   supervisor.title.a={Ph.D.},    %titul za jménem (nepovinné) / title after the name (optional)
   % Klíčová slova / keywords
-  keywords.cs={TODO kvantově inspirované evoluční algoritmy, kvantově inspirovaný genetický algoritmus, problém batohu, kvantová mechanika}, % klíčová slova v českém či slovenském jazyce / keywords in czech or slovak language
-  keywords.en={quantum inspired evolutionary algorithms, quantum inspired genetic algorithm, knapsack problem, quantum mechanics}, % klíčová slova v anglickém jazyce / keywords in english
+  keywords.cs={kvantově inspirované evoluční algoritmy, kvantově inspirovaný genetický algoritmus, kvantově inspirované simulované žíhání, kvantová evoluce roje, kvantově inspirovaná optimalizace rojem částic, problém batohu, kvantová mechanika}, % klíčová slova v českém či slovenském jazyce / keywords in czech or slovak language
+  keywords.en={quantum inspired evolutionary algorithms, quantum inspired genetic algorithm, quantum swarm evolutionary, quantum inspired particle swarm optimization, knapsack problem, quantum mechanics}, % klíčová slova v anglickém jazyce / keywords in english
   %keywords.en={Here, individual keywords separated by commas will be written in English.},
   % Abstrakt / Abstract
-  abstract.cs={TODO Tato práce se zabývá kvantově inspirovanými evolučními algoritmy, které kombinují principy kvantové mechaniky a evolučního počítání. Zaměřuje se zejména na binární kvantově inspirovaný genetický algoritmus a jeho aplikaci na problém batohu. Práce popisuje teoretické základy kvantového evolučního počítání, charakteristiku kvantově inspirovaného genetického algoritmu a experimentální vyhodnocení jeho výkonnosti ve srovnání s klasickými evolučními algoritmy.}, % abstrakt v českém či slovenském jazyce / abstract in czech or slovak language
-  abstract.en={This paper deals with quantum-inspired evolutionary algorithms that combine the principles of quantum mechanics and evolutionary computation. In particular, it focuses on the binary quantum-inspired genetic algorithm and its application to the knapsack problem. The paper describes the theoretical foundations of quantum evolutionary computation, the characterization of the quantum-inspired genetic algorithm, and an experimental evaluation of its performance compared to classical evolutionary algorithms.}, % abstrakt v anglickém jazyce / abstract in english
+  abstract.cs={Tato práce se zabývá kvantově inspirovanými evolučními algoritmy, které kombinují principy kvantové mechaniky a evolučního počítání. Zaměřuje se na srovnání různých kvantově inspirovaných evolučních algoritmů při řešení problému batohu. Práce popisuje teoretické základy kvantového evolučního počítání, charakteristiky jednotlivých kvantově inspirovaných evolučních algoritmů. V závěru je provedeno jejich experimentální vyhodnocení společně s~porovnáním s klasickými evolučními algoritmy.}, % abstrakt v českém či slovenském jazyce / abstract in czech or slovak language
+  abstract.en={This thesis deals with quantum-inspired evolutionary algorithms that combine principles of quantum mechanics and evolutionary computation. It focuses on comparing various quantum-inspired evolutionary algorithms in solving the knapsack problem. The thesis describes the theoretical foundations of quantum evolutionary computation and the characteristics of individual quantum-inspired algorithms. It concludes with an experimental evaluation and a comparison with classical evolutionary algorithms.}, % abstrakt v anglickém jazyce / abstract in english
   %abstract.en={An abstract of the work in English will be written in this paragraph.},
   % Prohlášení (u anglicky psané práce anglicky, u slovensky psané práce slovensky; u projektové praxe lze zakomentovat) / Declaration (for thesis in english should be in english; for project practice can be commented out)
-  declaration={Prohlašuji, že jsem tuto diplomovou práci vypracoval samostatně pod vedením pana doc. Ing. Michal Bidla Ph.D.
-    Další informace mi poskytli...TODO
-    Uvedl jsem všechny literární prameny, publikace a další zdroje, ze kterých jsem čerpal.},
+  declaration={Prohlašuji, že jsem tuto diplomovou práci vypracoval samostatně pod vedením pana doc. Ing. Michal Bidla Ph.D. Pro úpravu jazykového stylu a zlepšení srozumitelnosti některých částí textu jsem využil generativní jazykové modely jako pomocný nástroj při formální úpravě textu. Uvedl jsem všechny literární prameny, publikace a další zdroje, ze kterých jsem čerpal.},
 %   declaration={I hereby declare that this Bachelor's thesis was prepared as an original work by the author under the supervision of Mr. X
 % The supplementary information was provided by Mr. Y
 % I have listed all the literary sources, publications and other sources, which were used during the preparation of this thesis.},
 %   Poděkování (nepovinné, nejlépe v jazyce práce; nechcete-li, zakomentujte pro skrytí nadpisu) / Acknowledgement (optional, ideally in the language of the thesis; comment out for hiding including heading)
-  acknowledgment={V této sekci je možno uvést poděkování vedoucímu práce a těm, kteří poskytli odbornou pomoc
-(externí zadavatel, konzultant apod.).},
+  acknowledgment={Rád bych tímto poděkoval panu doc. Ing. Michalovi Bidlovi Ph.D. za jeho ochotu a cenné rady, které mi v průběhu mé práce na diplomové práci poskytl. },
   %acknowledgment={Here it is possible to express thanks to the supervisor and to the people which provided professional help
 %(external submitter, consultant, etc.).},
   % Rozšířený abstrakt (cca 3 normostrany) - lze definovat zde nebo níže / Extended abstract (approximately 3 standard pages) - can be defined here or below
