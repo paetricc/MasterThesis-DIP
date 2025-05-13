@@ -155,7 +155,7 @@ U největších instancí s $n = 10\,000$ však byly navíc provedeny běhy se $
       @{}}
       \toprule
       \textbf{Datová sada} 
-        & \textbf{Instance \(n\)} 
+        & \textbf{Instance $\boldsymbol{n}$} 
         & \textbf{Optimum} 
         & \textbf{Evaluace}
         & \textbf{Opakování} \\
@@ -196,15 +196,15 @@ Jednotlivá nastavení jsou uvedena v tabulce~\ref{tab:qiga-all-instance}.
   \centering
   \begin{tabularx}{\linewidth}{l X X }
     \toprule
-    \textbf{Instance $n$} & \textbf{Úhel rotace $\Delta\theta_{j_i}$} & \textbf{Velikost populace} \\
+    \textbf{Instance $\boldsymbol{n}$} & \textbf{Úhel rotace $\boldsymbol{\Delta\theta_{j_i}}$} & \textbf{Velikost populace} \\
     \midrule
-    \textbf{100}  
+    100
       & 0,002; 0,01; 0,05; 0,1; 0,2; 0,5; 1; 2
       & 1; 5; 10; 20; 30; 40; 50; 100 \\[1ex]
-    \textbf{250\,--\,500}  
+    250\,--\,500
       & 0,002; 0,01; 0,05; 0,1
       & 1; 5; 10; 20 \\[1ex]
-    \textbf{1\,000\,--\,10\,000} 
+    1\,000\,--\,10\,000
       & 0,002
       & 1 \\
     \bottomrule
@@ -215,7 +215,7 @@ Jednotlivá nastavení jsou uvedena v tabulce~\ref{tab:qiga-all-instance}.
 
 
 Vzhledem k tomu, že algoritmus \emph{QIGA} neobsahuje mechanismus pro vzájemnou interakci jedinců v populaci, je z hlediska efektivity nejvýhodnější použití jednočlenné populace.
-V takovém případě je totiž jediný jedince vystaven největšímu počtu generací evolučního procesu. 
+V takovém případě je totiž jediný jedinec vystaven největšímu počtu generací evolučního procesu. 
 Přesto byly provedeny experimenty i s většími populacemi, aby bylo možné posoudit, do jaké míry velikost populace ovlivňuje rychlost konvergence a kvalitu dosažených výsledků. 
 
 Výsledky experimentů pro \emph{QIGA} jsou vyhodnoceny v následující kapitole v sekci~\ref{sec:exp-qiga}.
@@ -224,7 +224,7 @@ Výsledky experimentů pro \emph{QIGA} jsou vyhodnoceny v následující kapitol
 Algoritmus pro kvantově inspirované simulované žíhání, popsaný v sekci~\ref{sec:qisa} spolu s pseudokódem~\ref{alg:qisa} podle článku~\cite{qisa}, je navržen pro minimalizaci energie. 
 Pro jeho aplikaci na problém batohu bylo nutné upravit některé části algoritmu tak, aby docházelo k maximalizaci hodnoty řešení.
 
-Úprava algoritmu spočívala v obracení nerovnostni v akceptační podmínce~\ref{eq:qisa-if}, která byla upravena na následující tvar:
+Úprava algoritmu spočívala v obracení nerovnostmi v akceptační podmínce~\ref{eq:qisa-if}, která byla upravena na následující tvar:
 \begin{equation*}
     e_j\left(t\right) > e_j\left(t-1\right).
 \end{equation*}
@@ -283,10 +283,10 @@ Konkrétní hodnoty použitých parametrů jsou uvedeny v tabulce~\ref{tab:qisa-
       >{\centering\arraybackslash}p{0.15\linewidth}
     }
     \toprule
-    \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
+    \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
       & \makecell[c]{\textbf{Zahřívací}\\\textbf{funkce}} 
       & \makecell[c]{\textbf{Chladící}\\\textbf{schéma}}
-      & \makecell[c]{\textbf{Míra}\\\textbf{ochlazování $\eta$}}
+      & \makecell[c]{\textbf{Míra}\\\textbf{ochlazování $\boldsymbol{\eta}$}}
       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
     \midrule
     \multirow{2}{*}{\makecell[c]{100\,--\,500}}  
@@ -378,7 +378,7 @@ Přehled všech testovaných nastavení je uveden v tabulce~\ref{tab:qse-all-ins
         >{\centering\arraybackslash}c
       }
       \toprule
-      \textbf{Instance $n$} 
+      \textbf{Instance $\boldsymbol{n}$} 
         & \textbf{Počáteční rychlost}
         & \textbf{Velikost populace}  \\
       \midrule
@@ -417,11 +417,11 @@ Přehled všech testovaných parametrů a~jejich hodnoty je uveden v tabulce~\re
         >{\centering\arraybackslash}p{0.18\linewidth}
       @{}}
       \toprule
-      \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
+      \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
         & \makecell[c]{\textbf{Počáteční}\\\textbf{rychlost}}
-        & \(\boldsymbol{c_1}\)
-        & \(\boldsymbol{c_2}\)
-        & \(\boldsymbol{\omega}\)
+        & $\boldsymbol{c_1}$
+        & $\boldsymbol{c_2}$
+        & $\boldsymbol{\omega}$
         & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
       \midrule
       \makecell[c]{100}
@@ -454,7 +454,7 @@ Výsledky experimentů pro \emph{QIPSO} jsou vyhodnoceny v následující kapito
 
 \newpage
 \subsection*{Klasická varianta GA, SA a PSO}
-Pro srovnání s kvantově inspirovanými evolučními algoritmy bylo provedeny experimenty také s jejich klasickými variantami, konkrétně s:
+Pro srovnání s kvantově inspirovanými evolučními algoritmy byly provedeny experimenty také s jejich klasickými variantami, konkrétně s:
 \begin{itemize}
     \item genetickým algoritmem \emph{(Genetic Algorithm\,--\,GA)},
     \item simulovaným žíháním \emph{(Simulated Annealing\,--\,SA)} a
@@ -472,7 +472,7 @@ V~rám\-ci experimentů byly uvažovány následující varianty selekčních a 
     \item \textbf{Selekce rodičů:} Rodiče jsou vybíráni metodou vážené rulety. 
         Každému jedinci je přiřazena pravděpodobnost odpovídající poměru jeho fitness a součtu fitness všech jedinců v populaci. 
         Při volbě rodičů jsou pak jedinci vybíráni na základě jejich pravděpodobností, kdy kvalitnější jedinci mají vyšší šanci dostat se do nové populace. 
-    \item \textbf{Křížení:} Rodiče jsou náhodně rozděleny do párů a na každou dvojici je aplikování uniformní křížení. 
+    \item \textbf{Křížení:} Rodiče jsou náhodně rozděleny do párů a na každou dvojici je aplikováno uniformní křížení. 
         Při tomto procesu vznikají dva potomci, jejichž chromozomy jsou složeny z genů obou rodičů, přičemž každý gen je zděděn od jednoho z rodičů podle dané pravděpodobnosti.
     \item \textbf{Mutace:} Každý gen všech potomků je s danou pravděpodobností invertován.
     \item \textbf{Selekce přeživších:} Novou populaci tvoří $n$ nejlepších jedinců ze sjednocené množiny rodičů a potomků. 
@@ -485,7 +485,7 @@ Přehled všech testovaných nastavení parametrů je uveden v tabulce~\ref{tab:
   \centering
   \begin{tabular}{c c c c c}
     \toprule
-    \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
+    \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
       & \makecell[c]{\textbf{Pravděpodobnost}\\\textbf{mutace}}
       & \makecell[c]{\textbf{Pravděpodobnost}\\\textbf{křížení}}
       & \textbf{Počet elit}
@@ -508,7 +508,7 @@ Simulované žíhání je metaheuristická metoda inspirovaná procesem chladnut
 Algoritmus pracuje s jediným řešením, které je v každé iteraci algoritmu náhodně modifikováno. 
 Nové řešení je přijato pokud, dojde ke zlepšení fitness.
 V případě, že je nové řešení horší, může být přesto přijato, avšak pouze s určitou pravděpodobností. 
-Tato pravděpodobnost dána teplotou, která se v průběhu času postupně snižuje. 
+Tato pravděpodobnost je dána teplotou, která se v průběhu času postupně snižuje. 
 V počátečních fázích je tak vyšší pravděpodobnost přijetí horšího řešení než v pozdějších fázích, což umožňuje algoritmu vyhnout se uvíznutí v lokálních minimech~\cite{sa-app}. 
 
 Obdobně jako u experimentů s algoritmem \emph{QISA} byl i v tomto případě uvažován výpočet počáteční teploty na základě směrodatné odchylky dle vzorce~\ref{eq:qisa-std}, přičemž tato teplota byla následně v průběhu iterací snižována pomocí různých chladících plánů, popsaných vzorci~\ref{eq:qisa-exp},~\ref{eq:qisa-lin},~\ref{eq:qisa-log} a~\ref{eq:qisa-rec-log}.
@@ -522,9 +522,9 @@ Přehled všech použitých chladicích plánů, hodnot parametru $\eta$~spolu s
     c
   }
   \toprule
-    \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
+    \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
       & \makecell[c]{\textbf{Chladící}\\\textbf{schéma}}
-      & \makecell[c]{\textbf{Míra}\\\textbf{ochlazování $\eta$}}
+      & \makecell[c]{\textbf{Míra}\\\textbf{ochlazování $\boldsymbol{\eta}$}}
       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
     \midrule
     \multirow{2}{*}{100\,--\,500}  
@@ -556,10 +556,10 @@ Přehled všech kombinací zmíněných koeficientů a velikostí populací pro 
   \centering
   \begin{tabular}{c c c c c}
     \toprule
-    \makecell[c]{\textbf{Instance}\\\textbf{$n$}} 
-      & \(\boldsymbol{c_1}\)
-      & \(\boldsymbol{c_2}\)
-      & \(\boldsymbol{\omega}\)
+    \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
+      & $\boldsymbol{c_1}$
+      & $\boldsymbol{c_2}$
+      & $\boldsymbol{\omega}$
       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
     \midrule
     \makecell[c]{100}

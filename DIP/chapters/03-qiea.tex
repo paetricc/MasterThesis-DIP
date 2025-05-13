@@ -4,7 +4,7 @@ Není však možné, aby tyto algoritmy využívaly všechny náležitosti vypl�
 Jedná se zejména o kvantové provázání, které nelze efektivně simulovat na klasických počítačích. 
 Nicméně použití kvantově inspirované reprezentace v evolučních algoritmech zaručuje dobrý kompromis mezi průzkumem a exploatací, a to často při použití menší populace jedinců, než by bylo nutné u klasických evolučních algoritmů~\cite{NaturalComputing}.
 
-Tato kapitola nejdříve popíše, jak lze reprezentovat jedince v populaci, a následně se zaměří na dva způsoby transformace těchto jedinců pomocí kvantového rotačního hradla a kvantové mutace. 
+Tato kapitola nejdříve popíše, jak lze reprezentovat jedince v populaci, a následně se zaměří na dva způsoby transformace těchto jedinců pomocí kvantového rotačního hradla a~kvantové mutace. 
 Poté charakterizuje následující kvantově inspirované evoluční algoritmy:
 \begin{itemize}
     \item kvantově inspirovaný genetický algoritmus,
@@ -32,11 +32,11 @@ přičemž pro normalizovaný systému musí platit:
 
 Tento způsob umožňuje efektivní zápis qubitů, ale je však důležité mít na paměti, že kvantový systém o $m$ qubitech dokáže současně reprezentovat všechny bitové řetězce o~délce $2^m$ bitů, zatímco klasický bitový registr umožňuje reprezentovat pouze jeden z $2^m$ možných stavů~\cite{NaturalComputing}. 
 
-Binární kvantově inspirované evoluční algoritmy využívají kvantovou reprezentaci, vizte rovnici~\ref{eq:quantum-representation}, k reprezentaci pravděpodobnosti jednotlivých řešení. 
+Binární kvantově inspirované evoluční algoritmy využívají kvantovou reprezentaci, vizte rovnici~\ref{eq:quantum-representation}, k vyjádření pravděpodobnosti výsledného řešení. 
 V případě splnění podmínky normalizace z rovnice~\ref{eq:normalized-quantum-representation}, hodnota $\alpha^2_i$, respektive $\beta^2_i$, určuje s jakou pravděpodobností bude ve výsledném řetězci na $i$-té pozici binární hodnota $0$, respektive $1$, s~ohledem na rovnici~\ref{eq:psi=a0+b1}.
 
 \section{Operátory v kvantově inspirovaných algoritmech}
-Pro generování diverzity populace se běžně využívají dva přístupy, které jsou popsany níže, přičemž se nevyužívají standardní operátory křížení a mutace, jak je tomu u klasických evolučních algoritmů~\cite{NaturalComputing}.
+Pro generování diverzity populace se běžně využívají dva přístupy, které jsou popsány níže, přičemž se nevyužívají standardní operátory křížení a mutace, jak je tomu u klasických evolučních algoritmů~\cite{NaturalComputing}.
 
 \subsection{Kvantové rotační hradlo}\label{subsec:quantum-gates}
 V kvantových systémech se s qubity manipuluje pomocí hradel (Hadamardovo, CNOT, Pauli-X,~aj.). 
@@ -456,11 +456,11 @@ Proto se pro výpočet energie nového řešení využívá aproximace, která j
 \begin{equation*}
     e_j\left(t+1\right) = U_E\left(e_j\left(t-1\right), e_j\left(t\right)\right) = \cos^2{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t-1\right) + \sin^2{\left(b \cdot \frac{\pi}{2}\right)} \cdot e_j\left(t\right),
 \end{equation*}
-kde $b$ je faktor definovan rovnicí~\ref{eq:b-factor}. 
+kde $b$ je faktor definován rovnicí~\ref{eq:b-factor}. 
 Přestože tato aproximace není zcela přesná, poskytuje efektivní způsob, jak algoritmu umožnit opustit lokální optima~\cite{qisa}. 
 
 \section{Kvantová evoluce roje}\label{sec:qse}
-Tato sekce pojednává o kvantové evoluci roje (\emph{Quantum Swarm Evolutionary\,--\,QSE}), což je algoritmus kombinující principy kvantového počítání a částicového systémů (\emph{Particle Swarm Optimization}) a jež je znázorněn na algoritmu~\ref{alg:qse}. 
+Tato sekce pojednává o kvantové evoluci roje (\emph{Quantum Swarm Evolutionary\,--\,QSE}), což je algoritmus kombinující principy kvantového počítání a částicového systému (\emph{Particle Swarm Optimization}) a jež je znázorněn na algoritmu~\ref{alg:qse}. 
 Obdobně jako u algoritmů \emph{QIGA} a \emph{QISA}, proměnná $t$ reprezentuje aktuální iteraci a hodnota $t_{\text{max}}$ určuje maximální počet iterací evolučního procesu.
 
 \begin{algorithm}[ht]
@@ -523,7 +523,7 @@ kde pro každou ze složek platí:
     \end{cases}
 \end{equation*}
 
-Jedinci ze získaný množiny řešení $P\left(t\right)$ jsou ohodnoceni pomocí fitness funkce $f\left(\right)$ jako~\cite{qse}: 
+Jedinci ze získané množiny řešení $P\left(t\right)$ jsou ohodnoceni pomocí fitness funkce $f\left(\right)$ jako~\cite{qse}: 
 \begin{equation*}
     F\left(t\right) = \left\{ f\left(p_1\left(t\right)\right), f\left(p_2\left(t\right)\right), \,\dots\,, f\left(p_n\left(t\right)\right) \right\}.
 \end{equation*}
@@ -593,8 +593,8 @@ Uvažujme $t=0$. Algoritmus začíná inicializací počáteční populace $Q\le
 \begin{equation*}
     Q\left(t\right) = \left\{q_1\left(t\right), q_2\left(t\right),\,\dots\,,q_n\left(t\right)\right\},
 \end{equation*}
-kde každý jedince $q_j\left(t\right)$ pro $j=1,2,\,\dots\,n$ je složen z $m$ dvojic pravděpodobnostních koeficientů $\alpha_{j_i}\left(t\right)$ a $\beta_{j_i}\left(t\right)$ pro $i=1,2,\,\dots\,m$, jejichž hodnota je natavena na $\frac{1}{\sqrt{2}}$.
-Společně s inicializací populace je pro každého jedince $q_j\left(t\right)$ vytvořen vektor rychlostí jako:
+kde každý jedinec $q_j\left(t\right)$ pro $j=1,2,\,\dots\,n$ je složen z $m$ dvojic pravděpodobnostních koeficientů $\alpha_{j_i}\left(t\right)$ a $\beta_{j_i}\left(t\right)$ pro $i=1,2,\,\dots\,m$, jejichž hodnota je natavena na $\frac{1}{\sqrt{2}}$.
+Společně s~inicializací populace je pro každého jedince $q_j\left(t\right)$ vytvořen vektor rychlostí jako:
 \begin{equation*}
     v_j\left(t\right) = \begin{pmatrix} y_{j_1}\left(t\right), y_{j_2}\left(t\right),\,\dots\,, y_{j_m}\left(t\right) \end{pmatrix},
 \end{equation*}

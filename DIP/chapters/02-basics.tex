@@ -49,7 +49,7 @@ Počítání podle přírody je možné rozdělit do následujících tří obla
         Aplikace fraktální geometrie lze využít při simulaci růstu rostin nebo formování přírodních struktur, zatímco umělý život lze použít ke studiu evoluce a chování organismů ve virtuálním prostředí či k analýze počítačových virů. 
     \item \textbf{Výpočty s využitím přírodních materiálů} 
         nepracují s křemíkem jako je tomu u~tradičních výpočetních systémů, ale využívají odlišné materiály, jenž umožňují překonat některé limity tradičních počítačů, jelikož poskytují odlišné přístupy k provádění výpočetních operací. 
-        Systémy založené na těchto principech nabízejí efektivní řešení problému limitů miniaturizace elektroniky založené na křemíku. 
+        Systémy založené na těchto principech nabízejí efektivní řešení problému limit miniaturizace elektroniky založené na křemíku. 
         Alternativní výpočetní prostředky jsou:
         \begin{itemize}
             \item Molekulární počítání (\emph{molecular computing}) využívající biologické molekuly, jako je například DNA, k uchování informace, přičemž samotný paralelní výpočet probíhá manipulací s těmito molekulami. 
@@ -149,7 +149,7 @@ Rodičem se stává jedinec, jenž byl vybrán k tomu, aby podstoupil proces zm�
 Obvykle se rodičem stává kvalitní jedinec, avšak vzhledem k tomu, že proces selekce bývá stochastický, může se rodičem stát také méně kvalitní jedinec, což poskytuje vyšší diverzitu, jež pomáhá předcházet uvíznutí v lokálním optimu~\cite{IntroductionToEvoComputing}. 
 
 \subsubsection*{Variační operátory}
-Cílem variačních operátorů je vytvořit z existujících jedinců nové jedince. 
+Cílem variačních operátorů je vytvořit z existujících jedinců jedince nové. 
 V kontextu fenotypového prostoru dochází ke generování nových kandidátních řešení. 
 Podle arity se variační operátory dělí na následující dva typy:
 \begin{itemize}
@@ -177,7 +177,7 @@ Na rozdíl od rekombinace, která, pokud je jediným zdrojem diverzity, přestá
 
 \subsubsection*{Selekce přeživších}
 Podobně jako u selekce rodičů jsou i u selekce přeživších jedinci vybíráni na základě jejich kvality, avšak až poté, co jsou vytvořeni potomci z vybraných rodičů. 
-Jelikož velikost populace je ve většině případů konstantní, je nutné rozhodnout, kteří jedinci budou figurovat v další generaci. 
+Jelikož velikost populace je ve většině případů konstantní, je nutné rozhodnout, kteří jedinci budou figurovat v~další generaci. 
 Toto rozhodnutí může záviset nejen na hodnotě fitness, ale může být zohledněn i věk jedinců, což značí, že selekce jedinců do nové generace bývá ve většině případů deterministická~\cite{IntroductionToEvoComputing}. 
 
 Příkladem jedné z nejběžnějších strategií selekce je sjednocení množiny rodičů a~potomků, jejich seřazení na základě hodnoty fitness a výběr nejlepších jedinců pro novou generaci~\cite{IntroductionToEvoComputing}. 
@@ -201,7 +201,7 @@ Tato sekce poskytne stručný popis základních oblastí fyziky a jejich vzáje
 Následně se zaměří na podrobnější popis vybrané oblasti, konkrétně kvantové mechaniky, jejíž popis je nutný pro hlubší pochopení kapitoly~\ref{chapt:qiea} věnované algoritmům inspirovaným touto oblastí fyziky.
 
 Obrázek~\ref{fig:mechanics} vyobrazuje základní dělení moderní fyziky na elementární části (nepřerušované obdélníky) společně s~jejich vzájemnými vztahy. 
-Nepřerušované šipky ukazují nové fyzikální teorie, které vznikly úpravou starších a to buď odstraněním některých z jejich předpokladů nebo přidáním nových principů.
+Nepřerušované šipky ukazují nové fyzikální teorie, které vznikly úpravou těch starších a to buď odstraněním některých z jejich předpokladů nebo přidáním nových principů.
 Přerušované obdélníky značí nejznámější fyzikálně inspirované algoritmy, přičemž přerušované šipky znázorňují z jakých fyzikálních konceptů tyto algoritmy vycházejí~\cite{NaturalComputing}.
 
 \begin{figure}[ht!]
@@ -265,7 +265,7 @@ Kvantový stav se před provedením pozorování nachází v superpozici, tedy v
     
 S postupem času se hustota pravděpodobnosti stále více rozprostírá, což vede ke zvyšování neurčitosti polohy částice. 
 Tento proces pokračuje, dokud není provedeno pozorování, při kterém vlnová funkce nelineárně kolabuje do jednoho z vlastních stavů měřené veličiny. 
-Pravděpodobnost nalezení systému v konkrétním vlastním stavu je dána hodnotou $\left| \psi \right|^2$ v~tomto stavu, přičemž nalezení částice je nejvyšší v oblastech, kde je hodnota $\left| \psi \right|$ největší, a nulová tam, kde $\left| \psi \right| = 0$.
+Pravděpodobnost nalezení systému v konkrétním vlastním stavu je dána hodnotou $\left| \psi \right|^2$, přičemž nalezení částice je nejvyšší v oblastech, kde je hodnota $\left| \psi \right|$ největší, a nulová tam, kde $\left| \psi \right| = 0$.
     
 Normalizované vlnové funkce splňují podmínku:
 \begin{equation*}
@@ -371,7 +371,7 @@ V průběhu výpočtu jsou tyto brány aplikovány na systém qubitů a měřen�
 Paul Benioff uvažoval Turingův stroj pracující s ekvivalentem qubitů a později Richard Feynman dokázal, že klasické počítačové systémy nejsou schopny efektivně simulovat kvantové systémy, zejména kvantové provázání, protože by jejich simulace vyžadovala exponenciální časovou a paměťovou složitost, respektive $\mathcal{O}\left( 2^n \right)$~\cite{NaturalComputing,QuantumComuting-Introduction}. 
 
 Kvantové počítače prokazatelně umožňují oproti těm klasickým řešit některé druhy problémů efektivněji. 
-Příklady algoritmů, který jsou schopné řešit problém v kvantovém počítači účiněji, jsou: 
+Příklady algoritmů, které jsou schopné řešit problém v kvantovém počítači účiněji, jsou: 
 \begin{itemize}
     \item \textbf{Shorův algoritmus:} Umožňuje faktorizaci velkých čísel v časové složitosti $\mathcal{O}\left( n^2 \right)$ místo $\mathcal{O}\left(e^{\sqrt[3]{n}} \right)$, jako je tomu u nejlepšího známého algoritmu na klasických systémech.
     \item \textbf{Groverův algoritmus:} Zrychluje vyhledávání v nestrukturovaných databázích klasických systémů z časové složitosti $\mathcal{O}\left( n \right)$ na $\mathcal{O}\left( \sqrt{n} \right)$. 
