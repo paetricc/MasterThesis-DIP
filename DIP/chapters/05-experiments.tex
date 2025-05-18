@@ -426,7 +426,7 @@ Na základě těchto výsledků budou v dalších experimentech uvažovány hodn
 
 Vybrané hodnoty kognitivního a sociálního koeficientu spolu s parametry tření byly dále analyzovány na větší instanci o velikosti 500, jak ukazuje obrázek~\ref{fig:qipso-500-koef}.
 Z výsledků je patrné, že nejkvalitnějších řešení bylo dosaženo při kognitivním koeficientu 0,5, sociálním koeficientu 0,25 a parametru tření 0,01.
-Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv počáteční rychlosti na kvalitu řešení se nejvíce odlišovaly populace o velikosti 50 a 100, přičemž lepších výsledků bylo dosaženo při velikosti 100 a tudíž tato počáteční rychlost společně s výše vybranými hodnotami kognitivního koeficientu, sociálního koeficientu a~parametru tření byly vybrány k další analýze při větších instancích problému. 
+Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv počáteční rychlosti na kvalitu řešení se nejvíce odlišovaly u populace velikosti 50 a 100, přičemž lepších výsledků bylo dosaženo při velikosti 100 a tudíž tato počáteční rychlost společně s výše vybranými hodnotami kognitivního koeficientu, sociálního koeficientu a~parametru tření byly vybrány k další analýze při větších instancích problému. 
 
 \begin{table}[ht!]
     \centering
@@ -440,12 +440,12 @@ Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv p
         \cmidrule(lr){5-8}
         & & & & \textbf{1\,000}    & \textbf{2\,000}     & \textbf{5\,000} & \textbf{10\,000}\\
         \midrule
-        100 & 0,5 & 0,25 & 0,01  & 54\,503 & 110\,592 & 275\,805 & 553\,302 \\
+        100 & 0,5 & 0,25 & 0,01  & 54\,503 & 110\,592 & 275\,805 & 557\,120 \\
         \midrule
         \multicolumn{4}{c}{Optimum} & 54\,503 & 110\,625 & 276\,457 & 563\,647  \\
         \bottomrule
     \end{tabular}
-    \caption{Nejlepší dosažené fitness hodnoty algoritmem \emph{QIPSO} pro prezentované nastavení při velkých instancích problému při populací čítající 5 jedinců.}
+    \caption{Nejlepší dosažené fitness hodnoty algoritmem \emph{QIPSO} pro prezentované nastavení při velkých instancích problému při populaci čítající 5 jedinců.}
     \label{tab:qipso-high-max-values}
 \end{table}
 
@@ -464,14 +464,14 @@ Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv p
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.24\textwidth}
-        \includegraphics[width=\linewidth]{qipso/boxplot_qipso_10000_large.pdf}
+        \includegraphics[width=\linewidth]{qipso/boxplot_qipso_10000_large_100.0.pdf}
     \end{subfigure}
     \caption{Porovnání kvality nalezených řešení při hodnotě počáteční rychlosti 100, kognitivního koeficientu $0,5$, sociálního koeficientu $0,25$, parametru tření $0,001$ a pětičlenné populaci při velkých instancích problému. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 1\,000, 2\,000, 5\,000 a 10\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
     \label{fig:qipso-large}
 \end{figure}
 
 Na obrázku~\ref{fig:qipso-large} jsou uvedeny výsledky experimentů provedených na velkých instancích problému s konfigurací algoritmu nastavenou na počáteční rychlost 100, kognitivní koeficient 0,5, sociální koeficient 0,25, parametr tření 0,01 a pětičlennou populaci.
-Z grafů a z tabulky nejvyšších dosažených hodnot fitness~\ref{tab:qipso-high-max-values} je patrné, že při velikosti instance 1\,000 algoritmus dosáhl optimálního řešení, zatímco při velikostech instancí 2\,000 a 5\,000 se výsledná řešení pohybovala velmi blízko optimu. 
+Z grafů a z tabulky~\ref{tab:qipso-high-max-values} nejvyšších dosažených hodnot fitness je patrné, že při velikosti instance 1\,000 algoritmus dosáhl optimálního řešení, zatímco při velikostech instancí 2\,000 a 5\,000 se výsledná řešení pohybovala velmi blízko optimu. 
 
 \newpage
 Konvergenční křivky zobrazené na obrázku~\ref{fig:qipso-convergence} ukazují, že v počátečních generacích algoritmu dochází k dočasnému poklesu kvality řešení, který je následně překonán a kvalita nalezených řešení opět vzrůstá.  
@@ -489,7 +489,7 @@ V této fázi však převládá explorace, která vede k výrazným změnám v h
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\linewidth]{qipso/qipso_convergence_2000_c1_0.5_c2_0.25_omega_0.01_velocity_100.0_population_5.pdf}
     \end{subfigure}
-    \caption{Konvergenční křivky algoritmu, jehož parametr počáteční rychlosti byl nastaven 100, kognitivního koeficientu na $0,5$, sociálního koeficientu na $0,25$, parametru tření na $0,001$ při pětičlenné populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
+    \caption{Konvergenční křivky algoritmu, jehož parametr počáteční rychlosti byl nastaven na 100, kognitivního koeficientu na $0,5$, sociálního koeficientu na $0,25$, parametru tření na $0,001$ při pětičlenné populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
     \label{fig:qipso-convergence}
 \end{figure}
 
@@ -510,18 +510,18 @@ Po tomto vzájemném porovnání budou kvantově inspirované algoritmy dále sr
         QIPSO  & počáteční rychlost = 100, $c_1 = 0{,}5$, $c_2 = 0{,}25$, $\omega = 0{,}01$ & 5 \\
         \bottomrule
     \end{tabularx}
-    \caption{Nejlepší nalezené hodnoty parametrů pro jednotlivé algoritmy}
+    \caption{Nejlepší nalezené hodnoty parametrů pro jednotlivé algoritmy.}
     \label{tab:best-configs}
 \end{table}
 
-Na obrázku~\ref{fig:best-10k} jsou znázorněny výsledky experimentů porovnávajících jednotlivé kvantově inspirované evoluční algoritmy na větších instancích problému, přičemž jejich konfigurace odpovídá parametrům uvedeným v tabulce~\ref{tab:best-configs}. 
+Na obrázku~\ref{fig:best-10k} jsou znázorněny výsledky experimentů porovnávajících jednotlivé kvantově inspirované evoluční algoritmy na větších instancích problému, přičemž jejich konfigurace odpovídá parametrům uvedených v tabulce~\ref{tab:best-configs}. 
 
 Z výsledků uvedených v tabulce~\ref{tab:qiea-comparsion} a na obrázku~\ref{fig:best-10k} je patrné, že žádný z kvantově inspirovaných evolučních algoritmů, co se týče kvality vyvinutých výsledků velmi nezaostává. 
 U instance o velikosti 1\,000 položek se všechny algoritmy blíží optimální hodnotě, přičemž algoritmu \emph{QIPSO} se jako jedinému podařilo nalézt řešení, jehož fitness odpovídá přímo optimální hodnotě. 
 
-S rostoucími velikostmi instancí se mezi algoritmy začínají výrazněji projevovat rozdíly ve kvalitě nalezených řešení. 
-Algoritmus \emph{QIPSO} dosahuje nejlepších výsledků ve všech testovaných instancích a nejvíce se přibližuje známému optimu i při instancích o velikosti 5\,000 a 10\,000. 
-Naopak algoritmy \emph{QIGA} a \emph{QSE} vykazují u větších instancí výraznější odchylky od optimální hodnoty, kdy se algoritmus \emph{QSE} vzdaluje optimu již od velikosti instance 2\,000, zatímco algoritmus \emph{QIGA} se začíná mírněji vzdalovat až od velikosti instance 5\,000. 
+S rostoucími velikostmi instancí se mezi algoritmy začínají výrazněji projevovat rozdíly v kvalitě nalezených řešení. 
+Algoritmus \emph{QIPSO} dosahuje nejlepších výsledků ve všech testovaných instancích a nejvíce se přibližuje známému optimu i při instancích o velikosti 5\,000 a~10\,000. 
+Naopak algoritmy \emph{QIGA} a \emph{QSE} vykazují u větších instancí výraznější odchylky od optimální hodnoty, kdy se algoritmus \emph{QSE} vzdaluje optimu již od velikosti instance 2\,000, zatímco algoritmus \emph{QIGA} se začíná mírně vzdalovat až od velikosti instance 5\,000. 
 
 \begin{table}[H]
     \centering
@@ -535,7 +535,7 @@ Naopak algoritmy \emph{QIGA} a \emph{QSE} vykazují u větších instancí výra
         QIGA  & 54\,485 & 110\,373 & 272\,306 & 530\,066 \\[1ex]
         QISA  & 54\,481 & 110\,287 & 274\,150 & 548\,460 \\[1ex]
         QSE   & 54\,481 & 108\,387 & 267\,827 & 544\,824 \\[1ex]
-        QIPSO & 54\,503 & 110\,592 & 275\,805 & 553\,302 \\
+        QIPSO & 54\,503 & 110\,592 & 275\,805 & 557\,120 \\
         \midrule
         \multicolumn{1}{c}{Optimum} & 54\,503 & 110\,625 & 276\,457 & 563\,647  \\
         \bottomrule
@@ -568,9 +568,9 @@ Naopak algoritmy \emph{QIGA} a \emph{QSE} vykazují u větších instancí výra
 Na obrázku~\ref{fig:best-100k} a v tabulce~\ref{tab:max-fitness-10000} jsou prezentovány získané fitness hodnoty pomocí jednotlivých kvantově inspirovaných evolučních algoritmů na instanci o velikosti 10\,000 položek, přičemž každý běh měl k~dispozici 100\,000 evaluací.
 Tento experiment byl proveden za účelem ověření, jakého výkonu jsou algoritmy schopny dosáhnout, pokud jim bude na rozsáhlých instancích poskytnut větší výpočetní prostor.
 
-Ve srovnání s předchozími experimenty, kde bylo použito pouze 10\,000 evaluací, se ukazuje, že prodloužený běh umožňuje většině algoritmům lépe prozkoumat prostor řešení a~nalézt kvalitnější výsledky. 
+Ve srovnání s předchozími experimenty, kde bylo použito pouze 10\,000 evaluací, se ukazuje, že prodloužený běh umožňuje většině algoritmů lépe prozkoumat prostor řešení a~nalézt kvalitnější výsledky. 
 Výjimkou je algoritmus \emph{QSE}, který na rozdíl od ostatních algoritmů zaznamenal pouze minimální zlepšení ve kvalitě nalezených řešení. 
-Výraznějšího zlepšení, a to jak z hlediska kvality generovaných řešení, tak jejich stability, dosáhl algoritmus \emph{QISA}, avšak nejlepšího výsledku opět dosáhl algoritmus \emph{QIPSO}, jenž se výrazně přiblížil optimální hodnotě. 
+Výraznějšího zlepšení, a~to jak z hlediska kvality generovaných řešení, tak jejich stability, dosáhl algoritmus \emph{QISA}, avšak nejlepšího výsledku opět dosáhl algoritmus \emph{QIPSO}, jenž se výrazně přiblížil optimální hodnotě. 
 
 \begin{figure}[ht!]
     \centering
@@ -588,7 +588,7 @@ Výraznějšího zlepšení, a to jak z hlediska kvality generovaných řešení
         QIGA    & 552\,513 \\[1ex]
         QISA    & 562\,368 \\[1ex]
         QSE     & 545\,171 \\[1ex]
-        QIPSO   & 563\,408 \\
+        QIPSO   & 563\,464 \\
         \midrule
         Optimum & 563\,647 \\
         \bottomrule
@@ -597,16 +597,16 @@ Výraznějšího zlepšení, a to jak z hlediska kvality generovaných řešení
     \label{tab:max-fitness-10000}
 \end{table}
 
-Výsledky kvantově inspirovaných algoritmů byly porovnány s běžnými optimalizačními metodami, které byly představeny ve studii~\cite{compare}.  
+Výsledky kvantově inspirovaných evolučních algoritmů byly porovnány s běžnými optimalizačními metodami, které byly představeny ve studii~\cite{compare}.  
 Tato studie byla zvolena mimo jiné proto, že využívá stejné datové sady, jaké byly použity v této práci, vizte tabulka~\ref{tab:experiments-design}, což umožňuje přímé porovnání dosažených výsledků.
 
 Ve zmíněné studii byly experimentálně testovány následující algoritmy:
 \begin{itemize}
-    \item simulované žíhání \emph{(Simulated Annealing\,--\,SA)},
-    \item genetický algoritmus \emph{(Genetic Algorithm\,--\,GA)},
-    \item hladový algoritmus \emph{(Greedy Search Algorithm\,--GSA)},
-    \item dynamické programování \emph{(Dynamic Programming\,--\,DP)} a 
-    \item metoda větví a mezí \emph{(Branch and Bound\,--\,BB)}.
+    \item simulované žíhání \emph{(Simulated Annealing\,--\,SA)}~\cite{sa},
+    \item genetický algoritmus \emph{(Genetic Algorithm\,--\,GA)}~\cite{ga-app},
+    \item hladový algoritmus \emph{(Greedy Search Algorithm\,--GSA)}~\cite{GSA},
+    \item dynamické programování \emph{(Dynamic Programming\,--\,DP)}~\cite{DP} a 
+    \item metoda větví a mezí \emph{(Branch and Bound\,--\,BB)}~\cite{BB}.
 \end{itemize}
 Výsledky těchto metod jsou společně s výsledky kvantově inspirovaných evolučních algoritmů uvedeny v tabulce~\ref{tab:alg-comparison}.
 
@@ -627,7 +627,7 @@ Výsledky těchto metod jsou společně s výsledky kvantově inspirovaných evo
         QIGA  & 54\,485 & 110\,373 & 272\,306 & 552\,513 \\[1ex]
         QISA  & 54\,481 & 110\,287 & 274\,150 & 562\,368 \\[1ex]
         QSE   & 54\,481 & 108\,387 & 267\,827 & 545\,171 \\[1ex]
-        QIPSO & 54\,503 & 110\,592 & 275\,805 & 563\,408 \\
+        QIPSO & 54\,503 & 110\,592 & 275\,805 & 563\,464 \\
         \midrule
         Optimum & 54\,503 & 110\,625 & 276\,457 & 563\,647 \\
         \bottomrule
@@ -640,5 +640,6 @@ Tabulka~\ref{tab:alg-comparison} shrnuje nejlepší dosažené hodnoty fitness j
 Z výsledků je patrné, že exaktní algoritmy~\cite{compare}, jako jsou \emph{DP} a~\emph{BB}, poskytují optimální nebo téměř optimální řešení pro instance velikosti 1\,000, 2\,000 a~5\,000, ale u instance o velikosti 10\,000 jejich výkonnost znatelně klesá. 
 Heuristiky \emph{SA} a~\emph{GA} obecně dosahují nižší kvality řešení, avšak u instance 10\,000 poskytly výsledky blízké optimální hodnotě a v případě algoritmu \emph{SA} se dokonce podařilo nalézt řešení, jehož kvalita odpovídá známému optimu.
 
-Kvantově inspirované evoluční algoritmy dosahují stabilně vysokých hodnot fitness napříč všemi testovanými instancemi. Nejlepší výkonnost opakovaně prokazuje algoritmus \emph{QIPSO}, který se výrazně přibližuje známému optimu i u největších instancí.
+Kvantově inspirované evoluční algoritmy dosahují stabilně vysokých hodnot fitness napříč všemi testovanými instancemi. 
+Nejlepší výkonnost opakovaně prokazuje navržený algoritmus \emph{QIPSO}, který se výrazně přibližuje známému optimu i u největších instancí.
 Také algoritmy \emph{QISA} a \emph{QIGA} poskytují konkurenceschopné výsledky, přičemž \emph{QSE} mírně zaostává, zejména u rozsáhlejších úloh.

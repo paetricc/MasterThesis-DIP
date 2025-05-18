@@ -1,10 +1,21 @@
 \chapter{Závěr}
-TODO
+Tato diplomová práce se zabývala problematikou optimalizačních algoritmů využívajících principů kvantové fyziky. 
+Pro další zpracování byla zvolena skupina kvantově inspirovaných evolučních algoritmů, jež kombinují principy biologické evoluce a kvantové mechaniky. 
 
-Tato práce se zabývala metodami návrhu kvantových výpočtů, konkrétně se zaměřovala na kvantově inspirované evoluční algoritmy. 
-V úvodu práce byly nastíněny nejdůležitější teoretické základy kvantové mechaniky společně s kvantovým počítáním a posléze byly popsány kvantově inspirované evoluční algoritmy společně s problémem batohu, který byl řešen těmito algoritmy. 
-Po vylíčení návrhu experimentů následovalo jejich vyhodnocení, přičemž první experiment naznačil, že kvantově inspirovaný genetický algoritmus dokáže poskytovat kvalitnější řešení než jeho klasická varianta. 
-Shodného výsledku bylo dosaženo i u~experimentu zaměřeného na kvantově inspirovaný roj částic, přičemž poslední z experimentů prezentoval porovnání všech testovaných variant algoritmů s takovým závěrem, že kvantově inspirovaný roj částic poskytuje nejkvalitnější a zároveň nejstabilnější výsledky. 
+V teoretické části byly podrobně popsány jak základy kvantové fyziky, tak hlavní pojmy z oblasti evolučních algoritmů. 
+Následně byly představeny čtyři konkrétní kvantově inspirované evoluční algoritmy, jež tyto principy kombinují. 
+Konkrétně se jednalo o kvantově inspirovaný genetický algoritmus (\emph{QIGA}), kvantově inspirované simulované žíhání (\emph{QISA}), kvantovou evoluci roje (\emph{QSE}) a kvantově inspirovanou optimalizaci rojem částic (\emph{QIPSO}), přičemž poslední z nich byl navržen v rámci této práce. 
 
-V budoucí práci by mohly být zahrnuty další kvantově inspirované evoluční algoritmy jako je například kvantově inspirované simulované žíhání nebo kvantově inspirovaná diferenciální evoluce. 
-Budoucí výzkum se může rovněž věnovat různým přístupům k opravě obsahu batohu po provedeném pozorování, jako je například porovnání náhodného výběru položky s výběrem té, která disponuje nejhorším poměrem váhy a ceny. 
+Tyto algoritmy byly experimentálně vyhodnoceny na variantě 0-1 problému batohu, který spadá do skupiny NP-těžkých problémů. 
+Nejprve byly na instancích o velikosti 100, 250 a 500 provedeny experimenty za účelem ladění parametrů každého z implementovaných algoritmů. 
+Následně byly tyto parametry použity pro testování algoritmů na rozsáhlejších instancích problému o velikosti 1\,000, 2\,000, 5\,000 a 10\,000. 
+
+Výsledky ukázaly, že všechny zkoumané algoritmy jsou schopny produkovat řešení, jež se blíží optimální hodnotě. 
+Nejlepšího a zároveň nejstabilnějšího výkonu však dosahoval navržený algoritmus \emph{QIPSO}, který si vedl nejlépe při řešení všech testovaných instancí. 
+
+Z experimentální části vyplývá, že kvantově inspirované evoluční algoritmy představují silnou konkurenci klasickým heuristickým metodám, neboť dosahovaly stabilních výkonů a~zároveň kvalitních výsledků i u rozsáhlých instancí problému. 
+Jejich výhodou je vyšší diverzita řešení a schopnost vyhnout se lokálním extrémům díky využití kvantových principů, zejména reprezentace jedinců pomocí pravděpodobnostních koeficientů. 
+
+Do budoucna by bylo možné práci rozšířit o další kvantově inspirované evoluční přístupy, jako je například kvantově inspirovaná diferenciální evoluce nebo mravenčí algoritmy, a to i při řešení jiných typů optimalizačních problémů.
+
+Tato práce byla prezentována na studentské konferenci inovací, technologií a vědy v IT Excel@FIT 2025, kde byla vybrána a oceněna odborným panelem. 

@@ -563,9 +563,10 @@ Při závěrečném kroku iterace dochází k aktualizaci kvantových úhlů jed
 Tento proces se opakuje do té doby, dokud není splněna ukončující podmínka~\cite{qse}.
 
 \section{Kvantově inspirovaná optimalizace rojem částic}\label{sec:qipso}
-Tato sekce představí kvantově inspirovanou optimalizaci rojem částic (\emph{Quantum Inspired Particle Swarm Optimization\,--\,QIPSO}), jež obdobně jako algoritmus \emph{QSE} využívá principy používané v \emph{PSO}. 
+Tato sekce představí algoritmus, který byl navržen v rámci práce po analýze dříve představených technik, jenž byl pojmenován jako kvantově inspirovaná optimalizaci rojem částic (\emph{Quantum Inspired Particle Swarm Optimization\,--\,QIPSO}).
+Navržený algoritmus obdobně jako algoritmus \emph{QSE} využívá principy používané v \emph{PSO}. 
 Hlavní rozdílem mezi algoritmem \emph{QSE} a vlastním algoritmem \emph{QIPSO} je to, že zatímco \emph{QSE} reprezentuje jedince kvantovými úhly, algoritmus \emph{QIPSO} používá dvojici pravděpodobnostních koeficientů, jenž jsou aktualizovány kvantovým rotačním hradlem, podobně jako u algoritmů \emph{QIGA} a \emph{QISA}. 
-Obdobně jako u výše uvedených algoritmů proměnná $t$~označuje aktuální iteraci algoritmu a proměnná $t_{\text{max}}$ značí maximální počet iterací. 
+Obdobně jako u výše uvedených algoritmů proměnná $t$~označuje aktuální iteraci algoritmu a~proměnná $t_{\text{max}}$ značí maximální počet iterací. 
 
 \begin{algorithm}[ht]
     \caption{Kvantově inspirovaná optimalizace rojem částic}
@@ -594,7 +595,7 @@ Obdobně jako u výše uvedených algoritmů proměnná $t$~označuje aktuální
     }
 \end{algorithm}
 
-Uvažujme $t=0$. Algoritmus začíná inicializací počáteční populace $Q\left(t-1\right)$ čítající $n$ kvantových chromozomů jako: 
+Uvažujme $t=0$. Algoritmus začíná inicializací počáteční populace $Q\left(t-1\right)$ čítající $n$~kvantových chromozomů jako: 
 \begin{equation*}
     Q\left(t\right) = \left\{q_1\left(t-1\right), q_2\left(t-1\right),\,\dots\,,q_n\left(t-1\right)\right\},
 \end{equation*}
@@ -636,5 +637,5 @@ Příkladem může být jejich využití v návrhu konvolučních neuronových s
 Kvantově inspirované evoluční algoritmy mohou být rovněž použity při optimalizaci přepojování elektrických distribučních sítí~\cite{QIEA-net}. 
 Dále se například uvažuje jejich aplikace v analogově evolvovatelném hardwaru~\cite{QIEA-EHW}. 
 
-Souhrnný přehled vybraných aplikací QIEA v různých oblastech, od kombinatorické optimalizace po numerickou optimalizaci, společně s jejich komentářem přinášejí následující dvě studie~\cite{QIEA-survey1, QIEA-survey2}. 
+Souhrnný přehled vybraných aplikací \emph{QIEA} v různých oblastech, od kombinatorické optimalizace po numerickou optimalizaci, společně s jejich komentářem přinášejí následující dvě studie~\cite{QIEA-survey1, QIEA-survey2}. 
 Kvantově inspirované evoluční algoritmy jsou v současné době značně zkoumány a stále vznikají nové studie rozšiřující jejich praktické využití. 

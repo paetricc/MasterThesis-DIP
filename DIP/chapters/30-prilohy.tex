@@ -11,11 +11,86 @@
 .3 src/\DTcomment{Složka se zdrojovými soubory}.
 .4 plots/\DTcomment{Složka se zdrojovými soubory pro generování grafů}.
 .4 qiea/\DTcomment{Složka se zdrojovými soubory algoritmů}.
-.4 main.py\DTcomment{Vstupní bod pro spuštění algoritmů}.
-.4 generate\_plots.py\DTcomment{Vstupní bod pro generování grafů}.
-.3 Makefile\DTcomment{Makefile pro sestavení projektu}.
+.4 plots.py\DTcomment{Vstupní bod pro generování grafů}.
+.4 qiea.py\DTcomment{Vstupní bod pro spuštění algoritmů}.
+.3 Makefile\DTcomment{Makefile pro jednoduší práci s projektem}.
 .3 README.md\DTcomment{Soubor popisující základní práci se zdrojovými programy}.
 .2 thesis.pdf\DTcomment{Text diplomové práce}.
 }
 
 \chapter{Manuál}
+Uvažujme kořenový adresář projektu. Základní nápovědu k programu lze zobrazit příkazem:
+\begin{lstlisting}[style=bash]
+    $ python3 src/qiea.py --help
+\end{lstlisting}
+Algoritmus lze spustit s výchozími hodnotami parametrů následovně:
+\begin{lstlisting}[style=bash]
+    $ python3 src/qiea.py qiga datasets/100.txt
+\end{lstlisting}
+Pro uložení výsledků do zvoleného výstupního adresáře:
+\begin{lstlisting}[style=bash]
+    $ python3 src/qiea.py qiga datasets/100.txt --output outputs/
+\end{lstlisting}
+V případě paralelního spouštění je možné připojovat výsledky k již existujícím výstupům:
+\begin{lstlisting}[style=bash]
+    $ python3 src/qiea.py qiga datasets/100.txt --output outputs/ --append_results
+\end{lstlisting}
+Pomocí přiloženého souboru \texttt{Makefile} lze snadno spouštět skripty pro experimenty.
+\begin{lstlisting}[style=bash]
+    $ make
+\end{lstlisting}
+Pro spuštění experimentů s konkrétním algoritmem:
+\begin{lstlisting}[style=bash]
+    $ make exp-qiga
+\end{lstlisting}
+A pro konkrétní instanci:
+\begin{lstlisting}[style=bash]
+    $ make exp-qiga-100
+\end{lstlisting}
+Ze získaných dat lze vygenerovat grafy příkazem:
+\begin{lstlisting}[style=bash]
+    $ make graphs
+\end{lstlisting}
+Pro generování grafů pouze pro vybrané algoritmy a instance:
+\begin{lstlisting}[style=bash]
+    $ python3 src/plots.py outputs/ --save_dir graphs/ --algorithm qiga qisa --instance 100 250
+\end{lstlisting}
+
+\section*{Seznam argumentů programu Quantum Inspired Evolutionary Algorithms (\texttt{qiea.py})}
+\begin{itemize}
+    \item \texttt{algorithm}\,--\,Typ algoritmu, který se má spustit. 
+    \begin{itemize}
+        \item Možnosti: \texttt{qiga}, \texttt{qisa}, \texttt{qse}, \texttt{qipso}.
+    \end{itemize}
+    \item \texttt{input}\,--\,Cesta k vstupnímu datasetu.
+    \item \texttt{-{}-append\_results}\,--\,Pokud je nastaveno, výsledky budou připojovány do výstupního souboru po každém experimentu.
+    \item \texttt{-{}-output}\,--\,Cesta k adresáři, kam budou uloženy výsledky.
+    \item \texttt{-{}-experiments}\,--\,Počet nezávislých spuštění algoritmu (výchozí: \texttt{30}).
+    \item \texttt{-{}-population}\,--\,Velikost populace (výchozí: \texttt{1}).
+    \item \texttt{-{}-evaluations}\,--\,Počet vyhodnocení fitness funkce (výchozí: \texttt{10000}).
+    \item \texttt{-{}-theta}\,--\,Úhel kvantové rotace pro QIEA (výchozí: \texttt{0,01}).
+    \item \texttt{-{}-c1}\,--\,Kognitivní koeficient pro QIPSO (výchozí: \texttt{0,05}).
+    \item \texttt{-{}-c2}\,--\,Sociální koeficient pro QIPSO (výchozí: \texttt{0,15}).
+    \item \texttt{-{}-omega}\,--\,Parametr $\omega$ pro QIPSO (výchozí: \texttt{0,01}).
+    \item \texttt{-{}-velocity}\,--\,Počáteční rychlost pro QIPSO a QSE. (výchozí: \texttt{100}).
+    \item \texttt{-{}-cooling\_rate}\,--\,Rychlost ochlazování pro \emph{QISA} (výchozí: \texttt{0,98}).
+    \item \texttt{-{}-cooling}\,--\,Metoda ochlazování pro \emph{QISA} (výchozí: \texttt{rec-logarithmic}). 
+    \begin{itemize}
+        \item Možnosti: \texttt{exponential}, \texttt{linear}, \texttt{logarithmic}, \texttt{rec-logarithmic}.
+    \end{itemize}
+    \item \texttt{-{}-observation}\,--\,Metoda tepelně-řízeného pozorování pro \emph{QISA}. (výchozí: \texttt{sigmoid}).
+    \item \begin{itemize}
+        \item Možnosti: \texttt{constant}, \texttt{sigmoid}.
+    \end{itemize}
+\end{itemize}
+
+\section*{Seznam argumentů programu pro vykreslení grafů (\texttt{plots.py})}
+\begin{itemize}
+    \item \texttt{source\_dir}\,--\,Cesta ke zdrojové složce obsahující výsledky experimentů.
+    \item \texttt{-{}-save\_dir}\,--\,Cesta, kam se mají uložit vykreslené grafy. Pokud není zadáno, grafy se pouze zobrazí.
+    \item \texttt{-{}-algorithm}\,--\,Typ algoritmu, pro který se mají vykreslit výsledky. Lze zadat více hodnot oddělených mezerou.
+    \begin{itemize}
+        \item Možnosti: \texttt{qiga}, \texttt{qisa}, \texttt{qse}, \texttt{qipso}.
+    \end{itemize}
+    \item \texttt{-{}-instance}\,--\,Velikosti instancí problému, které se mají zpracovat. Lze zadat více hodnot oddělených mezerou.
+\end{itemize}
