@@ -42,4 +42,5 @@
 *.latexmk
 
 !figures/*.pdf
+!figures/*/*.pdf
 !template-fig/*.pdf
