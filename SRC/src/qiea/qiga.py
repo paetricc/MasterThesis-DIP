@@ -54,7 +54,6 @@ def qiga(
     # Inicializace fitness
     best_population_fitness: np.ndarray  = np.zeros(population_size)
     current_fitness: np.ndarray          = np.zeros(population_size)
-    # Inicializace fitness historie
     fitness_histories: np.ndarray = np.zeros((population_size, num_generations), dtype=float)
     # Přepočítání konstant
     positive_theta: float =  theta * np.pi
@@ -99,7 +98,7 @@ def qiga(
         )
         # Uložení nových pravděpodobnostních koeficientů
         quantum_population[:, :, 0], quantum_population[:, :, 1] = alpha, beta
-        # Získání nového nejlepšího řešení
+        # Získání nových nejlepších řešení
         better_fitness_indices: np.ndarray = current_fitness > best_population_fitness
         personal_best_population[better_fitness_indices] = observed_population[better_fitness_indices]
         best_population_fitness[better_fitness_indices] = current_fitness[better_fitness_indices]
