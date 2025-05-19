@@ -35,6 +35,8 @@ def qse(
             Počet jedinců v populaci
         num_generations (int): 
             Počet generací evolučního procesu
+        velocity (float):
+            Počáteční rychlost částice
 
     Returns:
         Tuple[float, List[int], List[float]]:
@@ -44,7 +46,7 @@ def qse(
     """
     num_items = len(item_values)
     item_values: np.ndarray  = np.array(item_values)
-    item_weights: np.ndarray = np.array(item_weights)# Convert lists to numpy arrays
+    item_weights: np.ndarray = np.array(item_weights)
     # Inicializace populací
     quantum_angles: np.ndarray           = np.full((population_size, num_items), np.pi / 4)
     observed_population: np.ndarray      = np.zeros((population_size, num_items), dtype=int)
@@ -86,7 +88,7 @@ def qse(
         if best_population_fitness[max_idx] > global_best_fitness:
             global_best_fitness = best_population_fitness[max_idx]
             global_best_angles = personal_best_angles[max_idx]
-        # Aktualizace rychlosti
+        # Aktualizace rychlostí
         r1 = np.random.uniform(0, 1, (population_size, num_items))
         r2 = np.random.uniform(0, 1, (population_size, num_items))
         velocities = chi * (

@@ -55,7 +55,7 @@ def qiga(
     best_population_fitness: np.ndarray  = np.zeros(population_size)
     current_fitness: np.ndarray          = np.zeros(population_size)
     fitness_histories: np.ndarray = np.zeros((population_size, num_generations), dtype=float)
-    # Přepočítání konstant
+    # Předpočítání konstant
     positive_theta: float =  theta * np.pi
     negative_theta: float = -theta * np.pi
     cos_positive_theta: float = np.cos(positive_theta) 
