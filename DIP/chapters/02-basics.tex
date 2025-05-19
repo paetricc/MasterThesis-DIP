@@ -10,7 +10,7 @@ Dále budou ve stručnosti uvedeny základy evolučních algoritmů a v závěru
 Počítání podle přírody (\emph{natural computing}) se zaměřuje na objevování fundamentálních zákonů a mechanismů, na jejichž principu fungují procesy v přírodě, a na jejich následné využití při řešení různých výpočetních problémů. 
 To vede k návrhu nových způsobů výpočtu a vývoji alternativních řešení různých typů úloh. 
 Aby bylo možné efektivně modelovat systémy s velkým počtem prvků, je nutné zvolit vhodnou úroveň abstrakce, jež je závislá na charakteru řešené úlohy, neboť algoritmy inspirované přírodou vycházejí ze zjednodušeného pojetí přírodních procesů. 
-Abstrakce zároveň umožňuje zdůraznit klíčové aspekty systému, jenž jsou zásadní pro jeho reprodukovatelnost a analýzu vývojových procesů. 
+Abstrakce zároveň umožňuje zdůraznit klíčové aspekty systému, jež jsou zásadní pro jeho reprodukovatelnost a analýzu vývojových procesů. 
 Zvolená úroveň abstrakce je závislá na charakteru řešeného problému, typu modelovaného jevu a cílů simulace. 
 Počítání podle přírody spojuje znalosti z teoretické a experimentální teorie fungování přírody společně s empirickými pozorováními za účelem návrhu nových způsobů pro řešení různých problémů, vizte obrázek~\ref{fig:natural-computing-fields}~\cite{FundamentalNatural}.
 
@@ -24,7 +24,7 @@ Počítání podle přírody je možné rozdělit do následujících tří obla
         \begin{itemize}
             \item umělé neuronové sítě (\emph{artificial neural networks}) inspirované nervovými systémy,
             \item evoluční algoritmy (\emph{evolutionary algorithms}) vycházející z Darwinovy teorie evoluce,
-            \item inteligence roje (\emph{swarm intelligence}) založená na kolektivním chování společenských organismů a
+            \item inteligence roje (\emph{swarm intelligence}) založené na kolektivním chování společenských organismů a
             \item umělé imunitní systémy (\emph{artificial immune systems}) vycházející z principů fungování imunitního systému.
         \end{itemize}
         \begin{figure}[ht!]
@@ -41,14 +41,14 @@ Počítání podle přírody je možné rozdělit do následujících tří obla
         Tato oblast poskytuje nástroje pro testování biologických teorií, které by bylo obtížné ověřit pomocí experimentálních a analytických metod. 
         Existují dva hlavní přístupy~\cite{FundamentalNatural}:
         \begin{itemize}
-            \item Fraktální geometrie v přírodě (\emph{fractal geometry of nature}) poskytuje možnost vizualizovat různé přírodní struktury a procesy, jenž se vyznačují nekonečnou úrovní detailu, nekonečnou délkou nebo soběpodobností. 
+            \item Fraktální geometrie v přírodě (\emph{fractal geometry of nature}) poskytuje možnost vizualizovat různé přírodní struktury a procesy, jež se vyznačují nekonečnou úrovní detailu, nekonečnou délkou nebo soběpodobností. 
                 Struktury, na nichž je fraktální geometrie viditelná, se nacházejí například na kapradinách, horách nebo brokolici a dokonce je patrná na organismech v podobě fraktální struktury plic, oběhového systému či mozku. 
             \item Umělý život (\emph{artificial life}) je oblast, která se snaží simulovat organismy v umělých prostředích. 
                 Hlavním cílem není řešení konkrétního problému, ale pochopení konceptů přírody, včetně vývoje nových forem života. 
         \end{itemize}
-        Aplikace fraktální geometrie lze využít při simulaci růstu rostin nebo formování přírodních struktur, zatímco umělý život lze použít ke studiu evoluce a chování organismů ve virtuálním prostředí či k analýze počítačových virů. 
+        Aplikace fraktální geometrie lze využít při simulaci růstu rostin nebo formování přírodních struktur, zatímco umělý život lze použít ke studiu evoluce a chování organismů ve virtuálním prostředí či k analýze počítačových virů~\cite{FundamentalNatural}. 
     \item \textbf{Výpočty s využitím přírodních materiálů} 
-        nepracují s křemíkem jako je tomu u~tradičních výpočetních systémů, ale využívají odlišné materiály, jenž umožňují překonat některé limity tradičních počítačů, jelikož poskytují odlišné přístupy k provádění výpočetních operací. 
+        nepracují s křemíkem jako je tomu u~tradičních výpočetních systémů, ale využívají odlišné materiály, jež umožňují překonat některé limity tradičních počítačů, jelikož poskytují odlišné přístupy k provádění výpočetních operací. 
         Systémy založené na těchto principech nabízejí efektivní řešení problému limit miniaturizace elektroniky založené na křemíku. 
         Alternativní výpočetní prostředky jsou~\cite{FundamentalNatural}:
         \begin{itemize}
@@ -98,7 +98,7 @@ Podle způsobu reprezentace kandidátních řešení a způsobu realizace někte
     \item genetické algoritmy (\emph{genetic algorithms\,--\,GA}) reprezentující kandidátní řešení pomocí binárních řetězců. 
 \end{itemize}
 Rozdíly mezi výše uvedenými kategoriemi jsou především historického charakteru. 
-Výběr vhodného typu totiž závisí na povaze řešeného problému, neboť některé typy reprezentace mohou být výhodnější než jiné, například pokud lépe odpovídá charakteru problému, usnadňují reprezentaci kandidátních řešení nebo jsou pro řešený problém přirozenější~\cite{IntroductionToEvoComputing}. 
+Výběr vhodného typu totiž závisí na povaze řešeného problému, neboť některé typy reprezentací mohou být výhodnější než jiné, například pokud lépe odpovídají charakteru problému, usnadňují reprezentaci kandidátních řešení nebo jsou pro řešený problém přirozenější~\cite{IntroductionToEvoComputing}. 
 
 Pro definici konkrétního evolučního algoritmu je potřeba specifikovat jeho následující části:
 
@@ -123,7 +123,7 @@ Pro inicializaci počáteční populace je možné využít také heuristiku, kt
 
 \subsubsection*{Ohodnocovací funkce (fitness funkce)}
 Hlavním účelem ohodnocovací funkce je řízení evolučního procesu tím, že hodnotí, jak dobře jedinci splňují určené požadavky. 
-Jedná se o funkci, jenž přiřazuje míru kvality genotypům prostřednictvím ohodnocení odpovídajících fenotypů. 
+Jedná se o funkci, jež přiřazuje míru kvality genotypům prostřednictvím ohodnocení odpovídajících fenotypů. 
 Ohodnocovací funkce je běžně označována jako fitness funkce. 
 V případě optimalizačního problému je často používán pojem objektivní funkce, který vyjadřuje specifické požadavky úlohy (například maximalizaci nebo minimalizaci určité hodnoty).
 Ohodnocovací (fitness) funkce $F\left(x\right)$ může být identická s~objektivní funkcí nebo se může jednat o její transformaci:
@@ -157,7 +157,7 @@ Podle arity se variační operátory dělí na následující dva typy:
         \begin{figure}[ht!]
             \centering
             \includegraphics[width=0.6\textwidth]{Mutation.pdf}
-            \caption{Proces mutace rodiče, kde funkce $p\left(x\right)$ určuje pravděpodobnostní rozhodnutí, zda bude provedena mutace konkrétní části genomu. Na základě této série náhodných rozhodnutí vznikne potomek.}
+            \caption{Proces mutace rodiče, kde funkce $p\left(x\right)$ určuje pravděpodobnostní rozhodnutí, zda bude provedena mutace konkrétní části genotypu. Na základě této série náhodných rozhodnutí vznikne potomek.}
             \label{fig:mutation}
         \end{figure}
     \item \textbf{Rekombinace}, někdy označovaná jako křížení, je n-ární operátor, jenž kombinuje informace z vícero rodičů. 
@@ -271,7 +271,7 @@ Normalizované vlnové funkce splňují podmínku:
     \int_{\mathbb{R}^3} \left|\psi\,(x)\right|^2 dx = 1.    
 \end{equation*}
 Tato rovnost vyjadřuje, že celková pravděpodobnost nalezení částice v celém prostoru musí být rovna jedné.
-Z toho plyne, že kvantové stavy leží v jednotkové kouli Hilbertova prostoru, tedy v množině všech vektorů s normou 1 a operátory, které na ně působí, musí být unitární, aby tuto normu zachovávaly~\cite{NaturalComputing}.
+Z toho plyne, že kvantové stavy leží na povrchu jednotkové koule Hilbertova prostoru, tedy v množině všech vektorů s normou 1 a operátory, které na ně působí, musí být unitární, aby tuto normu zachovávaly~\cite{NaturalComputing}.
 
 \subsubsection*{Kvantové provázání}
 Pojem kvantové provázání (\emph{entanglement}) je jeden z nejdůležitějších rozdílů mezi klasickou a kvantovou fyzikou. 
@@ -375,13 +375,13 @@ Příklady algoritmů, které jsou schopné řešit problém v kvantovém počí
     \item \textbf{Shorův algoritmus:} Umožňuje faktorizaci velkých čísel v časové složitosti $\mathcal{O}\left( n^2 \right)$ místo $\mathcal{O}\left(e^{\sqrt[3]{n}} \right)$, jako je tomu u nejlepšího známého algoritmu na klasických systémech.
     \item \textbf{Groverův algoritmus:} Zrychluje vyhledávání v nestrukturovaných databázích klasických systémů z časové složitosti $\mathcal{O}\left( n \right)$ na $\mathcal{O}\left( \sqrt{n} \right)$. 
 \end{itemize}
-Mimo jiné umožňují kvantové počítače simulovat samy sebe, přičemž však stále nebylo prokázáno zda dokážou řešit NP-těžké problémy v polynomiálním čase\footnote{Obecně se věří, že nedokážou řešit NP-těžké problémy v polynomiálním čase.}~\cite{NaturalComputing}. 
+Mimo jiné umožňují kvantové počítače simulovat samy sebe, přičemž však stále nebylo prokázáno zda dokáží řešit NP-těžké problémy v polynomiálním čase\footnote{Obecně se věří, že nedokážou řešit NP-těžké problémy v polynomiálním čase.}~\cite{NaturalComputing}. 
 
 \subsection{Adiabatické kvantové počítače}
 Oproti digitálním kvantovým počítačům se adiabatické kvantové počítače neskládají z qubitů. 
 Místo toho využívají postupnou evoluci kvantového systému v čase. 
 Přístup je podobný analogovým počítačům, kde je vytvořen fyzikální systém odpovídající řešenému problému a jeho stav je ponechán, aby se vyvíjel v čase. 
-Jejich výpočetní síla je ekvivalentní výpočetní síle kvantových počítačů založených na qubitech, což znamená, že dokážou řešit stejné problémy se srovnatelnou polynomiální složitostí~\cite{NaturalComputing}.
+Jejich výpočetní síla je ekvivalentní výpočetní síle kvantových počítačů založených na qubitech, což znamená, že dokáží řešit stejné problémy se srovnatelnou polynomiální složitostí~\cite{NaturalComputing}.
 
 Adiabatické kvantové počítače splňují kvantový adiabatický teorém, jehož hlavní myšlenkou je, že pokud jsou na systém aplikovány vnější jevy dostatečně pomalu, zůstává ve svém relativním vlastním stavu. 
 Pokud jsou však změny vnějších jevů aplikovány na systém příliš rychle, stav systému se nezmění, jelikož nemá dostatek času, aby se přizpůsobil a~skončí v superpozici stavů~\cite{NaturalComputing}. 

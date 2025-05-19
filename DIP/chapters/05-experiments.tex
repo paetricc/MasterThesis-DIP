@@ -6,12 +6,12 @@ Nejprve jsou uvedeny výsledky ladění parametrů pro jednotlivé kvantově ins
 Tyto optimalizované parametry jsou následně aplikovány na rozsáhlejší instance problému batohu, jejichž výsledky jsou rovněž prezentovány. 
 Každý ze zobrazených grafů je navíc doplněn o informaci z tabulky~\ref{tab:experiments-design}, která uvádí optimální hodnotu řešení problému batohu pro jednotlivé velikosti testovaných instancí.
 
-Na základě získaných dat je v závěru kapitoly vedena diskuze porovnávající klasické evoluční algoritmy s jejich kvantově inspirovanými variantami, a to včetně analýzy jejich silných a slabých stránek. 
+Na základě získaných dat je v závěru kapitoly vedena diskuze porovnávající klasické evoluční algoritmy s běžnými optimalizačními metodami, a to včetně analýzy jejich silných a slabých stránek. 
 Zvláštní pozornost je věnována rovněž vzájemnému srovnání jednotlivých kvantově inspirovaných evolučních algoritmů. 
 
 Ve všech grafech prezentujících výsledky experimentů je použito označení ve formátu (\texttt{alg}-\texttt{inst}), kde \texttt{alg} označuje použitý algoritmus a \texttt{inst} velikost instance problému. 
 
-\section{Kvantově inspirovaný genetický algoritmus}\label{sec:exp-qisa}
+\section{Kvantově inspirovaný genetický algoritmus}\label{sec:exp-qiga}
 V této části jsou představeny experimentální výsledky týkající se kvantově inspirovaného genetického algoritmu (\emph{QIGA}). 
 Pozornost je věnována zejména vlivu různých hodnot parametru úhlu rotace $\Delta\theta$ a velikosti populace na kvalitu nalezených řešení. 
 
@@ -27,39 +27,47 @@ Sledován je vliv různých hodnot parametru $\Delta\theta$, jejichž konkrétn�
 Prezentovány jsou pouze výsledky pro jednoho jedince, neboť algoritmus \emph{QIGA}, jak bylo uvedeno v sekci~\ref{sec:experiments-design}, neobsahuje mechanismus pro sdílení informací mezi jedinci v populaci. 
 
 Z dat na obrázku~\ref{fig:qiga-pop1} vyplývá, že parametr $\Delta\theta$ má významný vliv na kvalitu řešení. 
-Nejlepších řešení bylo dosaženo při $\Delta\theta = 0,002$, kde se průměrná kvalita řešení pohybovala velmi blízko optimu a současně vykazovala nejnižší rozptyl. 
+Nejlepších řešení bylo dosaženo při $\Delta\theta = 0{,}002$, kde se průměrná kvalita řešení pohybovala velmi blízko optimu a současně vykazovala nejnižší rozptyl. 
 
-Obecně platí, že nižší hodnoty parametru $\Delta\theta$ vedly k lepším výsledkům s výjimkou anomálie při $\Delta\theta = 0,05$. 
-Naopak vyšší hodnoty (zejména od $0,5$ a výše) vedly ke znatelnému zhoršení kvality řešení, doprovázené vyšší směrodatnou odchylkou, což naznačuje nižší stabilitu algoritmu. 
+Obecně platí, že nižší hodnoty parametru $\Delta\theta$ vedly k lepším výsledkům s výjimkou anomálie při $\Delta\theta = 0{,}05$. 
+Naopak vyšší hodnoty (zejména od $0{,}5$ a výše) vedly ke znatelnému zhoršení kvality řešení, doprovázené vyšší směrodatnou odchylkou, což naznačuje nižší stabilitu algoritmu. 
 Z výsledků lze usuzovat, že vyšší hodnoty $\Delta\theta$ způsobují velkou změnu kvantového stavu, což má za následek spíše chaotické a méně efektivní prohledávaní prostoru možných řešení. 
 
-Na základě předchozích výsledků byly z dalších experimentů vyřazeny hodnoty parametru $\Delta\theta = 0,5, 1$ a $2$, neboť opakovaně vedly k výrazně horším výsledkům. 
-Hodnota $\Delta\theta = 0,05$ však byla ponechána, ačkoliv také nepatřila mezi nejúspěšnější, neboť spadá do oblasti hodnot, které v jiných případech vedly k velmi kvalitním řešením. 
+Na základě předchozích výsledků byly z dalších experimentů vyřazeny hodnoty parametru $\Delta\theta = 0{,}5, 1$ a $2$, neboť opakovaně vedly k výrazně horším výsledkům. 
+Hodnota $\Delta\theta = 0{,}05$ však byla ponechána, ačkoliv také nepatřila mezi nejúspěšnější, neboť spadá do oblasti hodnot, které v jiných případech vedly k velmi kvalitním řešením. 
 Právě z tohoto důvodu byla tato anomálie zachována i v následujících experimentech, aby mohla být dále analyzována ve vztahu k větším instancím problému. 
 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.98\textwidth]{qiga/boxplot_qiga_100_all_theta.pdf}
-    \caption{Závislost kvality řešení na velikosti populace pro různé hodnoty parametru $\Delta\theta$. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instanci velikosti 100 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh pro každou kombinaci prezentovaných parametrů.}
-    \label{fig:qiga-100-all}
-\end{figure}
-
 Tato anomálie byla dále zkoumána v kontextu různých velikostí populace, respektive v~závislosti na celkovém počtu vyhodnocení fitness funkce. 
-Výsledky zobrazené na obrázku~\ref{fig:qiga-100-all} ukazují, že vliv velikosti populace na kvalitu řešení při nastavení parametru $\Delta\theta = 0,05$ není přímočarý. 
+Výsledky zobrazené na obrázku~\ref{fig:qiga-100-all} ukazují, že vliv velikosti populace na kvalitu řešení při nastavení parametru $\Delta\theta = 0{,}05$ není přímočarý. 
 Nejhorší výsledky byly dosaženy při populaci tvoření jediným jedincem. 
 Se zvyšujícím se počtem jedinců se však kvalita zlepšovala a nejlepších výsledků bylo dosaženo při desítkách jedinců v populaci. 
 Při dalším zvyšování velikosti populace však kvalita opět začala mírně klesat.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.98\textwidth]{qiga/boxplot_qiga_500_all_theta.pdf}
+    \includegraphics[width=0.87\textwidth]{qiga/boxplot_qiga_100_all_theta.pdf}
+    \caption{Závislost kvality řešení na velikosti populace pro různé hodnoty parametru $\Delta\theta$. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instanci velikosti 100 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh pro každou kombinaci prezentovaných parametrů.}
+    \label{fig:qiga-100-all}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.87\textwidth]{qiga/boxplot_qiga_500_all_theta.pdf}
     \caption{Závislost kvality řešení na velikosti populace pro různé hodnoty parametru $\Delta\theta$ u instance s 500 položkami. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instanci velikosti 500 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh pro každou kombinaci prezentovaných parametrů.}
     \label{fig:qiga-500-all}
 \end{figure}
 
-Z grafu~\ref{fig:qiga-100-all} je rovněž patrné, že algoritmus dosahoval lepších výsledků při populaci velikosti 5, ve srovnání s jedním jedincem, a to při nastavení parametru $\Delta\theta = 0,02$.  
+Z grafu~\ref{fig:qiga-100-all} je rovněž patrné, že algoritmus dosahoval lepších výsledků při populaci velikosti 5, ve srovnání s jedním jedincem, a to při nastavení parametru $\Delta\theta = 0{,}02$.  
 Tato anomálie může být vysvětlena tím, že i když algoritmus \emph{QIGA} nepodporuje sdílení informací mezi jedinci, větší počet jedinců zvyšuje šanci na nalezení kvalitního řešení. 
 To je zvlášť pravděpodobné v tomto případě, kdy instance problému obsahuje 100 položek a~počet evaluací je 10\;000, což poskytuje jednotlivým jedincům dostatek prostoru pro jejich vývoj. 
+
+Toto tvrzení lze ověřit pomocí obrázku~\ref{fig:qiga-500-all}, kde byla velikost instance problému navýšena na 500 položek, zatímco celkový počet evaluací zůstal zachován. 
+Z grafu je patrné, že v~tomto případě dosahovala nejlepších výsledků populace tvořena pouze jedním jedincem, protože větší populace neměly dostatek prostoru pro svůj rozvoj, což je dáno tím, že při zachování stejného počtu evaluací se jedinci vyvíjí kratší dobu. 
+
+Anomálie pozorovaná při hodnotě parametru $\Delta\theta = 0{,}005$ lze vysvětlit vlivem zaokrouhlovacích chyb a konvergence, kdy kvantové pravděpodobnosti postupně směřují k hodnotám velmi blízkým nule nebo jedné (např. $0{,}0000\dots$ nebo $0{,}9999\dots$). 
+V takovém případě se prakticky zastaví změny pozorovaného chromozomu, čímž se výrazně omezí možnost dalšího průzkumu prostoru řešení.  
+Naopak při mírně odlišných hodnotách parametru (např. $\Delta\theta = 0{,}051$) zůstávají pravděpodobnosti méně extrémní (např. $0{,}0002$ a $0{,}9998$), což zachovává možnost dalšího zlepšení. 
+Podobně jako v předchozím případě se i zde ukázalo, že u~větších instancí problému vedla větší velikost populace k lepším výsledkům, neboť přítomnost více jedinců v populaci zvyšovala šanci na nalezení kvalitnějšího řešení.
 
 \begin{figure}[ht!]
     \centering
@@ -79,12 +87,13 @@ To je zvlášť pravděpodobné v tomto případě, kdy instance problému obsah
         \includegraphics[width=\linewidth]{qiga/boxplot_qiga_10000_theta_0.002.pdf}
     \end{subfigure}
   
-    \caption{Porovnání kvality řešení při hodnotě $\Delta\theta = 0,002$ a jednočlenné populaci na velkých instancích problému. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instancích, po řadě, velikosti 1\,000, 2\,000, 5\,000 a 10\,000 pomocí 30 nezávislých běhů s~10\,000 evaluacemi na běh.}
+    \caption{Porovnání kvality řešení při hodnotě $\Delta\theta = 0{,}002$ a jednočlenné populaci na velkých instancích problému. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instancích, po řadě, velikosti 1\,000, 2\,000, 5\,000 a 10\,000 pomocí 30 nezávislých běhů s~10\,000 evaluacemi na běh.}
     \label{fig:qiga-large}
 \end{figure}
 
-Toto tvrzení lze ověřit pomocí obrázku~\ref{fig:qiga-500-all}, kde byla velikost instance problému navýšena na 500 položek, zatímco celkový počet evaluací zůstal zachován. 
-Z grafu je patrné, že v~tomto případě dosahovala nejlepších výsledků populace tvořena pouze jedním jedincem, protože větší populace neměly dostatek prostoru pro svůj rozvoj, což je dáno tím, že, že při zachování stejného počtu evaluací se jedinci vyvíjí kratší dobu. 
+Obrázek~\ref{fig:qiga-large} shrnuje výsledky experimentů provedených na rozsáhlejších instancích problému batohu, při doladěné hodnotě parametru $\Delta\theta = 0{,}002$. 
+Z výsledků je patrné, že u~instancí o velikosti 1\,000 a 2\,000 se algoritmus \emph{QIGA} stále dokáže přiblížit k optimálnímu řešení. 
+Naopak u větších instancí, konkrétně pro $5\,000$ a $10\,000$ položek batohu, dochází k~poklesu kvality řešení, což lze přičíst pevně nastavenému počtu evaluací. 
 
 \begin{figure}[ht!]
     \centering
@@ -95,14 +104,12 @@ Z grafu je patrné, že v~tomto případě dosahovala nejlepších výsledků po
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\linewidth]{qiga/qiga_convergence_2000_theta_0.002_population_1.pdf}
     \end{subfigure}
-    \caption{Konvergenční křivky pro $\Delta\theta = 0,002$ a jednočlennou populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
+    \caption{Konvergenční křivky pro $\Delta\theta = 0{,}002$ a jednočlennou populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIGA} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
     \label{fig:qiga-convergence}
 \end{figure}
 
-Anomálie pozorovaná při hodnotě parametru $\Delta\theta = 0,005$ lze vysvětlit vlivem zaokrouhlovacích chyb a konvergence, kdy kvantové pravděpodobnosti postupně směřují k hodnotám velmi blízkým nule nebo jedné (např. $0,0000\dots$ nebo $0,9999\dots$). 
-V takovém případě se prakticky zastaví změny pozorovaného chromozomu, čímž se výrazně omezí možnost dalšího průzkumu prostoru řešení.  
-Naopak při mírně odlišných hodnotách parametru (např. $\Delta\theta = 0,051$) zůstávají pravděpodobnosti méně extrémní (např. $0,0002$ a $0,9998$), což zachovává možnost dalšího zlepšení. 
-Podobně jako v předchozím případě se i zde ukázalo, že u~větších instancí problému vedla větší velikost populace k lepším výsledkům, neboť přítomnost více jedinců v populaci zvyšovala šanci na nalezení kvalitnějšího řešení.
+Obrázek~\ref{fig:qiga-convergence} zachycuje rychlost konvergence při velikostech instancí 500 a 2\,000. 
+V obou případech byla použita jednočlenná populace a doladěná hodnota parametru $\Delta\theta = 0{,}002$.
 
 \begin{table}[ht!]
     \centering
@@ -128,23 +135,26 @@ Podobně jako v předchozím případě se i zde ukázalo, že u~větších inst
     \label{tab:qiga-theta-best}
 \end{table}
 
-Obrázek~\ref{fig:qiga-large} shrnuje výsledky experimentů provedených na rozsáhlejších instancích problému batohu, při doladěné hodnotě parametru $\Delta\theta = 0,002$. 
-Z výsledků je patrné, že u~instancí o velikosti 1\,000 a 2\,000 se algoritmus \emph{QIGA} stále dokáže přiblížit k optimálnímu řešení. 
-Naopak u větších instancí, konkrétně pro $5\,000$ a $10\,000$ položek batohu, dochází k~poklesu kvality řešení, což lze přičíst pevně nastavenému počtu evaluací. 
-
-Obrázek~\ref{fig:qiga-convergence} zachycuje rychlost konvergence při velikostech instancí 500 a 2\,000. 
-V obou případech byla použita jednočlenná populace a doladěná hodnota parametru $\Delta\theta = 0,002$.
-
 Tabulka~\ref{tab:qiga-theta-best} prezentuje nejlepší dosažené fitness hodnoty řešení pro různé velikosti instancí a~hodnoty parametru $\Delta\theta$. 
-Z výsledků je patrné, že nejnižší hodnota $\Delta\theta = 0,002$ vedla napříč instancemi k nejkvalitnějším řešením, přičemž u instance velikosti 100 bylo dokonce dosaženo optimálního řešení, zatímco u ostatních instancí se nejlepší nalezené hodnoty pohybovaly velmi blízko optimu. 
+Z výsledků je patrné, že nejnižší hodnota $\Delta\theta = 0{,}002$ vedla napříč instancemi k nejkvalitnějším řešením, přičemž u instance velikosti 100 bylo dokonce dosaženo optimálního řešení, zatímco u ostatních instancí se nejlepší nalezené hodnoty pohybovaly velmi blízko optimu. 
 
-\section{Kvantově inspirované simulované žíhání}\label{sec:exp-qiga}
+\section{Kvantově inspirované simulované žíhání}\label{sec:exp-qisa}
 V této sekci jsou prezentovány výsledky experimentů zaměřených na kvantově inspirovaného simulovaného žíhání (\emph{QISA}). 
 Cílem experimentů bylo analyzovat vliv různých konfigurací zahřívací funkce, chladicího plánu a míry ochlazování na kvalitu nalezených řešení. 
 Konkrétní nastavení použitých hodnot parametrů je uvedeno v tabulce~\ref{tab:qisa-all-instances}. 
 
 V první fázi experimentů byla provedeno ladění parametrů na menších instancí problému s cílem nalézt optimální konfiguraci algoritmu. 
 Následně byl algoritmus s doladěnými hodnotami parametrů aplikován na větší instance problému s účelem ověřit jeho výkonnost při řešení náročnějších úloh. 
+
+Na obrázku~\ref{fig:qisa-fining} jsou znázorněny výsledky experimentů pro různá nastavení zahřívací funkce a chladicího plánu, který využívají parametr míry ochlazování, přičemž grafy zobrazují výsledky pro instance problému o velikostech 100 a 500. 
+Z výsledků je patrné, že míra ochlazování nemá výrazný vliv na kvalitu nalezených řešení a obdobně ani volba zahřívacího plánu zásadně neovlivňuje kvalitu výsledků. 
+
+Výsledky experimentů s chladicími plány, jež nevyužívají parametr míry ochlazování, jsou zobrazeny na obrázku~\ref{fig:qisa-boxplot}. 
+Z výsledků na uvedeném grafu je patrné, že logaritmický chladicí plán dosahuje výrazně horších výsledků ve srovnání s rekurzivně-logaritmickým plánem.
+
+Z dat v tabulce~\ref{tab:qisa-low-max-values} je patrné, že většina kombinací parametrů dosahuje srovnatelných hodnot fitness, přičemž rozdíly mezi různými zahřívacími funkcemi a mírami ochlazování jsou minimální. 
+Výrazně horších výsledků dosahuje pouze logaritmický chladicí plán, jenž ve všech velikostech instancí poskytuje nejnižší kvalitu řešení. 
+Na základě těchto výsledků bylo pro další experimenty na větších instancích zvoleno nastavení s rekurzivně-logaritmickým chladicím plánem a sigmoidní zahřívací funkcí, jelikož tato kombinace dosáhla nejlepšího výsledku pro největší testovanou instanci.
 
 \begin{figure}[ht!]
     \centering
@@ -157,11 +167,6 @@ Následně byl algoritmus s doladěnými hodnotami parametrů aplikován na vět
     \caption{Porovnání vlivu různých zahřívacích funkcí a chladicích plánů pro různé míry ochlazování při jednočlenné populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QISA} na instancích, po řadě, velikosti 100 a 500 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh pro každou kombinaci prezentovaných parametrů.}
     \label{fig:qisa-fining}
 \end{figure}
-Na obrázku~\ref{fig:qisa-fining} jsou znázorněny výsledky experimentů pro různá nastavení zahřívací funkce a chladicího plánu, který využívají parametr míry ochlazování, přičemž grafy zobrazují výsledky pro instance problému o velikostech 100 a 500. 
-Z výsledků je patrné, že míra ochlazování nemá výrazný vliv na kvalitu nalezených řešení a obdobně ani volba zahřívacího plánu zásadně neovlivňuje kvalitu výsledků. 
-
-Výsledky experimentů s chladicími plány, jenž nevyužívají parametr míry ochlazování, jsou zobrazeny na obrázku~\ref{fig:qisa-boxplot}. 
-Z výsledků na uvedeném grafu je patrné, že logaritmický chladicí plán dosahuje výrazně horších výsledků ve srovnání s rekurzivně-logaritmickým plánem.
 
 \begin{figure}[ht!]
     \centering
@@ -184,22 +189,22 @@ Z výsledků na uvedeném grafu je patrné, že logaritmický chladicí plán do
         \cmidrule(lr){4-6}
          &  &  & \textbf{100}    & \textbf{250}     & \textbf{500}\\
         \midrule
-        exp & konstantní & 0.9  & 3\,967 & 10\,421 & 20\,899 \\
-        exp & konstantní & 0.95 & 3\,967 & 10\,421 & 20\,910 \\
-        exp & konstantní & 0.98 & 3\,967 & 10\,420 & 20\,900 \\
-        exp & konstantní & 0.99 & 3\,967 & 10\,421 & 20\,905 \\
-        exp & sigmoidní  & 0.9  & 3\,967 & 10\,419 & 20\,897 \\
-        exp & sigmoidní  & 0.95 & 3\,967 & 10\,420 & 20\,896 \\
-        exp & sigmoidní  & 0.98 & 3\,967 & 10\,421 & 20\,893 \\
-        exp & sigmoidní  & 0.99 & 3\,967 & 10\,420 & 20\,893 \\
-        lin & konstantní & 0.9  & 3\,967 & 10\,421 & 20\,895 \\
-        lin & konstantní & 0.95 & 3\,967 & 10\,420 & 20\,906 \\
-        lin & konstantní & 0.98 & 3\,967 & 10\,422 & 20\,907 \\
-        lin & konstantní & 0.99 & 3\,967 & 10\,421 & 20\,907 \\
-        lin & sigmoidní  & 0.9  & 3\,967 & 10\,421 & 20\,906 \\
-        lin & sigmoidní  & 0.95 & 3\,967 & 10\,421 & 20\,907 \\
-        lin & sigmoidní  & 0.98 & 3\,967 & 10\,420 & 20\,911 \\
-        lin & sigmoidní  & 0.99 & 3\,967 & 10\,420 & 20\,888 \\
+        exp & konstantní & 0,9  & 3\,967 & 10\,421 & 20\,899 \\
+        exp & konstantní & 0,95 & 3\,967 & 10\,421 & 20\,910 \\
+        exp & konstantní & 0,98 & 3\,967 & 10\,420 & 20\,900 \\
+        exp & konstantní & 0,99 & 3\,967 & 10\,421 & 20\,905 \\
+        exp & sigmoidní  & 0,9  & 3\,967 & 10\,419 & 20\,897 \\
+        exp & sigmoidní  & 0,95 & 3\,967 & 10\,420 & 20\,896 \\
+        exp & sigmoidní  & 0,98 & 3\,967 & 10\,421 & 20\,893 \\
+        exp & sigmoidní  & 0,99 & 3\,967 & 10\,420 & 20\,893 \\
+        lin & konstantní & 0,9  & 3\,967 & 10\,421 & 20\,895 \\
+        lin & konstantní & 0,95 & 3\,967 & 10\,420 & 20\,906 \\
+        lin & konstantní & 0,98 & 3\,967 & 10\,422 & 20\,907 \\
+        lin & konstantní & 0,99 & 3\,967 & 10\,421 & 20\,907 \\
+        lin & sigmoidní  & 0,9  & 3\,967 & 10\,421 & 20\,906 \\
+        lin & sigmoidní  & 0,95 & 3\,967 & 10\,421 & 20\,907 \\
+        lin & sigmoidní  & 0,98 & 3\,967 & 10\,420 & 20\,911 \\
+        lin & sigmoidní  & 0,99 & 3\,967 & 10\,420 & 20\,888 \\
         log & konstantní & ---  & 3\,958 & 10\,201 & 19\,469 \\
         log & sigmoidní  & ---  & 3\,967 & 10\,221 & 19\,567 \\
         rec-log & konstantní & --- & 3\,967 & 10\,420 & 20\,905 \\
@@ -211,10 +216,6 @@ Z výsledků na uvedeném grafu je patrné, že logaritmický chladicí plán do
     \caption{Nejlepší dosažené fitness hodnoty algoritmem \emph{QISA} pro prezentované kombinace nastavení chladicího plánu, zahřívací funkce a míry ochlazování při malých instancích problému.}
     \label{tab:qisa-low-max-values}
 \end{table}
-
-Z dat v tabulce~\ref{tab:qisa-low-max-values} je patrné, že většina kombinací parametrů dosahuje srovnatelných hodnot fitness, přičemž rozdíly mezi různými zahřívacími funkcemi a mírami ochlazování jsou minimální. 
-Výrazně horších výsledků dosahuje pouze logaritmický chladicí plán, jenž ve všech velikostech instancí poskytuje nejnižší kvalitu řešení. 
-Na základě těchto výsledků bylo pro další experimenty na větších instancích zvoleno nastavení s rekurzivně-logaritmickým chladicím plánem a sigmoidní zahřívací funkcí, jelikož tato kombinace dosáhla nejlepšího výsledku pro největší testovanou instanci.
 
 \begin{figure}[ht!]
     \centering
@@ -304,9 +305,9 @@ Z výsledků experimentů na instanci velikosti 100 na obrázku~\ref{fig:qse-100
     \label{fig:qse-250-mix}
 \end{figure}
 
-Výsledky těchto experimentů jsou zobrazeny na obrázku~\ref{fig:qse-250-mix}. 
-Ze zobrazeného krabicového grafu je patrné, že velikost populace nemá výrazný vliv na kvalitu nalezených řešení.
-Zároveň lze z konvergenčních křivek ve stejném obrázku~\ref{fig:qse-250-mix} pozorovat, že algoritmus velmi rychle konverguje k~řešením blízkým optimu, přičemž další vývoj je již minimální. 
+Ze zobrazeného krabicového grafu na obrázku~\ref{fig:qse-250-mix} prezentujícího výsledky experimentů pro vybranou hodnotu počáteční rychlosti 1 je patrné, že velikost populace při instanci 250 nemá výrazný vliv na kvalitu nalezených řešení.
+Zároveň lze z konvergenční křivky na stejném obrázku~\ref{fig:qse-250-mix} pozorovat, že algoritmus při pětičlenné populaci velmi rychle konverguje k~řešením blízkým optimu, přičemž další vývoj je již minimální. 
+Z těchto důvodů byla pro experimenty na větších instancích zvolena právě pětičlenná populace, neboť umožňuje uplatnění mechanismu vzájemné komunikace jedinců a zároveň poskytuje jednotlivým jedincům dostatek prostoru pro jejich vývoj. 
 
 Na obrázku~\ref{fig:qse-large} jsou uvedeny výsledky experimentů provedených na velkých instancích problému s konfigurací algoritmu nastavenou na počáteční rychlost 1 a pětičlennou populaci.
 Z grafů a z tabulky nejvyšších dosažených hodnot fitness~\ref{tab:qse-high-max-values} je zřejmé, že při velikosti instance 1\,000 algoritmus dosáhl řešení velmi blízkého optimu. Se zvyšující se velikostí instance však docházelo k postupnému zhoršování kvality nalezených řešení.
@@ -345,7 +346,7 @@ Z grafů a z tabulky nejvyšších dosažených hodnot fitness~\ref{tab:qse-high
         \multicolumn{1}{c}{Optimum} & 54\,503 & 110\,625 & 276\,457 & 563\,647  \\
         \bottomrule
     \end{tabular}
-    \caption{Nejlepší dosažené fitness hodnoty algoritmem \emph{QSE} pro prezentované nastavení při velkých instancích problému při populací čítající 5 jedinců.}
+    \caption{Nejlepší dosažené fitness hodnoty algoritmem \emph{QSE} pro prezentované nastavení při velkých instancích problému při populaci čítající 5 jedinců.}
     \label{tab:qse-high-max-values}
 \end{table}
 
@@ -379,7 +380,7 @@ Konkrétní nastavení použitých hodnot parametrů je uvedeno v tabulce~\ref{t
 \end{figure}
 
 Jak je patrné z obrázku \ref{fig:qipso-100-all-omega}, populace o velikosti 1 a 100 poskytují nekvalitní řešení, a proto budou v dalších grafech tyto velikosti vynechány, rovněž nebude dále uvažována populace 50, protože při experimentování s většími instancemi problémů by jednotlivci měli omezený prostor pro svůj rozvoj z důvodu omezeného počtu evaluací. 
-Na základě těchto výsledků byly vybrány k další analýze hodnoty parametru $\omega$ $0,01$ a $0,05$, které průměrně dosahovaly kvalitnějších výsledků oproti ostatním testovaným hodnotám.
+Na základě těchto výsledků byly vybrány k další analýze hodnoty parametru $\omega$ $0{,}01$ a $0{,}05$, které průměrně dosahovaly kvalitnějších výsledků oproti ostatním testovaným hodnotám.
 
 \begin{figure}
     \centering
@@ -417,16 +418,16 @@ Na základě těchto výsledků byly vybrány k další analýze hodnoty paramet
 Graf na obrázku~\ref{fig:qipso-100-all-koeficients} prezentuje závislost kvality řešení na velikosti populace pro různé hodnoty kognitivního a sociálního koeficientu.  
 Na základě těchto výsledků budou v dalších experimentech uvažovány hodnoty kognitivního koeficientu 0{,}5 a 0{,}75 a sociálního koeficientu 0{,}1 a 0{,}25, protože tyto kombinace nastavení průměrně poskytovaly nejkvalitnější řešení. 
 
+Vybrané hodnoty kognitivního a sociálního koeficientu spolu s parametry tření byly dále analyzovány na větší instanci o velikosti 500, jak ukazuje obrázek~\ref{fig:qipso-500-koef}.
+Z výsledků je patrné, že nejkvalitnějších řešení bylo dosaženo při kognitivním koeficientu 0{,}5, sociálním koeficientu 0{,}25 a parametru tření 0{,}01.
+Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv počáteční rychlosti na kvalitu řešení se nejvíce odlišovaly u populace velikosti 50 a 100, přičemž lepších výsledků bylo dosaženo při velikosti 100 a tudíž tato počáteční rychlost společně s výše vybranými hodnotami kognitivního koeficientu, sociálního koeficientu a~parametru tření byly vybrány k další analýze při větších instancích problému. 
+
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.98\textwidth]{qipso/boxplot_qipso_500_all_velocity.pdf}
     \caption{Závislost kvality řešení na velikosti populace pro různé hodnoty počáteční rychlosti. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instanci velikosti 500 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh pro každou kombinaci testovaných parametrů.}
     \label{fig:qipso-500-velocity}
 \end{figure}
-
-Vybrané hodnoty kognitivního a sociálního koeficientu spolu s parametry tření byly dále analyzovány na větší instanci o velikosti 500, jak ukazuje obrázek~\ref{fig:qipso-500-koef}.
-Z výsledků je patrné, že nejkvalitnějších řešení bylo dosaženo při kognitivním koeficientu 0,5, sociálním koeficientu 0,25 a parametru tření 0,01.
-Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv počáteční rychlosti na kvalitu řešení se nejvíce odlišovaly u populace velikosti 50 a 100, přičemž lepších výsledků bylo dosaženo při velikosti 100 a tudíž tato počáteční rychlost společně s výše vybranými hodnotami kognitivního koeficientu, sociálního koeficientu a~parametru tření byly vybrány k další analýze při větších instancích problému. 
 
 \begin{table}[ht!]
     \centering
@@ -466,11 +467,11 @@ Prezentovaná data na obrázku~\ref{fig:qipso-500-velocity} zobrazující vliv p
     \begin{subfigure}[b]{0.24\textwidth}
         \includegraphics[width=\linewidth]{qipso/boxplot_qipso_10000_large_100.0.pdf}
     \end{subfigure}
-    \caption{Porovnání kvality nalezených řešení při hodnotě počáteční rychlosti 100, kognitivního koeficientu $0,5$, sociálního koeficientu $0,25$, parametru tření $0,001$ a pětičlenné populaci při velkých instancích problému. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 1\,000, 2\,000, 5\,000 a 10\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
+    \caption{Porovnání kvality nalezených řešení při hodnotě počáteční rychlosti 100, kognitivního koeficientu $0{,}5$, sociálního koeficientu $0{,}25$, parametru tření $0{,}01$ a pětičlenné populaci při velkých instancích problému. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 1\,000, 2\,000, 5\,000 a 10\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
     \label{fig:qipso-large}
 \end{figure}
 
-Na obrázku~\ref{fig:qipso-large} jsou uvedeny výsledky experimentů provedených na velkých instancích problému s konfigurací algoritmu nastavenou na počáteční rychlost 100, kognitivní koeficient 0,5, sociální koeficient 0,25, parametr tření 0,01 a pětičlennou populaci.
+Na obrázku~\ref{fig:qipso-large} jsou uvedeny výsledky experimentů provedených na velkých instancích problému s konfigurací algoritmu nastavenou na počáteční rychlost 100, kognitivní koeficient 0{,}5, sociální koeficient 0{,}25, parametr tření 0{,}01 a pětičlennou populaci.
 Z grafů a z tabulky~\ref{tab:qipso-high-max-values} nejvyšších dosažených hodnot fitness je patrné, že při velikosti instance 1\,000 algoritmus dosáhl optimálního řešení, zatímco při velikostech instancí 2\,000 a 5\,000 se výsledná řešení pohybovala velmi blízko optimu. 
 
 \newpage
@@ -489,7 +490,7 @@ V této fázi však převládá explorace, která vede k výrazným změnám v h
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\linewidth]{qipso/qipso_convergence_2000_c1_0.5_c2_0.25_omega_0.01_velocity_100.0_population_5.pdf}
     \end{subfigure}
-    \caption{Konvergenční křivky algoritmu, jehož parametr počáteční rychlosti byl nastaven na 100, kognitivního koeficientu na $0,5$, sociálního koeficientu na $0,25$, parametru tření na $0,001$ při pětičlenné populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
+    \caption{Konvergenční křivky algoritmu, jehož parametr počáteční rychlosti byl nastaven na 100, kognitivního koeficientu na $0{,}5$, sociálního koeficientu na $0{,}25$, parametru tření na $0{,}01$ při pětičlenné populaci. Data prezentovaná na grafu byla získána algoritmem \emph{QIPSO} na instancích, po řadě, velikosti 500 a 2\,000 pomocí 30 nezávislých běhů s 10\,000 evaluacemi na běh.}
     \label{fig:qipso-convergence}
 \end{figure}
 

@@ -1,6 +1,6 @@
 \chapter{Optimalizace úlohy batohu pomocí kvantově inspirovaných evolučních algoritmů}
 
-Problém batohu patří mezi základní kombinatorické optimalizační úlohy, jenž nachází široké uplatnění v oblastech, jako jsou logistika, ekonomie nebo plánování zdrojů a patří do skupiny NP-těžkých problémů. 
+Problém batohu patří mezi základní kombinatorické optimalizační úlohy, jež nachází široké uplatnění v oblastech, jako jsou logistika, ekonomie nebo plánování zdrojů a patří do skupiny NP-těžkých problémů. 
 Jednou z možností, jak dosáhnout dostatečně kvalitního řešení v~rozumném čase, je použití kvantově inspirovaných evolučních algoritmů, které využívají principy kvantové mechaniky a biologické evoluce. 
 
 Kapitola nejdříve poskytne úvod do konceptu řešeného problému batohu, následně popíše reprezentaci tohoto problému v kontextu kvantově inspirovaných evolučních algoritmů a v poslední části se bude věnovat návrhu jednotlivých experimentů, přičemž jejich výsledky budou vyhodnoceny v kapitole~\ref{chapt:experiments}.
@@ -56,11 +56,11 @@ Každé řešení problému batohu je utvářeno řetězcem $m$ kvantových bit�
 Tento řetězec kvantových bitů reprezentuje lineární superpozici všech možných řešení, přičemž jeho délka $m$ odpovídá počtu položek v instanci problému batohu~\cite{qiga}.
 
 Tato kvantová reprezentace řešení určuje pravděpodobnosti vložení či nevložení položky do batohu. 
-Aby bylo možné získat konkrétní binární řešení $x = \begin{pmatrix} x_1 & x_2 & \dots & x_m \end{pmatrix}$, je nutné provést pozorování kvantového stavu, při kterém je každý bit $x_i$ vektoru $x$ pro $i = 1,2,\dots\,m$ získán tak, že je vygenerováno náhodné číslo $r \sim \left(0,1\right)$. 
+Aby bylo možné získat konkrétní binární řešení $x = \begin{pmatrix} x_1 & x_2 & \dots & x_m \end{pmatrix}$, je nutné provést pozorování kvantového stavu, při kterém je každý bit $x_i$ vektoru $x$ pro $i = 1,2,\dots\,m$ získán tak, že je vygenerováno náhodné číslo $r \sim U\left(0,1\right)$. 
 Pokud je splněna podmínka $r < \left| \beta_i \right|^2$ je na $i$-té pozici binárního řetězce nastavena $1$, jinak je nastavena~$0$. 
 Tento postup je popsán v~algoritmu~\ref{alg:make}~\cite{qiga}.
 
-\begin{algorithm}[ht!]
+\begin{algorithm}[H]
     \caption{Proces generování binárního řešení problému batohu~\cite{qiga}}
     \label{alg:make}
     $i \gets 0$\;
@@ -91,14 +91,14 @@ V závěrečném kroku algoritmus odstraní poslední přidanou položku do bato
         \textit{knapsack-overfilled} $\gets$ \textbf{pravda}\;
     }
     \While{\textit{knapsack-overfilled}}{
-        Výběr $i$-té položku batohu\;
+        Výběr $i$-té položky batohu\;
         $x_i \gets 0$\;
         \If{$\sum_{i=1}^{m} w_i x_i \leq C$}{
             \textit{knapsack-overfilled} $\gets$ \textbf{nepravda}\;
         }
     }
     \While{\textbf{not} \textit{knapsack-overfilled}}{
-        Výběr $j$-té položku batohu\;
+        Výběr $j$-té položky batohu\;
         $x_j \gets 1$\;
         \If{$\sum_{i=1}^{m} w_i x_i > C$}{
             \textit{knapsack-overfilled} $\gets$ \textbf{pravda}\;
@@ -111,7 +111,8 @@ Případně je možné místo náhodného výběru položek využít princip, kd
 
 Při experimentech byla místo obecného procesu opravy řešení využita heuristika, jež místo náhodného odstraňování a přidávání položek volí vždy tu položku, jejíž poměr ceny a váhy je nejvýhodnější pro odstranění nebo pro zpětné doplnění, jelikož se dle článku~\cite{repair1} ukázala jako potencionálně efektivnější. 
 Tento postup je popsán algoritmem~\ref{alg:repair-updated}.
-\begin{algorithm}[ht]
+
+\begin{algorithm}[H]
     \caption{Proces opravy nevalidního řešení pomocí poměru váha/hodnota~\cite{repair1,repair2,repair3}}
     \label{alg:repair-updated}
     \While{$\sum_{i=1}^m w_i x_i > C$}{
@@ -131,9 +132,8 @@ Algoritmus zajišťuje, že výsledné řešení bude vždy splňovat kapacitní
 Nejprve jsou odstraňovány položky s nejhorším poměrem váhy a ceny a následně jsou doplňovány položky s nejlepším poměrem, čímž je efektivně opraven kvantový chromozom. 
 
 \section{Návrh experimentů}\label{sec:experiments-design}
-Tato sekce podrobně popisuje návrh a parametrizaci experimentů, které slouží k analýze a~vyhodnocení vyladění nastavení parametrů jednotlivých algoritmů. 
-% Dále slouží k porovnání kvantově inspirovaných algoritmů mezi sebou a rovněž k porovnání s jejich klasickými variantami a to vše při řešení různých velikostí instancí problému batohu. 
-V následujících sekcích proměnná $j$ označuje $j$-tého jedince v populaci, $i$ odpovídá $i$-té položce batohu a~$t$~reprezentuje aktuální iteraci evolučního procesu. 
+Tato sekce podrobně popisuje návrh a parametrizaci experimentů, které slouží k analýze a~ladění hodnot parametrů jednotlivých algoritmů. 
+V následujících sekcích proměnná $j$~označuje $j$-tého jedince v populaci, $i$ odpovídá $i$-té položce batohu a~$t$~reprezentuje aktuální iteraci evolučního procesu. 
 
 V tabulce \ref{tab:experiments-design} jsou uvedeny použité datové sady, velikosti instancí $m$ datových sad, počet evaluací fitness funkce a počet nezávislých opakování každého nastavení algoritmu. 
 Datové sady jsou rozděleny do dvou skupin:
@@ -142,7 +142,7 @@ Datové sady jsou rozděleny do dvou skupin:
     \item datové sady s vysokým počtem položek problému batohu, respektive 1\,000, 2\,000, 5\,000 a 10\,000\footnote{Zdroj: \url{http://artemisa.unicauca.edu.co/~johnyortega/instances_01_KP/}}, jenž byly využity pro ověření schopností \emph{QIEA} při řešení větších instancí problému. 
 \end{itemize}
 Počet evaluací fitness byl pro většinu experimentů nastaven na $10\,000$. 
-U největších instancí s $m = 10\,000$ však byly navíc provedeny běhy se $100\,000$ evaluacemi, aby bylo možné posoudit chování algoritmů v případě při delším výpočetním čase. 
+U největších instancí s~$m = 10\,000$ však byly navíc provedeny běhy se $100\,000$ evaluacemi, aby bylo možné posoudit chování algoritmů v případě poskytnutí delšího výpočetního času. 
 
 \begin{table}[ht]
     \centering
@@ -183,12 +183,12 @@ U největších instancí s $m = 10\,000$ však byly navíc provedeny běhy se $
     \caption{Přehled datových sad, optimálních hodnot a parametrů experimentů.}
     \label{tab:experiments-design}
 \end{table}
-Pevně stanovený počet evaluací a počet nezávislých opakování jednotlivých nastavení algoritmů umožňují vyhodnotit vliv velikosti problému, počtu jedinců v populaci a parametrů algoritmů na rychlost konvergence a kvalitu dosažených řešení. 
+Pevně stanovený počet evaluací a počet nezávislých opakování jednotlivých nastavení algoritmů umožňuje vyhodnotit vliv velikosti problému, počtu jedinců v populaci a parametrů algoritmů na rychlost konvergence a kvalitu dosažených řešení. 
 
 V následující části jsou popsány jednotlivé testované algoritmy a jejich nastavení, přičemž výsledky experimentů spolu s komentářem budou prezentovány v kapitole~\ref{chapt:experiments}. 
   
 \subsection*{Kvantově inspirovaný genetický algoritmus}
-Kvantově inspirovaný genetický algoritmus popsaný v sekci~\ref{sec:qiga} společně s jeho pseudokódem (alg.~\ref{alg:ea-algo}, str.~\pageref{alg:ea-algo}), umožňuje ladění hodnoty úhlu rotace $\Delta\theta_{j_i}$ pravděpodobnostních koeficientů $\alpha_{j_i}\left(t\right)$ a~$\beta_{j_i}\left(t\right)$ po jednotkové kružnici, vizte obrázek~\ref{fig:qiga-rotation-gate}.
+Kvantově inspirovaný genetický algoritmus popsaný v sekci~\ref{sec:qiga} společně s jeho pseudokódem (alg.~\ref{alg:BinaryQIEA}, str.~\pageref{alg:BinaryQIEA}), umožňuje ladění hodnoty úhlu rotace $\Delta\theta_{j_i}$ pravděpodobnostních koeficientů $\alpha_{j_i}\left(t\right)$ a~$\beta_{j_i}\left(t\right)$ po jednotkové kružnici, vizte obrázek~\ref{fig:qiga-rotation-gate}.
 Závislost parametru rotace $\Delta\theta_{j_i}$ na velikosti populace byla experimentálně vyhodnocena tak, že každá hodnota rotace byla pro danou instanci s velikostí $m$ testována se všemi zvolenými velikostmi populace.
 Jednotlivá testovaná nastavení jsou uvedena v tabulce~\ref{tab:qiga-all-instance}.
 
@@ -258,11 +258,11 @@ Hodnoty parametrů těchto metod byly převzaty z článku~\cite{qisa} a~jsou uv
       \cmidrule(lr){2-3}
             & \textbf{Konstantní}  & \textbf{Sigmoidní} \\
       \midrule
-      $w$   & $\frac{9}{n}$        & ---                \\[1ex]
+      $w$   & $\frac{9}{m}$        & ---                \\[1ex]
       $w_1$ & ---                  & $50$               \\[1ex]
       $w_2$ & ---                  & $0,2$              \\[1ex]
-      $w_3$ & ---                  & $\frac{9}{n}$      \\[1ex]
-      $w_4$ & ---                  & $\frac{9}{n}$      \\
+      $w_3$ & ---                  & $\frac{9}{m}$      \\[1ex]
+      $w_4$ & ---                  & $\frac{9}{m}$      \\
       \bottomrule
     \end{tabular}
     \caption{Hodnoty parametrů zahřívacích funkcí~\cite{qisa}.}
@@ -348,7 +348,7 @@ Tyto koeficienty $\omega$, $c_1$ a $c_2$ splňují konvergenční podmínku čá
 \begin{equation*}
     \omega > \frac{c_1 + c_2}{2} - 1.
 \end{equation*}
-Zároveň platí, že částice budou rychleji konvergovat ke globálnímu optimu roje než k lokálnímu optimu jednotlivých částic, neboť je splněna nerovnost $c_2 > c_1$. 
+Zároveň platí, že částice budou rychleji konvergovat ke globálnímu optimu roje než k lokálnímu optimu jednotlivých částic, neboť je splněna nerovnost $c_2 > c_1$~\cite{qse}. 
 
 \begin{table}[ht]
     \centering
@@ -394,14 +394,14 @@ Přehled všech testovaných nastavení je uveden v tabulce~\ref{tab:qse-all-ins
     \label{tab:qse-all-instances}
 \end{table}
 
-Na rozdíl od algoritmů \emph{QIGA} a \emph{QISA}, které neumožňují vzájemnou komunikaci jedinců v populaci, algoritmus \emph{QSE} tento mechanismus využívá. 
+Na rozdíl od algoritmů \emph{QIGA} a \emph{QISA}, které neumožňují vzájemnou komunikaci jedinců v populaci, algoritmus \emph{QSE} tento mechanismus již využívá. 
 Díky tomu mohou jedinci sdílet informace o kvalitě nalezených řešení. 
 
 Výsledky experimentů pro \emph{QSE} jsou vyhodnoceny v následující kapitole v sekci~\ref{sec:exp-qse}.
 
 \subsection*{Kvantově inspirovaná optimalizace rojem částic}
-Algoritmus kvantově inspirované optimalizace rojem částic, jenž vychází z kombinace principů algoritmů \emph{QIGA} a \emph{QSE}, je popsan v sekci~\ref{sec:qipso} a uveden v algoritmu~\ref{alg:qipso}.
-Na rozdíl od algoritmu \emph{QSE} již nevyužívá pevně dané hodnot koeficientů. 
+Algoritmus kvantově inspirované optimalizace rojem částic, jenž vychází z kombinace principů algoritmů \emph{QIGA} a \emph{QSE}, je popsán v sekci~\ref{sec:qipso} a uveden v algoritmu~\ref{alg:qipso}.
+Na rozdíl od algoritmu \emph{QSE} již nevyužívá pevně dané hodnoty koeficientů. 
 
 \begin{table}[ht]
   \centering
@@ -446,137 +446,8 @@ Na rozdíl od algoritmu \emph{QSE} již nevyužívá pevně dané hodnot koefici
 \end{table}
 
 Z tohoto důvodu byl experimentálně ověřován vliv různých kombinací počáteční rychlosti jednotlivých částic, kognitivního koeficientu $c_1$, sociálního koeficientu $c_2$, koeficientu zúžení (tření) $\omega$ při různých velikostech populace~\cite{pso-app, PSO-c1c2w,PSO-X}. 
-Přehled všech testovaných parametrů a~jejich hodnoty je uveden v tabulce~\ref{tab:qipso-all-params}.
+Přehled všech testovaných parametrů a~jejich hodnot je uveden v tabulce~\ref{tab:qipso-all-params}.
 
 Obdobně jako algoritmus \emph{QSE}, také algoritmus \emph{QIPSO} využívá mechanismu vzájemné interakce částic v populaci, čímž je umožněno sdílení informací o kvalitě dosažených řešení. 
 
 Výsledky experimentů pro \emph{QIPSO} jsou vyhodnoceny v následující kapitole v sekci~\ref{sec:exp-qipso}.
-
-% \newpage
-% \subsection*{Klasická varianta GA, SA a PSO}
-% Pro srovnání s kvantově inspirovanými evolučními algoritmy byly provedeny experimenty také s jejich klasickými variantami, konkrétně s:
-% \begin{itemize}
-%     \item genetickým algoritmem \emph{(Genetic Algorithm\,--\,GA)},
-%     \item simulovaným žíháním \emph{(Simulated Annealing\,--\,SA)} a
-%     \item částicovým systémem \emph{(Particle Swarm Optimization\,--\,PSO)}.
-% \end{itemize}
-% Ve všech třech přístupech jsou jedinci v populaci reprezentováni binárním vektorem délky $n$, kde hodnota 1 na $i$-té pozici chromozomu označuje zařazení $i$-té položky do batohu, zatímco hodnota 0 znamená její vynechání. 
-% Cílem všech algoritmů je maximalizace celkové hodnoty položek vložených do batohu.
-
-% Výsledky experimentů jsou souhrnně vyhodnoceny v následující kapitole v sekci~\ref{sec:exp-ea}.
-
-% \subsubsection*{Genetický algoritmus}
-% Princip genetického algoritmu vychází z evolučního algoritmu, popsaného v sekci~\ref{sec:ea}. 
-% V~rám\-ci experimentů byly uvažovány následující varianty selekčních a variančních operátorů~\cite{ga-app}: 
-% \begin{itemize}
-%     \item \textbf{Selekce rodičů:} Rodiče jsou vybíráni metodou vážené rulety. 
-%         Každému jedinci je přiřazena pravděpodobnost odpovídající poměru jeho fitness a součtu fitness všech jedinců v populaci. 
-%         Při volbě rodičů jsou pak jedinci vybíráni na základě jejich pravděpodobností, kdy kvalitnější jedinci mají vyšší šanci dostat se do nové populace. 
-%     \item \textbf{Křížení:} Rodiče jsou náhodně rozděleny do párů a na každou dvojici je aplikováno uniformní křížení. 
-%         Při tomto procesu vznikají dva potomci, jejichž chromozomy jsou složeny z genů obou rodičů, přičemž každý gen je zděděn od jednoho z rodičů podle dané pravděpodobnosti.
-%     \item \textbf{Mutace:} Každý gen všech potomků je s danou pravděpodobností invertován.
-%     \item \textbf{Selekce přeživších:} Novou populaci tvoří $n$ nejlepších jedinců ze sjednocené množiny rodičů a potomků. 
-%         Zároveň jsou zachováni elitní jedinci z předcházející generace. 
-% \end{itemize}
-
-% V rámci experimentů byl ověřován vliv různých kombinací pravděpodobnosti mutace, pravděpodobnosti křížení, počtu elitních jedinců a velikosti populace. 
-% Přehled všech testovaných nastavení parametrů je uveden v tabulce~\ref{tab:ga-all-params}.
-% \begin{table}[ht]
-%   \centering
-%   \begin{tabular}{c c c c c}
-%     \toprule
-%     \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
-%       & \makecell[c]{\textbf{Pravděpodobnost}\\\textbf{mutace}}
-%       & \makecell[c]{\textbf{Pravděpodobnost}\\\textbf{křížení}}
-%       & \textbf{Počet elit}
-%       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
-%     \midrule
-%     \makecell[c]{100\,--\,500}
-%       & \makecell[c]{0,2; 0,4; 0,6,\\0,8; 1,0}
-%       & \makecell[c]{0,2; 0,4; 0,6,\\0,8; 1,0}
-%       & \makecell[c]{0, 1, 2, 3,\\4, 5}
-%       & \makecell[c]{1, 5, 10, 20, 30,\\40, 50, 100}\\
-%     \bottomrule
-%   \end{tabular}
-%   \caption{Parametry testování algoritmu \emph{GA}.}
-%   \label{tab:ga-all-params}
-% \end{table}
-% Na rozdíl od kvantově inspirované varianty využívá klasický genetický algoritmus přímou interakci jedinců prostřednictvím selekce, křížení a mutace, čímž je umožněno sdílení informací o nalezených řešeních napříč populací. 
-
-% \subsubsection*{Simulované žíhání}
-% Simulované žíhání je metaheuristická metoda inspirovaná procesem chladnutí materiálu ve fyzice. 
-% Algoritmus pracuje s jediným řešením, které je v každé iteraci algoritmu náhodně modifikováno. 
-% Nové řešení je přijato pokud, dojde ke zlepšení fitness.
-% V případě, že je nové řešení horší, může být přesto přijato, avšak pouze s určitou pravděpodobností. 
-% Tato pravděpodobnost je dána teplotou, která se v průběhu času postupně snižuje. 
-% V počátečních fázích je tak vyšší pravděpodobnost přijetí horšího řešení než v pozdějších fázích, což umožňuje algoritmu vyhnout se uvíznutí v lokálních minimech~\cite{sa-app}. 
-
-% Obdobně jako u experimentů s algoritmem \emph{QISA} byl i v tomto případě uvažován výpočet počáteční teploty na základě směrodatné odchylky dle vzorce~\ref{eq:qisa-std}, přičemž tato teplota byla následně v průběhu iterací snižována pomocí různých chladících plánů, popsaných vzorci~\ref{eq:qisa-exp},~\ref{eq:qisa-lin},~\ref{eq:qisa-log} a~\ref{eq:qisa-rec-log}.
-% Přehled všech použitých chladicích plánů, hodnot parametru $\eta$~spolu s testovanými velikostmi populace, je uveden v tabulce~\ref{tab:sa-all-instances}.
-% \begin{table}[ht]
-%   \centering
-%   \begin{tabular}{
-%     c 
-%     >{\centering\arraybackslash}c 
-%     >{\centering\arraybackslash}c 
-%     c
-%   }
-%   \toprule
-%     \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
-%       & \makecell[c]{\textbf{Chladící}\\\textbf{schéma}}
-%       & \makecell[c]{\textbf{Míra}\\\textbf{ochlazování $\boldsymbol{\eta}$}}
-%       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
-%     \midrule
-%     \multirow{2}{*}{100\,--\,500}  
-%       & exp, lin
-%       & 0,90; 0,95; 0,98; 0,99
-%       & \multirow{2}{*}{\makecell[c]{1, 5, 10, 20, 30, \\ 40, 50, 100}} \\ 
-%       \cmidrule(lr){2-3}
-%       & log, rec-log
-%       & ---
-%       & \\
-%     \bottomrule
-%   \end{tabular}
-%   \caption{Parametry testování algoritmu \emph{SA}.}
-%   \label{tab:sa-all-instances}
-% \end{table}
-
-% Podobně jako algoritmy \emph{QIGA} a \emph{QISA}, ani algoritmus \emph{SA} nevyužívá mechanismus vzájemné interakce jedinců, neboť pracuje pouze s jediným řešením v daném čase. 
-% Přesto však byly v experimentech testovány různé velikosti populací, aby bylo možné zhodnotit jejich vliv na rychlost konvergence a kvalitu nalezených řešení. 
-
-% \subsubsection*{Částicový systém}
-% Částicový systém je inspirován sociálním chováním hejn ptáků a ryb, kdy každá částice v~roji reprezentuje jedno řešení problému. 
-% Každá částice má vlastní rychlost, která koriguje její pohyb v prostoru řešení.
-% Tento pohyb je ovlivňován jak vlastní zkušeností částice, tak sdílenou znalostí o částici, jež nalezla aktuálně nejlepší řešení.
-% Obě tyto složky mají při aktualizaci rychlosti přiřazeny specifické váhy, které jsou, po řadě, reprezentovány kognitivním koeficientem $c_1$ a sociálním koeficientem $c_2$. 
-% V experimentech byl dále uvažován rovněž koeficient zúžení $\omega$, jehož cílem je redukovat rychlost částice~\cite{pso-app, PSO-c1c2w,PSO-X}. 
-
-% Přehled všech kombinací zmíněných koeficientů a velikostí populací pro jednotlivé velikosti instancí je uveden v tabulce~\ref{tab:pso-all-params}.
-% \begin{table}[ht]
-%   \centering
-%   \begin{tabular}{c c c c c}
-%     \toprule
-%     \makecell[c]{\textbf{Instance}\\\textbf{$\boldsymbol{n}$}} 
-%       & $\boldsymbol{c_1}$
-%       & $\boldsymbol{c_2}$
-%       & $\boldsymbol{\omega}$
-%       & \makecell[c]{\textbf{Velikost}\\\textbf{populace}} \\
-%     \midrule
-%     \makecell[c]{100}
-%       & \makecell[c]{0,5; 0,75; 1,0;\\1,25; 1,5}
-%       & \makecell[c]{0,5; 0,75; 1,0;\\1,25; 1,5}
-%       & \makecell[c]{0,5; 0,75; 1,0;\\1,25; 1,5}
-%       & \makecell[c]{1, 5, 10, 20, 30,\\40, 50, 100}\\[1ex]
-%     \makecell[c]{250\,--\,500}
-%       & \makecell[c]{1,25; 1,5}
-%       & \makecell[c]{0,5; 0,75}
-%       & \makecell[c]{1}
-%       & \makecell[c]{1, 5, 10, 20,\\30, 40, 50}\\
-%     \bottomrule
-%   \end{tabular}
-%   \caption{Parametry testování algoritmu \emph{PSO}.}
-%   \label{tab:pso-all-params}
-% \end{table}
-
-% Na rozdíl od algoritmů \emph{SA}, \emph{QISA} a \emph{QIGA} využívá algoritmus \emph{PSO} mechanismus kolektivního chování. 
-% Díky čemuž dochází ke sdílení informací napříč částicemi, což umožňuje udržovat rovnováhu prozkoumáváním nových oblastí prostoru a zpřesňováním stávajících oblastí obsahujících slibná řešení. 
