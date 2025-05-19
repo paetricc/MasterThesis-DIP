@@ -49,7 +49,7 @@ Seznam výše obsahuje pouze několik vybraných variant problému batohu.
 Existuje jeho mnoho dalších variant, například omezený problém batohu (\emph{bounded knapsack problem}), kvadratický problém batohu (\emph{quadratic knapsack problem}) a další~\cite{knapsack-problems,knapsack-problems-overview-I,knapsack-problems-overview-II}.
 
 \section{Reprezentace problému batohu pro kvantově inspirované evoluční algoritmy}
-V klasických evolučních algoritmech je řešení problému batohu reprezentováno jako bitový vektor, kde hodnota $1$ reprezentuje stav, kdy byla položka do batohu vložena a hodnota~$0$ značí nevložení položky do batohu~\cite{qiga}.
+V klasických evolučních algoritmech je řešení problému batohu reprezentováno jako bitový vektor, kde hodnota $1$ reprezentuje stav, kdy byla položka do batohu vložena a hodnota $0$ značí nevložení položky do batohu~\cite{qiga}.
 
 V kvantově inspirovaných evolučních algoritmech je reprezentace řešení inspirována kvantovým bitem. 
 Každé řešení problému batohu je utvářeno řetězcem $m$ kvantových bitů, přičemž každý kvantový bit $q_i$ je složen z dvojice koeficientů $\alpha_i$ a $\beta_i$ dle rovnice~\ref{eq:quantum-representation}, kde $\left| \alpha_i \right|^2$ představuje pravděpodobnost, že položka nebude do batohu vložena, zatímco $\left| \beta_i \right|^2$ udává pravděpodobnost jejího vložení. 
