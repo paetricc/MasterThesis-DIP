@@ -171,8 +171,6 @@ def plot_boxplot_qiga_all_theta(data: pd.DataFrame, instance: int, save_dir: str
     save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
-    save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qiga"))
-
     if int(instance) >= 1000:
         plt.figure(figsize=(5, 8))
 
@@ -186,7 +184,7 @@ def plot_boxplot_qiga_all_theta(data: pd.DataFrame, instance: int, save_dir: str
     plt.xlabel("Velikost populace")
     plt.ylabel("Fitness")
     plt.grid(axis="y")
-    save_plot(save_subdir, f"boxplot_qiga_{instance}_all_theta.pdf")
+    save_plot(save_dir, f"boxplot_qiga_{instance}_all_theta.pdf")
     plt.close()
 
-    save_stats(data, save_subdir, f"stats_qiga_{instance}_all_theta.csv", groupby_column="theta", value_column="fitness")
+    save_stats(data, save_dir, f"stats_qiga_{instance}_all_theta.csv", groupby_column="theta", value_column="fitness")

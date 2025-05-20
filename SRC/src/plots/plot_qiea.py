@@ -48,7 +48,7 @@ def plot_qiga(data: pd.DataFrame, algorithm: str = None, instance: int = 0, save
         excluded_theta_values = [0.2, 0.5, 1.0, 2.0]
         data = data[~data["theta"].isin(excluded_theta_values)]
 
-    plot_boxplot_qiga_all_theta(data, instance, save_dir)
+    plot_boxplot_qiga_all_theta(data, instance, save_subdir)
 
 
 def plot_qisa(data: pd.DataFrame, algorithm: str = None, instance: int = 0, save_dir: str = None):
@@ -155,17 +155,17 @@ def plot_qipso(data: pd.DataFrame, algorithm: str = None, instance: int = 0, sav
                         plot_convergence_qipso(data, instance, cognitive, social, omega, velocity, pop, save_subdir)
 
     if int(instance) == 100:
-        plot_boxplot_qipso_all_omega(data, instance, save_dir)
+        plot_boxplot_qipso_all_omega(data, instance, save_subdir)
 
     excluded_pop_values = [1, 50, 100]
     data = data[~data["population"].isin(excluded_pop_values)]
 
     if int(instance) != 100:
-        plot_boxplot_qipso_all_omega(data, instance, save_dir)
+        plot_boxplot_qipso_all_omega(data, instance, save_subdir)
 
-    plot_boxplot_qipso_all_velocity(data, instance, save_dir)    
-    plot_boxplot_qipso_all_social(data, instance, save_dir)
-    plot_boxplot_qipso_all_cognition(data, instance, save_dir)
+    plot_boxplot_qipso_all_velocity(data, instance, save_subdir)    
+    plot_boxplot_qipso_all_social(data, instance, save_subdir)
+    plot_boxplot_qipso_all_cognition(data, instance, save_subdir)
 
 
 def plot_boxplots_best_qiea(data: pd.DataFrame, instance: int = 0, save_dir: str = None):

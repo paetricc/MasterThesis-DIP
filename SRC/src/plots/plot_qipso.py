@@ -148,8 +148,6 @@ def plot_boxplot_qipso_all_cognition(data: pd.DataFrame, instance: int, save_dir
     save_dir : str
         Cílová složka pro uložení grafu.
     """
-    save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qipso"))
-
     sns.boxplot(data=data, x="population", y="fitness", hue="cognitive", palette="Set3", dodge=True)
     plt.title(f"Vliv kognitivního koeficientu a velikosti populace (QIPSO-{instance})")
 
@@ -160,7 +158,7 @@ def plot_boxplot_qipso_all_cognition(data: pd.DataFrame, instance: int, save_dir
     plt.xlabel("Velikost populace")
     plt.ylabel("Fitness")
     plt.grid(axis="y")
-    save_plot(save_subdir, f"boxplot_qipso_{instance}_all_cognitive.pdf")
+    save_plot(save_dir, f"boxplot_qipso_{instance}_all_cognitive.pdf")
     plt.close()    
 
 
@@ -177,8 +175,6 @@ def plot_boxplot_qipso_all_social(data: pd.DataFrame, instance: int, save_dir: s
     save_dir : str
         Cílová složka pro uložení grafu.
     """
-    save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qipso"))
-
     sns.boxplot(data=data, x="population", y="fitness", hue="social", palette="Set3", dodge=True)
     plt.title(f"Vliv sociálního koeficientu a velikosti populace (QIPSO-{instance})")
 
@@ -190,7 +186,7 @@ def plot_boxplot_qipso_all_social(data: pd.DataFrame, instance: int, save_dir: s
     plt.xlabel("Velikost populace")
     plt.ylabel("Fitness")
     plt.grid(axis="y")
-    save_plot(save_subdir, f"boxplot_qipso_{instance}_all_social.pdf")
+    save_plot(save_dir, f"boxplot_qipso_{instance}_all_social.pdf")
     plt.close()
 
 
@@ -207,8 +203,6 @@ def plot_boxplot_qipso_all_omega(data: pd.DataFrame, instance: int, save_dir: st
     save_dir : str
         Cílová složka pro uložení grafu.
     """
-    save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qipso"))
-
     sns.boxplot(data=data, x="population", y="fitness", hue="omega", palette="Set3", dodge=True)
     plt.title(f"Vliv parametru $\omega$ a velikosti populace (QIPSO-{instance})")
 
@@ -219,7 +213,7 @@ def plot_boxplot_qipso_all_omega(data: pd.DataFrame, instance: int, save_dir: st
     plt.xlabel("Velikost populace")
     plt.ylabel("Fitness")
     plt.grid(axis="y")
-    save_plot(save_subdir, f"boxplot_qipso_{instance}_all_omega.pdf")
+    save_plot(save_dir, f"boxplot_qipso_{instance}_all_omega.pdf")
     plt.close()
 
 
@@ -236,8 +230,6 @@ def plot_boxplot_qipso_all_velocity(results_df: pd.DataFrame, instance: int, sav
     save_dir : str
         Cílová složka pro uložení grafu.
     """
-    save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qipso"))
-
     sns.boxplot(data=results_df, x="population", y="fitness", hue="velocity", palette="Set3", dodge=True)
     plt.title(f"Vliv počáteční rychlosti a velikosti populace (QIPSO-{instance})")
 
@@ -248,5 +240,5 @@ def plot_boxplot_qipso_all_velocity(results_df: pd.DataFrame, instance: int, sav
     plt.xlabel("Velikost populace")
     plt.ylabel("Fitness")
     plt.grid(axis="y")
-    save_plot(save_subdir, f"boxplot_qipso_{instance}_all_velocity.pdf")
+    save_plot(save_dir, f"boxplot_qipso_{instance}_all_velocity.pdf")
     plt.close()
