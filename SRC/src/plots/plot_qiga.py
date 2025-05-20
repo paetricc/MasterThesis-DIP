@@ -32,7 +32,7 @@ def plot_boxplot_qiga_population(data: pd.DataFrame, population: int, instance: 
         Velikost populace, pro kterou bude graf vykreslen.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
     save_subdir = create_subdir(save_dir, str("population"))
@@ -68,7 +68,7 @@ def plot_boxplot_qiga_theta(data: pd.DataFrame, theta: float, instance: int, sav
         Hodnota parametru theta, pro který bude graf vykreslen.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
     save_subdir = create_subdir(save_dir, str("theta"))
@@ -112,7 +112,7 @@ def plot_convergence_qiga(data: pd.DataFrame, instance: int, theta: float, popul
         Hodnota parametru theta, pro který bude graf vykreslen.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu.
     """
     save_subdir = create_subdir(save_dir, "convergence")
@@ -168,7 +168,7 @@ def plot_boxplot_qiga_all_theta(data: pd.DataFrame, instance: int, save_dir: str
         Data experimentů.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
     save_subdir = create_subdir(create_subdir(create_subdir(save_dir, str("all")), str(instance)), str("qiga"))
