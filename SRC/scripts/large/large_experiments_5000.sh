@@ -20,9 +20,10 @@ EVAL_LIMIT=100000
 EXPERIMENTS=30
 LOG_DIR="logs"
 
+mkdir -p $LOG_DIR
 for ((i=1; i<=EXPERIMENTS; i++)); do
     echo "Spouštění QIGA experimentu  číslo: $i"
-    nohup nice $SCRIPT "qiga" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 1 --magnitude 0.002 --output $OUTPUT --append_results > "$LOG_DIR/qiga_${INSTANCE}_run${i}.log" 2>&1 &
+    nohup nice $SCRIPT "qiga" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 1 --omega 0.002 --output $OUTPUT --append_results > "$LOG_DIR/qiga_${INSTANCE}_run${i}.log" 2>&1 &
 
     echo "Spouštění QISA experimentu  číslo: $i"
     nohup nice $SCRIPT "qisa" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 1 --cooling "rec-logarithmic" --observation "sigmoid" --output $OUTPUT --append_results > "$LOG_DIR/qisa_${INSTANCE}_run${i}.log" 2>&1 &
@@ -31,5 +32,5 @@ for ((i=1; i<=EXPERIMENTS; i++)); do
     nohup nice $SCRIPT "qse" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 5 --velocity 1 --output $OUTPUT --append_results > "$LOG_DIR/qse_${INSTANCE}_run${i}.log" 2>&1 &
     
     echo "Spouštění QIPSO experimentu  číslo: $i"
-    nohup nice $SCRIPT "qipso" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 5 --friction 0.01 --c1 0.5 --c2 0.25 --velocity 100 --output $OUTPUT --append_results > "$LOG_DIR/qipso_${INSTANCE}_run${i}.log" 2>&1 &
+    nohup nice $SCRIPT "qipso" $FILE_PATH --evaluations $EVAL_LIMIT --experiments 1 --population 5 --omega 0.01 --c1 0.5 --c2 0.25 --velocity 100 --output $OUTPUT --append_results > "$LOG_DIR/qipso_${INSTANCE}_run${i}.log" 2>&1 &
 done

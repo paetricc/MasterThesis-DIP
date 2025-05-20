@@ -30,7 +30,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Vykreslení grafů pro evoluční algoritmy a kvantově inspirované evoluční algoritmy.")
     parser.add_argument("source_dir", type=str, help="Cesta ke zdrojové složce (výchozí: outputs)")
     parser.add_argument("--save_dir", type=str, default=None, help="Cesta pro uložení grafů (pokud není zadána, grafy se zobrazí)")
-    parser.add_argument("--algorithm", nargs='+', choices=["qiga", "qipso", "qse", "qisa", "ga", "pso", "sa"], default=None, help="Typ algoritmu pro vykreslení.")
+    parser.add_argument("--algorithm", nargs='+', choices=["qiga", "qisa", "qse", "qipso"], default=None, help="Typ algoritmu pro vykreslení.")
     parser.add_argument("--instance", nargs='+', default=None, help="Velikost instance problému pro zpracování.")
     return parser.parse_args()
 

@@ -23,7 +23,7 @@ def argument_parser() -> argparse.ArgumentParser:
     cooling     = ["exponential", "linear", "logarithmic", "rec-logarithmic"]
     observation = ["constant", "sigmoid"]
 
-    parser.add_argument("algorithm",      choices=algorithms,        help="Typ algoritmus pro běh (QIGA, QIPSO, QIDE, GA, PSO)")
+    parser.add_argument("algorithm",      choices=algorithms,        help="Typ algoritmus pro běh (QIGA, QISA, QSE, QIPSO)")
     parser.add_argument("input",          type=str,                  help="Cesta ke vstupní datové sadě")
     parser.add_argument("--append_results", action="store_true",     help="Rozhodnutí zda se mají výsledky experimentů připojovat k již existujícím")
     parser.add_argument("--output",       type=str,   default=None,  help="Cesta ke složce pro uložení výsledků experimentů")
