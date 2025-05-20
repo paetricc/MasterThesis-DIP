@@ -40,7 +40,7 @@ def plot_convergence_qse(data: pd.DataFrame, instance: int, velocity: float, pop
     fitness_histories = filtered["fitness_history"].tolist()
 
     if not fitness_histories:
-        print(f"Žádná data pro theta={velocity}, population={population}")
+        print(f"Žádná data pro počáteční rychlost={velocity}, population={population}")
         return
 
     max_length = max(len(fitness) for fitness in fitness_histories)
