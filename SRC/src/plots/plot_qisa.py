@@ -32,7 +32,7 @@ def plot_boxplot_qisa_cooling(data: pd.DataFrame, instance: int, cooling: str, s
         Zvolený chladicí plán, pro který bude graf vykreslen.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
     save_subdir = create_subdir(save_dir, str("cooling"))
@@ -75,7 +75,7 @@ def plot_boxplot_qisa_observation(data: pd.DataFrame, instance: int, heated: str
         Zvolená zahřívací funkce, pro který bude graf vykreslen.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """
     save_subdir = create_subdir(save_dir, str("heated"))
@@ -114,7 +114,7 @@ def plot_boxplot_qisa_coolingrate(data: pd.DataFrame, instance: int, coolingrate
         Zvolená míra ochlazování, pro který bude graf vykreslen.
     instance : int
         Velikost instance problému.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """    
     save_subdir = create_subdir(save_dir, str("cooling_rate"))
@@ -153,7 +153,7 @@ def plot_boxplot_qisa_col_rate(data: pd.DataFrame, population: int, instance: in
         Velikost instance problému.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """ 
     if data.empty:
@@ -207,7 +207,7 @@ def plot_boxplot_qisa_noncol_rate(data: pd.DataFrame, population: int, instance:
         Velikost instance problému.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu a statistik.
     """ 
     save_subdir = create_subdir(save_dir, str("cooling_non-cooling-rate"))
@@ -250,7 +250,7 @@ def plot_convergence_qisa_noncol_rate(data: pd.DataFrame, instance: int, cooling
         Zvolené tepelně-řízení pozorování.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu.
     """ 
     save_subdir = create_subdir(create_subdir(save_dir, "convergence"), "non-cooling-rate")
@@ -309,7 +309,7 @@ def plot_convergence_qisa_col_rate(data: pd.DataFrame, instance: int, cooling: s
         Zvolené tepelně-řízení pozorování.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu.
     """ 
     save_subdir = create_subdir(create_subdir(save_dir, "convergence"), "cooling-rate")
@@ -364,7 +364,7 @@ def plot_boxplot_qisa_large(data: pd.DataFrame, instance: int, cooling: str, obs
         Zvolené tepelně-řízení pozorování.
     population : int
         Velikost populace, pro kterou bude graf vykreslen.
-    save_dir : str, optional
+    save_dir : str
         Cílová složka pro uložení grafu.
     """
     save_subdir = create_subdir(save_dir, "summary")
