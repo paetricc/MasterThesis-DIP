@@ -10,7 +10,7 @@
 import numpy as np
 from typing import List, Tuple
 
-from qiea.operations import heated_observe, repair, fitness, compute_initial_temperature, update_temperature
+from qiea.operations import heated_observe, repair, fitness, initial_temperature, update_temperature
 
 
 def qisa(
@@ -62,7 +62,7 @@ def qisa(
     current_fitness: np.ndarray          = np.zeros(population_size, dtype=float)
     fitness_histories: np.ndarray        = np.zeros((population_size, num_generations), dtype=float)
     # Inicializace teplot
-    initial_temp = int(compute_initial_temperature(item_values, item_weights, knapsack_capacity))
+    initial_temp = int(initial_temperature(item_values, item_weights, knapsack_capacity))
     temperature = initial_temp
     # Pozorování kvantové populace
     observed_population = heated_observe(quantum_population, temperature, observation, w=9/num_items, w1=50, w2=0.2, w3=9/num_items, w4=9/num_items, T0=initial_temp)
