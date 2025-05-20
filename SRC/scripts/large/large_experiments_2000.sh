@@ -16,7 +16,7 @@ SCRIPT="python3 src/qiea.py"
 OUTPUT="outputs"
 FILE_PATH="datasets/2000.txt"
 INSTANCE=2000
-EVAL_LIMIT=10000
+EVAL_LIMIT=100000
 EXPERIMENTS=30
 LOG_DIR="logs"
 

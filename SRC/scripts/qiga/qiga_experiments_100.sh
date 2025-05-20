@@ -23,6 +23,6 @@ for POP_SIZE in "${POP_SIZES[@]}"; do
     for THETA in "${THETAS[@]}"; do
         echo "Spouštění experimentů pro populaci velikosti: $POP_SIZE a parametr theta: $THETA."
         $SCRIPT $ALGORITHM $FILE_PATH --population $POP_SIZE --evaluations $EVAL_LIMIT \
-            --experiments $EXPERIMENTS  --magnitude $THETA --output $OUTPUT
+            --experiments $EXPERIMENTS  --theta $THETA --output $OUTPUT
     done
 done

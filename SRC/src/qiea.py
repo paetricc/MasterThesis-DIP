@@ -62,31 +62,6 @@ if __name__ == "__main__":
                 num_generations   = generations, 
                 theta             = args.theta
             )
-        elif args.algorithm == "qipso":
-            if args.velocity is None:
-                args.velocity = 100.0
-            fitness, chromosome, fitness_history = qipso(
-                item_values        = profits, 
-                item_weights       = weights, 
-                knapsack_capacity  = capacity, 
-                population_size    = args.population, 
-                num_generations    = generations,
-                cognitive          = args.c1,
-                social             = args.c2,
-                omega              = args.friction,
-                velocity           = args.velocity
-            )
-        elif args.algorithm == "qse":
-            if args.velocity is None:
-                args.velocity = 1.0
-            fitness, chromosome, fitness_history = qse(
-                item_values        = profits, 
-                item_weights       = weights, 
-                knapsack_capacity  = capacity, 
-                population_size    = args.population, 
-                num_generations    = generations,
-                velocity           = args.velocity
-            )
         elif args.algorithm == "qisa":
             if args.cooling == "logarithmic" or args.cooling == "rec-logarithmic":
                 args.cooling_rate = None
@@ -99,6 +74,31 @@ if __name__ == "__main__":
                 cooling_rate      = args.cooling_rate,
                 observation       = args.observation,
                 cooling           = args.cooling
+            )
+        elif args.algorithm == "qse":
+            if args.velocity is None:
+                args.velocity = 1.0
+            fitness, chromosome, fitness_history = qse(
+                item_values        = profits, 
+                item_weights       = weights, 
+                knapsack_capacity  = capacity, 
+                population_size    = args.population, 
+                num_generations    = generations,
+                velocity           = args.velocity
+            )
+        elif args.algorithm == "qipso":
+            if args.velocity is None:
+                args.velocity = 100.0
+            fitness, chromosome, fitness_history = qipso(
+                item_values        = profits, 
+                item_weights       = weights, 
+                knapsack_capacity  = capacity, 
+                population_size    = args.population, 
+                num_generations    = generations,
+                cognitive          = args.c1,
+                social             = args.c2,
+                omega              = args.omega,
+                velocity           = args.velocity
             )
         
         results.append({"fitness": fitness, "chromosome": chromosome, "fitness_history": fitness_history})
@@ -161,7 +161,7 @@ if __name__ == "__main__":
             generations  = generations,
             c1           = args.c1,
             c2           = args.c2,
-            friction     = args.friction,
+            omega        = args.omega,
             velocity     = args.velocity
         )
 
