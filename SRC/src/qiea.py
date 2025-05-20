@@ -46,7 +46,7 @@ def argument_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     args = argument_parser()
 
-    generations = calculate_iterations(args.evaluations, args.population, 0)
+    generations = calculate_iterations(args.evaluations, args.population)
     print(f"Evaluations: {args.evaluations}, Population: {args.population}, Iterations: {generations}")
 
     profits, weights, capacity, dataset = load_knapsack_data(args.input)
