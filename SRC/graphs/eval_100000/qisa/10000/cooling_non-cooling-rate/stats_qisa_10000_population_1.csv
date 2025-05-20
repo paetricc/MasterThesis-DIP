@@ -1,0 +1,2 @@
+cooling,observation,mean,std,median,q25,q75,max,count
+rec-logarithmic,sigmoid,561125.5666666667,670.6565328523058,561042.0,560577.25,561627.25,562368.0,30
