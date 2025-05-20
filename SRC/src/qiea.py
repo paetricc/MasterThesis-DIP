@@ -47,7 +47,7 @@ if __name__ == "__main__":
     args = argument_parser()
 
     generations = calculate_iterations(args.evaluations, args.population)
-    print(f"Evaluations: {args.evaluations}, Population: {args.population}, Iterations: {generations}")
+    print(f"Evaluace: {args.evaluations}, velikost populace: {args.population}, počet generací: {generations}")
 
     profits, weights, capacity, dataset = load_knapsack_data(args.input)
 
@@ -103,28 +103,28 @@ if __name__ == "__main__":
         
         results.append({"fitness": fitness, "chromosome": chromosome, "fitness_history": fitness_history})
 
-        print(f"Experiment {i + 1}/{args.experiments}: Best Value = {fitness}")
+        print(f"Experiment {i + 1}/{args.experiments}: nejlepší hodnota = {fitness}")
 
     if not args.output:
         exit(0)
 
     if args.algorithm == "qiga":
         save_results(
-            algorithm   = args.algorithm,
-            dataset     = dataset,
-            results     = results,
-            output_dir  = args.output,
-            append      = args.append_results,
-            population  = args.population,
-            evaluations = args.evaluations,
-            generations = generations,
-            theta       = args.theta
+            algorithm    = args.algorithm,
+            dataset_name = dataset,
+            results      = results,
+            output_dir   = args.output,
+            append       = args.append_results,
+            population   = args.population,
+            evaluations  = args.evaluations,
+            generations  = generations,
+            theta        = args.theta
         )
 
     if args.algorithm == "qisa":
         save_results(
             algorithm    = args.algorithm,
-            dataset      = dataset,
+            dataset_name = dataset,
             results      = results,
             output_dir   = args.output,
             append       = args.append_results,
@@ -138,31 +138,31 @@ if __name__ == "__main__":
 
     if args.algorithm == "qse":
         save_results(
-            algorithm   = args.algorithm,
-            dataset     = dataset,
-            results     = results,
-            output_dir  = args.output,
-            append      = args.append_results,
-            population  = args.population,
-            evaluations = args.evaluations,
-            generations = generations,
-            velocity    = args.velocity
+            algorithm    = args.algorithm,
+            dataset_name = dataset,
+            results      = results,
+            output_dir   = args.output,
+            append       = args.append_results,
+            population   = args.population,
+            evaluations  = args.evaluations,
+            generations  = generations,
+            velocity     = args.velocity
         )
 
     if args.algorithm == "qipso":
         save_results(
-            algorithm   = args.algorithm,
-            dataset     = args.input,
-            results     = results,
-            output_dir  = args.output,
-            append      = args.append_results,
-            population  = args.population,
-            evaluations = args.evaluations,
-            generations = generations,
-            c1          = args.c1,
-            c2          = args.c2,
-            friction    = args.friction,
-            velocity    = args.velocity
+            algorithm    = args.algorithm,
+            dataset_name = args.input,
+            results      = results,
+            output_dir   = args.output,
+            append       = args.append_results,
+            population   = args.population,
+            evaluations  = args.evaluations,
+            generations  = generations,
+            c1           = args.c1,
+            c2           = args.c2,
+            friction     = args.friction,
+            velocity     = args.velocity
         )
 
     

@@ -39,7 +39,7 @@ def qiga(
             Parametr theta (výchozí: 0,01)
 
     Returns:
-        Tuple[float, List[int], List[float]]:
+        tuple(float, List[int], List[float]):
             - Nejlepší fitness hodnota dosažená algoritmem.
             - Binární řešení problému reprezentující nejlepší nalezené řešení.
             - Fitness historie nejlepšího nalezeného řešení.

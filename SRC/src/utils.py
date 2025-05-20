@@ -85,7 +85,7 @@ def save_results(algorithm: str, dataset_name: str, results: List[float], output
             fitness_history_str = ";".join(map(str, result["fitness_history"]))
             file.write(f"{idx},{result['fitness']},{chromosome_str},{fitness_history_str}\n")
 
-    print(f"Results saved to: {output_file}")
+    print(f"Výsledky byly uloženy do: {output_file}")
 
 
 def calculate_iterations(eval_limit, population_size, elite_count=0):
