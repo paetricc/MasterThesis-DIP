@@ -172,4 +172,6 @@ graphs:
 	else \
 		echo "Directory $(GRAPHS_SOURCE_DIR) does not exist."; \
 	fi
+###########################
 ### END GRAPHS PLOTTING ###
+###########################
