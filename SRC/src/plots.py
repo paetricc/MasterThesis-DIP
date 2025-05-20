@@ -25,7 +25,7 @@ def parse_arguments():
     Returns
     -------
     argparse.Namespace : 
-        Zpracované argumenty zadané uživatelem na vstupu
+        Zpracované argumenty zadané uživatelem
     """
     parser = argparse.ArgumentParser(description="Vykreslení grafů pro evoluční algoritmy a kvantově inspirované evoluční algoritmy.")
     parser.add_argument("source_dir", type=str, help="Cesta ke zdrojové složce (výchozí: outputs)")
