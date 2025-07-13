@@ -7,7 +7,9 @@ The thesis explores classical optimization techniques inspired by principles of 
 ## 📁 Repository Structure
 
 - `DIP/` - Source files for the thesis text  
-- `ExcelFIT/` - Materials from the Excel@FIT conference presentation 
+- `ExcelFIT/` - Materials from the Excel@FIT conference presentation
+  - [paper](https://excel.fit.vutbr.cz/submissions/2025/083/83.pdf)
+  - [poster](https://excel.fit.vutbr.cz/submissions/2025/083/83_poster.pdf)
 - `MSZ/` - Presentation slides for the thesis defense  
 - `SRC/` - Source code and implementation of the algorithms  
 - `thesis.pdf` - Final exported version of the thesis (ready to read)
